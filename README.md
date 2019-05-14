@@ -15,7 +15,7 @@
 <br>
 <br>
 
-⬇️`examples of using images for your tech stack, make sure to change these`⬇️
+⬇️`examples of using images with links for your tech stack, make sure to change these to fit your project`⬇️
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
@@ -127,7 +127,7 @@ In your backend, create a .env file that includes the following:
 
 ### Other Scripts
 
-⬇️`replace these exaplles with your own`⬇️
+⬇️`replace these examples with your own`⬇️
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
