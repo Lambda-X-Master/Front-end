@@ -1,6 +1,6 @@
 `Note: All text in this format is intructions for your documentation and should eventually be deleted`
 
-# ~Title of project goes here~
+# Title of project goes here
 
 ### Contributors
 
@@ -25,7 +25,7 @@
 
 ## Project Overview
 
-~Add description of project here~
+Add description of project here
 
 You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
@@ -42,7 +42,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 ### Frontend built using:
 
-#### `Fronend framework goes here`
+#### `Frontend framework goes here`
 
     *point one
     *point two
@@ -113,7 +113,7 @@ In your backend, create a .env file that includes the following:
 
 ## Installation Instructions
 
-`explain how to install the required dependencies to get this project up and running with yarn and NPM
+`explain how to install the required dependencies to get this project up and running with yarn and NPM`
 
 ### Other Scripts
 
@@ -162,4 +162,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](link to your backend docs here) for details on the backend of our project.
+See [Backend Documentation](`link to your backend docs here`) for details on the backend of our project.
