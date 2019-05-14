@@ -1,10 +1,10 @@
-_Note: All text in italics is intructions for your documentation and should eventually be deleted_
+_Note: All text in italics is intructions for your documentation and should eventually be deleted. Use this as a guideline for your docs, not as an absolute format._
 
 # Title of project goes here
 
 ### Contributors
 
-_In Week 5 add contributor info below, make sure to edit the social links for each member. Add or delete these place-holders as needed._
+_In Week 5 add contributor info below, make sure add images and edit the social links for each member. Add or delete these place-holders as needed._
 
 |                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -42,7 +42,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 ### Frontend built using:
 
-#### `Frontend framework goes here`
+#### _Frontend framework goes here_
 
     *point one
     *point two
@@ -62,31 +62,31 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 #### List the rest of the backend end features and libraries in the same format as the framework above
 
-## Authentication API here
+## _Authentication API here_
 
 _replace text below with a description of the API_
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## `payment API here`
+## _payment API here_
 
 _replace text below with a description of the API_
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
-## `Misc API here`
+## _Misc API here_
 
 _replace text below with a description of the API_
 
 You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
-## `Misc API here`
+## _Misc API here_
 
 _replace text below with a description of the API_
 
 When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
 
-## `Misc API here`
+## _Misc API here_
 
 _replace text below with a description of the API_
 
@@ -116,6 +116,15 @@ In your backend, create a .env file that includes the following:
     *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
     *  SENDGRID_API_KEY - this is generated in your Sendgrid account
     *  stripe_secret - this is generated in the Stripe dashboard
+
+## Content Licenses
+
+_For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table_
+
+| Image Filename | Source / Creator | License                                                                      |
+| -------------- | ---------------- | ---------------------------------------------------------------------------- |
+| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
+| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
 ## Testing
 
