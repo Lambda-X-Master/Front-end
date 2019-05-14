@@ -1,10 +1,10 @@
-`Note: All text in this format is intructions for your documentation and should eventually be deleted`
+_Note: All text in italics is intructions for your documentation and should eventually be deleted_
 
 # Title of project goes here
 
 ### Contributors
 
-`In Week 5 add contributor info below, make sure to edit the social links for each member. Add or delete these place-holders as needed.`
+_In Week 5 add contributor info below, make sure to edit the social links for each member. Add or delete these place-holders as needed._
 
 |                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -15,7 +15,7 @@
 <br>
 <br>
 
-⬇️`examples of using images with links for your tech stack, make sure to change these to fit your project`⬇️
+⬇️*examples of using images with links for your tech stack, make sure to change these to fit your project*⬇️
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
@@ -64,31 +64,31 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 ## Authentication API here
 
-`replace text below with a description of the API`
+_replace text below with a description of the API_
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
 ## `payment API here`
 
-`replace text below with a description of the API`
+_replace text below with a description of the API_
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
 ## `Misc API here`
 
-`replace text below with a description of the API`
+_replace text below with a description of the API_
 
 You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
 ## `Misc API here`
 
-`replace text below with a description of the API`
+_replace text below with a description of the API_
 
 When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
 
 ## `Misc API here`
 
-`replace text below with a description of the API`
+_replace text below with a description of the API_
 
 Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
@@ -96,7 +96,7 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file in the frontend folder containing the following:
 
-⬇️`These are just examples, replace them with the specifics for your app`⬇️
+⬇️*These are just examples, replace them with the specifics for your app*⬇️
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
     *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
@@ -119,15 +119,15 @@ In your backend, create a .env file that includes the following:
 
 ## Testing
 
-`Document what you used for testing and why.`
+_Document what you used for testing and why._
 
 ## Installation Instructions
 
-`explain how to install the required dependencies to get this project up and running with yarn and NPM`
+_explain how to install the required dependencies to get this project up and running with yarn and NPM_
 
 ### Other Scripts
 
-⬇️`replace these examples with your own`⬇️
+⬇️*replace these examples with your own*⬇️
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
@@ -172,4 +172,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](`link to your backend docs here`) for details on the backend of our project.
+See [Backend Documentation](_link to your backend docs here_) for details on the backend of our project.
