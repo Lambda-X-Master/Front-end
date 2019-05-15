@@ -70,7 +70,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## _payment API here_
+## _Payment API here_
 
 🚫Replace text below with a description of the API
 
