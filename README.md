@@ -50,7 +50,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
     *point two
     *point three
 
-#### 🚫List the rest of the front end features and libraries in the same format as the framework above.
+🚫List the rest of the front end features and libraries in the same format as the framework above.
 
 ### Frontend deployed to `insert service here`
 
@@ -62,7 +62,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
     *point two
     *point three
 
-#### List the rest of the backend end features and libraries in the same format as the framework above
+🚫 List the rest of the backend end features and libraries in the same format as the framework above
 
 ## _Authentication API here_
 
@@ -183,4 +183,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](_link to your backend docs here_) for details on the backend of our project.
+See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
