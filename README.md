@@ -1,4 +1,4 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.  Docs need to be 90% complete by the end of week 3.
+🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.  Docs need to be 80% complete by the end of week 2.
 
 # Title of project goes here
 
