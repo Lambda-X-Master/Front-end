@@ -10,7 +10,7 @@
 
 |                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |
+|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |                      [<img src="insert src here" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
@@ -54,11 +54,11 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-### Front end deployed to `insert service here`
+#### Front end deployed to `🚫insert service here`
 
 ### [Back end](🚫link to back end repo here) built using:
 
-#### `back end framework goes here`
+#### 🚫 back end framework goes here
 
     *point one
     *point two
@@ -134,7 +134,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 ## Other Scripts
 
-🚫⬇️replace these examples with your own⬇️
+🚫replace these examples with your own
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
