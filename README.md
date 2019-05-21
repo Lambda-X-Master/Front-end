@@ -44,9 +44,9 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 
 ## 1️⃣ Tech Stack
 
-### Frontend built using:
+### Front end built using:
 
-#### _Frontend framework goes here_
+#### _Front end framework goes here_
 
     *point one
     *point two
@@ -54,17 +54,17 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-### Frontend deployed to `insert service here`
+### Front end deployed to `insert service here`
 
-### [Backend](🚫link to backend repo here) built using:
+### [Back end](🚫link to back end repo here) built using:
 
-#### `backend framework goes here`
+#### `back end framework goes here`
 
     *point one
     *point two
     *point three
 
-🚫 List the rest of the backend end features and libraries in the same format as the framework above
+🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
 # APIs
 
