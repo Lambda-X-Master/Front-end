@@ -2,7 +2,7 @@
 
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
-🚫 Each student has a a minimum number of meaningful PRs each week per the rubric.  Contributing to docs can only count as one PR for one student each week.
+🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # 1️⃣ Title of project goes here
 
