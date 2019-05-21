@@ -31,18 +31,26 @@
 
 ## Project Overview
 
-🚫3️⃣Add description of project here
-
 You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+
+1️⃣ [Trello Board](🚫add link to trello board here)
+
+1️⃣ [Product Canvas](🚫add link to product canvas here)
+
+🚫 Replace lorem ipsum with a description of your project
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 
 ### 4️⃣ Key Features
 
-    * feature one
-    * feature two
-    * feature three
-    * feature four
-    * feature five
-    * feature six
+-    Feature One
+-    Feature Two
+-    Feature Three
+-    Feature Four
+-    Feature Five
 
 ## 1️⃣ Tech Stack
 
@@ -50,9 +58,12 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 
 #### _Front end framework goes here_
 
-    *point one
-    *point two
-    *point three
+🚫 Why did you choose this framework?
+
+-    Point One
+-    Point Two
+-    Point Three
+-    Point Four
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
