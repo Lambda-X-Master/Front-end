@@ -37,7 +37,7 @@ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here
 
 1️⃣ [Product Canvas](🚫add link to product canvas here)
 
-1️⃣ [UX Design files](🚫add link to product canvas here) - 🚫 delete if not applicable
+1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 
 🚫 Replace lorem ipsum with a description of your project
 
