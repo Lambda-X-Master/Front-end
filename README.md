@@ -17,7 +17,7 @@
 <br>
 <br>
 
-🚫 4️⃣ ⬇️Optional examples of using images with links for your tech stack, make sure to change these to fit your project⬇️
+🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
@@ -31,7 +31,7 @@
 
 🚫3️⃣Add description of project here
 
-You can find the project at [URL NAME GOES HERE](copy and paste URL here).
+You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
 ### 4️⃣ Key Features
 
@@ -56,7 +56,7 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
 
 ### Frontend deployed to `insert service here`
 
-### Backend built using:
+### [Backend](🚫link to backend repo here) built using:
 
 #### `backend framework goes here`
 
@@ -65,6 +65,8 @@ You can find the project at [URL NAME GOES HERE](copy and paste URL here).
     *point three
 
 🚫 List the rest of the backend end features and libraries in the same format as the framework above
+
+# APIs
 
 ## 2️⃣ _Authentication API here_
 
@@ -96,11 +98,11 @@ When you do it your way you can go anywhere you choose. Let your heart take you 
 
 Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
-## 3️⃣ Environment Variables
+# 3️⃣ Environment Variables
 
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file in the frontend folder containing the following:
+In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫⬇️These are just examples, replace them with the specifics for your app⬇️
+🚫These are just examples, replace them with the specifics for your app
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
     *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
@@ -113,15 +115,7 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-🚫In your backend, create a .env file that includes the following:
-
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
-
-## 5️⃣ Content Licenses
+# 5️⃣ Content Licenses
 
 🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
@@ -130,15 +124,15 @@ In order for the app to function correctly, the user must set up their own envir
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-## 4️⃣ Testing
+# 4️⃣ Testing
 
 🚫Document what you used for testing and why
 
-## 4️⃣ Installation Instructions
+# 4️⃣ Installation Instructions
 
 🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
 
-### Other Scripts
+## Other Scripts
 
 🚫⬇️replace these examples with your own⬇️
 
@@ -147,13 +141,13 @@ In order for the app to function correctly, the user must set up their own envir
     * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
-## Contributing
+# Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
-### Issue/Bug Request
+## Issue/Bug Request
 
     * If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
     * Check first to see if your issue has already been reported.
@@ -161,17 +155,17 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
     * Create a live example of the problem.
     * Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
 
-### Feature Requests
+## Feature Requests
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
-### Pull Requests
+## Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
 Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
 
-#### Pull Request Guidelines
+### Pull Request Guidelines
 
     * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
     * Update the README.md with details of changes to the interface, including new environment variables, exposed ports, useful file locations and container parameters.
