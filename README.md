@@ -48,11 +48,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ### 4️⃣ Key Features
 
--    Feature One
--    Feature Two
--    Feature Three
--    Feature Four
--    Feature Five
+-    feature one
+-    feature two
+-    feature three
+-    feature four
+-    feature five
 
 ## 1️⃣ Tech Stack
 
@@ -62,10 +62,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫 Why did you choose this framework?
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
+-    point one
+-    point two
+-    point three
+-    point four
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
@@ -75,9 +75,9 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 #### 🚫 back end framework goes here
 
-    *point one
-    *point two
-    *point three
+-    point one
+-    point two
+-    point three
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
