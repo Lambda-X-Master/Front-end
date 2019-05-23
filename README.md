@@ -31,7 +31,7 @@
 
 ## Project Overview
 
-You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
 1️⃣ [Trello Board](🚫add link to trello board here)
 
