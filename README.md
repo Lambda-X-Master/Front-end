@@ -6,6 +6,8 @@
 
 # 1️⃣ Title of project goes here
 
+1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+
 ## 4️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
@@ -30,8 +32,6 @@
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
-
-1️⃣ You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
 
 1️⃣ [Trello Board](🚫add link to trello board here)
 
