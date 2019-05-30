@@ -1,0 +1,4 @@
+[build]
+base = "market-org/"
+publish = "market-org/build/"
+command = "yarn build"
