@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "netlify": "^2.4.4"
+  },
+  "scripts": {
+    "build": "./market-orgs/src/index.js"
+  }
+}
