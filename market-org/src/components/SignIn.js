@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from 'react';
-
 import { auth, googleProvider } from '../firebase';
 
 
+const SignIn = (props) => {
 
-const SignUp = (props) => {
-
-    // local states for signing up with email/password
-
-    const [email, setEmail] = useState(''); 
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [market, setMarket] = useState(false);
-    const [vendor, setVendor] = useState(false);
 
-
-    // using google sign up authentication
-
-    const signUpWithGoogle = () => {
+    
+    const signInWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
             .then(({user}) => {
             console.log("user:", user);
@@ -25,12 +17,11 @@ const SignUp = (props) => {
                 console.log(err.message)
             })   
     }
-    
-    // using firebase auth method to register new user via email password
 
-    const signUpWithEmailAndPassword = () => {
+
+    const signInWithEmailAndPassword = () => {
   
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 console.log(user)
             })
@@ -39,8 +30,7 @@ const SignUp = (props) => {
             })
      }
 
-
-    return (
+     return (
         <div>
             <form autoComplete="off">
                 <input
@@ -57,16 +47,16 @@ const SignUp = (props) => {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                  />
-                 <button type='button' onClick={signUpWithEmailAndPassword}>
-                    Sign Up
+                 <button type='button' onClick={signInWithEmailAndPassword}>
+                    Sign In
                 </button>
             </form>
-            <button type='button' onClick={signUpWithGoogle}>
-                Sign Up with Google
+            <button type='button' onClick={signInWithGoogle}>
+                Sign In with Google
             </button>
         </div>
     )
+
 }
 
-
-export default SignUp;
+export default SignIn;
