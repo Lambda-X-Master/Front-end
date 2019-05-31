@@ -11,17 +11,17 @@ function App(props) {
 
   const [users, setUsers] = useState({});
 
-  useEffect(() => {
-    axios.get('http://localhost:5000')
-         .then(response => {
-           console.log('response:', response)
-           return (
-              setUsers(reponse)
-           )
+//   useEffect(() => {
+//     axios.get('http://localhost:5000')
+//          .then(response => {
+//            console.log('response:', response)
+//            return (
+//               setUsers(response)
+//            )
            
-         })
-         console.log(users)
-  }, [])
+//          })
+//          console.log(users)
+//   }, [])
 
 
 
