@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
+import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel, withStyles } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import withStyles from '@material-ui/core/styles/withStyles'
-
-import { auth, googleProvider } from '../firebase';
 import { Link, withRouter } from 'react-router-dom'
+import { auth, googleProvider } from '../firebase';
+
 
 const styles = theme => ({
 	main: {
@@ -36,15 +35,15 @@ const styles = theme => ({
 	submit: {
 		marginTop: theme.spacing.unit * 3,
 	},
-})
+});
 
-function Register(props) {
+function SignIn(props) {
 	const { classes } = props
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const signUpWithGoogle = () => {
+	const signInWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
             .then(({user}) => {
             console.log("user:", user);
@@ -53,19 +52,17 @@ function Register(props) {
                 console.log(err.message)
             })   
     }
-    
-    // using firebase auth method to register new user via email password
 
-    const signUpWithEmailAndPassword = () => {
+
+    const signInWithEmailAndPassword = () => {
   
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 console.log(user)
             })
             .catch(err => {
                 console.log(err);
             })
-           
      }
 
 	return (
@@ -75,35 +72,34 @@ function Register(props) {
 					<LockOutlinedIcon />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Register Account
+					Sign in
        			</Typography>
-				<form className={classes.form} onSubmit={e => e.preventDefault() && false }>
+				<form className={classes.form} onSubmit={e => e.preventDefault() && false}>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="email">Email Address</InputLabel>
-						<Input id="email" name="email" autoComplete="off" value={email} onChange={e => setEmail(e.target.value)}  />
+						<Input id="email" name="email" autoComplete="off" autoFocus value={email} onChange={e => setEmail(e.target.value)} />
 					</FormControl>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="password">Password</InputLabel>
-						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}  />
+						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
 					</FormControl>
 					<Button
 						type="submit"
 						fullWidth
 						variant="contained"
 						color="primary"
-						onClick={signUpWithEmailAndPassword}
+						onClick={signInWithEmailAndPassword}
 						className={classes.submit}>
-						Register
+						Sign in
           			</Button>
-
 					<Button
 						type="submit"
 						fullWidth
 						variant="contained"
 						color="secondary"
-						onClick={signUpWithGoogle}
+						onClick={signInWithGoogle}
 						className={classes.submit}>
-						Sign up with Google
+						Sign in with Google
           			</Button>
 				</form>
 			</Paper>
@@ -112,4 +108,5 @@ function Register(props) {
 
 }
 
-export default withRouter(withStyles(styles)(Register))
+
+export default withRouter(withStyles(styles)(SignIn));
