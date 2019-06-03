@@ -10,7 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import SignIn from '../login/SignIn';
 import SignUp from '../register/SignUp';
 import { auth } from '../../firebase';
-import { withRouter } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     root: {

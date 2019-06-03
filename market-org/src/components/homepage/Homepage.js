@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Container, Grid, Paper, makeStyles } from '@material-ui/core'
 
 import Navbar from '../navbar/Navbar';
 import Searchbar from '../navbar/Searchbar';
+import { AuthContext } from '../authContext/authState';
+
+import axios from 'axios';
 
 import fruit from '../../images/fruit-stand.jpg'
 import market from '../../images/market-stand.jpg'
@@ -43,8 +46,25 @@ const useStyles = makeStyles(theme => ({
 const Homepage = (props) => {
 
     const classes = useStyles();
+    const [users, setUsers] = useState([]);
+    const { currentUser } = useContext(AuthContext);
 
-    return(
+    useEffect(() => {
+
+        axios.get('http://localhost:5000/users')
+            .then(res => {
+                console.log(res.data)
+                setUsers(res.data)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }, [])
+
+    console.log("currentUser:", currentUser);
+    console.log("users", users);
+
+    return (
         <React.Fragment>
             <Container maxWidth="lg">
                 <Navbar />
@@ -61,9 +81,26 @@ const Homepage = (props) => {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Searchbar />
                 </div>
+                {currentUser ?
+                    <div style={{ textAlign: 'center', marginTop: '200px' }}>
+                        {users && users.map(user => {
+                            return (
+                                <div key={user.id}>{user.email}</div>
+                            )
+                        })}
+                    </div> : <h1>You must log in</h1>
+                }
             </Container>
-      </React.Fragment>
+        </React.Fragment>
     )
 }
+
+// <div style={{ textAlign: 'center', marginTop: '200px' }}>
+// {users && users.map(user => {
+//     return (
+//         <div key={user.id}>{user.email}</div>
+//     )
+// })}
+// </div>
 
 export default Homepage;
