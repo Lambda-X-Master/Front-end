@@ -51,6 +51,7 @@ function ButtonAppBar(props) {
     
   const logout = () => {
     auth.signOut();
+    localStorage.clear();
     props.history.push('/')
   }
     
