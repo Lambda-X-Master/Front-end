@@ -15,15 +15,7 @@ import { auth } from './firebase';
 import './App.css';
 
 function App() {
-
-  
-
-  const [user, setUsers] =  useState([])
-
-
-  
-
-
+  const [user, setUsers] =  useState([]);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -76,10 +68,6 @@ function App() {
 //         })
 // }
 
-
-
-
-
 //   auth.onAuthStateChanged((user) => {
 //     console.log(user, 'in auth listener')
 //     if (user) {
@@ -98,8 +86,6 @@ function App() {
 //       })
 //     }
 //   })
-
-
 
   // const storeUser = (user) => {
   //   axios.post('/users/register')
