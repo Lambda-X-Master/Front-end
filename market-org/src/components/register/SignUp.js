@@ -3,7 +3,7 @@ import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } fro
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import { auth, googleProvider } from '../firebase';
+import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
 
 const styles = theme => ({

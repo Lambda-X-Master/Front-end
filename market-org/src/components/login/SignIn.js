@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel, withStyles } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Link, withRouter } from 'react-router-dom'
-import { auth, googleProvider } from '../firebase';
+import { auth, googleProvider } from '../../firebase';
 
 
 const styles = theme => ({
