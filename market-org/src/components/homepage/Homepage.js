@@ -49,9 +49,12 @@ const Homepage = (props) => {
     const [users, setUsers] = useState([]);
     const { currentUser } = useContext(AuthContext);
 
+   
+  
     useEffect(() => {
-
-        axios.get('http://localhost:5000/users')
+       
+            axios.defaults.headers.common['Authorization'] = localStorage.getItem('ra')
+            axios.get('http://localhost:5000/users')
             .then(res => {
                 console.log(res.data)
                 setUsers(res.data)
@@ -59,10 +62,10 @@ const Homepage = (props) => {
             .catch(err => {
                 console.log(err.message)
             })
+           
     }, [])
 
-    console.log("currentUser:", currentUser);
-    console.log("users", users);
+    console.log("curr", currentUser)
 
     return (
         <React.Fragment>

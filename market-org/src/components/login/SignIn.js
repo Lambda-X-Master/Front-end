@@ -60,7 +60,8 @@ function SignIn(props) {
   
         auth.signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                console.log(user)
+				console.log(user)
+				localStorage.setItem('ra', user.ra)
             })
             .catch(err => {
                 console.log(err);
