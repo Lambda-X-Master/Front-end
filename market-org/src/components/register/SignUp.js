@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import { auth, googleProvider } from '../firebase';
+import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
+
+import { AuthContext } from '../authContext/authState';
 
 const styles = theme => ({
 	main: {
@@ -64,9 +66,13 @@ function Register(props) {
             })
             .catch(err => {
                 console.log(err);
-            })
+			})
+	
            
-     }
+	 }
+
+	const { currentUser } = useContext(AuthContext);
+	console.log("currentUser:", currentUser);
 
 	return (
 		<main className={classes.main}>
