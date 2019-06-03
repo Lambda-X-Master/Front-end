@@ -90,7 +90,8 @@ function App() {
                .then(res => {
                  console.log("res:", res);
                  console.log("userinthen", user)
-                 setUsers(user)
+                 setUsers(user);
+                 localStorage.setItem('fireBaseId', res.data.firebase_id)
                })
                .catch(err => {
                  console.log(err)
