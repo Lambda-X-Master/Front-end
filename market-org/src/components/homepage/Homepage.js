@@ -49,20 +49,19 @@ const Homepage = (props) => {
     const [users, setUsers] = useState([]);
     const { currentUser } = useContext(AuthContext);
 
-   
-  
+
+
     useEffect(() => {
-       
-            axios.defaults.headers.common['Authorization'] = localStorage.getItem('ra')
-            axios.get('http://localhost:5000/users')
-            .then(res => {
-                console.log(res.data)
-                setUsers(res.data)
-            })
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
+        axios.get('https://market-organizer.herokuapp.com/users', currentUser)
+        .then(res => {
+            console.log(res.data)
+            setUsers(res.data)
+        })
             .catch(err => {
                 console.log(err.message)
             })
-           
+
     }, [])
 
     console.log("curr", currentUser)

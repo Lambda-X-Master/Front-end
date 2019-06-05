@@ -17,29 +17,29 @@ import './App.css';
 function App() {
   const [user, setUsers] =  useState([]);
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      console.log("user:", user)
-      if(user) {
-        const {uid, ra, email} = user;
-        localStorage.setItem('token', ra)
-        if(user.email) {
-          const { email } = user;
-          axios.defaults.headers.common['Authorization'] = user.ra
-          axios.post('http://localhost:5000/users/register', user)
-               .then(res => {
-                 console.log("res:", res);
-                 console.log("userinthen", user)
-                 setUsers(user)
-               })
-               .catch(err => {
-                 console.log(err)
-               })
-        }
-      }
-    })
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     console.log("user:", user)
+  //     if(user) {
+  //       const {uid, ra, email} = user;
+  //       localStorage.setItem('token', ra)
+  //       if(user.email) {
+  //         const { email } = user;
+  //         axios.defaults.headers.common['Authorization'] = user.ra
+  //         axios.post('http://localhost:5000/users/register', user)
+  //              .then(res => {
+  //                console.log("res:", res);
+  //                console.log("userinthen", user)
+  //                setUsers(user)
+  //              })
+  //              .catch(err => {
+  //                console.log(err)
+  //              })
+  //       }
+  //     }
+  //   })
 
-  }, [])
+  // }, [])
 
 
 //   export const register = (user) => dispatch => {
