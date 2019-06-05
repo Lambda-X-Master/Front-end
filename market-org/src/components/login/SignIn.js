@@ -48,6 +48,7 @@ function SignIn(props) {
 	const signInWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
             .then(({user}) => {
+			localStorage.setItem('ra', user.ra)
             console.log("user:", user);
             })
             .catch(err => {
@@ -66,12 +67,13 @@ function SignIn(props) {
             .catch(err => {
                 console.log(err);
 			})
+			props.history.push('/')
 		
 	 }
 	 
 	 const { currentUser } = useContext(AuthContext);
 
-	 console.log("currentUser:", currentUser);
+
 
 	return (
 		<main className={classes.main}>

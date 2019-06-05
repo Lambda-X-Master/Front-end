@@ -7,6 +7,7 @@ import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
+import axios from 'axios';
 
 const styles = theme => ({
 	main: {
@@ -45,34 +46,94 @@ function Register(props) {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [market, setMarket] = useState('market');
+	const [vendor, setVendor] = useState('vendor');
+	const [userType, setUserType] = useState(null);
+	const [background, setBackground] = useState('')
+	const [marketBg, setMarketBg] = useState('')
 
 	const signUpWithGoogle = () => {
-        auth.signInWithPopup(googleProvider)
-            .then(({user}) => {
-            console.log("user:", user);
-            })
-            .catch(err => {
-                console.log(err.message)
-            })   
-    }
-    
-    // using firebase auth method to register new user via email password
+		auth.signInWithPopup(googleProvider)
+			.then(({ user }) => {
+				console.log("user:", user);
+				if (user) {
+					const { uid, ra, email } = user;
+					localStorage.setItem('token', ra)
+					if (user.email) {
+						const { email } = user;
+						console.log("emailuser", user)
+						const userObj = {
+							email,
+							uid,
+							user_type: `${userType}`
+						}
+						console.log("setUsertype", userType)
+						console.log('userra', user.ra)
+						console.log(userObj)
+						if (userType === null) {
+							return console.log('null')
+						} else {
+							axios.defaults.headers.common['Authorization'] = user.ra
+							axios.post('http://localhost:5000/users/register', { ...userObj })
+								.then(res => {
+									console.log("res:", res);
 
-    const signUpWithEmailAndPassword = () => {
-  
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(({ user }) => {
-                console.log(user)
-            })
-            .catch(err => {
-                console.log(err);
+								})
+								.catch(err => {
+									console.log(err)
+								})
+							props.history.push('/')
+						}
+					}
+				}
 			})
-	
-           
-	 }
+			.catch(err => {
+				console.log(err);
+			})
+	}
+
+
+
+	// using firebase auth method to register new user via email password
+
+	const signUpWithEmailAndPassword = () => {
+
+		auth.createUserWithEmailAndPassword(email, password)
+			.then(({ user }) => {
+
+				if (user) {
+					const { uid, ra, email } = user;
+					localStorage.setItem('token', ra)
+					if (user.email && userType) {
+						const { email } = user;
+						console.log("emailuser", user)
+						const userObj = {
+							email,
+							uid,
+							user_type: `${userType}`
+						}
+						axios.defaults.headers.common['Authorization'] = user.ra
+						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
+							.then(res => {
+								console.log("res:", res);
+
+							})
+							.catch(err => {
+								console.log(err)
+							})
+							props.history.replace('/')
+					}
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
+
+	}
 
 	const { currentUser } = useContext(AuthContext);
-	console.log("currentUser:", currentUser);
+
 
 	return (
 		<main className={classes.main}>
@@ -83,15 +144,51 @@ function Register(props) {
 				<Typography component="h1" variant="h5">
 					Register Account
        			</Typography>
-				<form className={classes.form} onSubmit={e => e.preventDefault() && false }>
+				<form className={classes.form} onSubmit={e => e.preventDefault() && false}>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="email">Email Address</InputLabel>
-						<Input id="email" name="email" autoComplete="off" value={email} onChange={e => setEmail(e.target.value)}  />
+						<Input id="email" name="email" autoComplete="off" value={email} onChange={e => setEmail(e.target.value)} />
 					</FormControl>
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="password">Password</InputLabel>
-						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}  />
+						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
 					</FormControl>
+					<div style={{ textAlign: 'center', marginTop: '20px' }}>
+						<Typography style={{ fontWeight: 'bold', color: '#547c94' }}>
+							Choose your account Type
+					</Typography>
+					</div>
+					<div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px' }}>
+						<div>
+							<Button
+								variant="outlined"
+								color="primary"
+								value={market}
+								onClick={(e) => {
+									setUserType(e.currentTarget.value)
+									setMarketBg('lightBlue')
+									setBackground('white')
+								}}
+								style={{ backgroundColor: `${marketBg}` }}>
+								Market
+          					</Button>
+						</div>
+						<div>
+							<Button
+								variant="outlined"
+								color="primary"
+								value={vendor}
+								onClick={(e) => {
+									setUserType(e.currentTarget.value)
+									setBackground('lightBlue')
+									setMarketBg('white')
+								}}
+								style={{ backgroundColor: `${background}` }}>
+								Vendor
+          					</Button>
+						</div>
+					</div>
+
 					<Button
 						type="submit"
 						fullWidth
