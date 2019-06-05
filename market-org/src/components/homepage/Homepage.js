@@ -52,8 +52,8 @@ const Homepage = (props) => {
 
 
     useEffect(() => {
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-        axios.get('http://localhost:5000/users', currentUser)
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem('ra')
+        axios.get('http://localhost:5000/users')
         .then(res => {
             console.log(res.data)
             setUsers(res.data)
@@ -67,7 +67,7 @@ const Homepage = (props) => {
     console.log("curr", currentUser)
 
     return (
-        <React.Fragment>
+              <React.Fragment>
             <Container maxWidth="lg">
                 <Navbar />
                 <Grid container style={{ height: '500px' }}>
@@ -86,11 +86,14 @@ const Homepage = (props) => {
                 {currentUser ?
                     <div style={{ textAlign: 'center', marginTop: '200px' }}>
                         {users && users.map(user => {
-                            return (
+                            console.log(user);
+
+                            return (                                
                                 <>
                                 <button>Create Market profile</button>
+                                <button>Create vendor Profile</button>
                                 <div key={user.id}>{user.email}</div>
-                                </>
+                             </>
                                 
                             )
                         })}
