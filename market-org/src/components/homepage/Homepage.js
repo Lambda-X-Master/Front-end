@@ -53,7 +53,7 @@ const Homepage = (props) => {
 
     useEffect(() => {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-        axios.get('https://market-organizer.herokuapp.com/users', currentUser)
+        axios.get('http://localhost:5000/users', currentUser)
         .then(res => {
             console.log(res.data)
             setUsers(res.data)
@@ -87,7 +87,11 @@ const Homepage = (props) => {
                     <div style={{ textAlign: 'center', marginTop: '200px' }}>
                         {users && users.map(user => {
                             return (
+                                <>
+                                <button>Create Market profile</button>
                                 <div key={user.id}>{user.email}</div>
+                                </>
+                                
                             )
                         })}
                     </div> : <h1>You must log in</h1>
