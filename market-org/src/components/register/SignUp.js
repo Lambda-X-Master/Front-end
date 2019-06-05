@@ -7,6 +7,7 @@ import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
+import axios from 'axios';
 
 const styles = theme => ({
 	main: {
@@ -45,6 +46,11 @@ function Register(props) {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [market, setMarket] = useState('market');
+	const [vendor, setVendor] = useState('vendor');
+	const [userType, setUserType] = useState('');
+	const [background, setBackground] = useState('')
+	const [marketBg, setMarketBg] = useState('')
 
 	const signUpWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
@@ -55,14 +61,42 @@ function Register(props) {
                 console.log(err.message)
             })   
     }
-    
+	
+
+
     // using firebase auth method to register new user via email password
 
     const signUpWithEmailAndPassword = () => {
   
         auth.createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
-                console.log(user)
+				
+				if(user) {
+					const {uid, ra, email} = user;
+					localStorage.setItem('token', ra)
+					if(user.email) {
+					  const { email } = user;
+					  console.log("emailuser", user)
+					  const userObj = {
+						  email,
+						  uid,
+						  user_type: `${userType}`
+					  }
+					  console.log("setUsertype", userType)
+					  console.log('userra', user.ra)
+					  console.log(userObj)
+					  axios.defaults.headers.common['Authorization'] = user.ra
+					  axios.post('http://localhost:5000/users/register', {...userObj})
+						   .then(res => {
+							 console.log("res:", res);
+							 
+						   })
+						   .catch(err => {
+							 console.log(err)
+						   })
+						   props.history.push('/')
+					}
+				  }
             })
             .catch(err => {
                 console.log(err);
@@ -72,7 +106,7 @@ function Register(props) {
 	 }
 
 	const { currentUser } = useContext(AuthContext);
-	console.log("currentUser:", currentUser);
+
 
 	return (
 		<main className={classes.main}>
@@ -92,6 +126,40 @@ function Register(props) {
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}  />
 					</FormControl>
+					<div style={{textAlign: 'center', marginTop: '20px'}}>
+					<Typography style={{fontWeight: 'bold', color: '#547c94'}}>
+						Choose your account Type
+					</Typography>
+					</div>
+					<div style={{display: 'flex', justifyContent: 'space-around', marginTop: '10px'}}>
+						<div>
+							<Button 
+								variant="outlined"
+							 	color="primary"
+								value={market}
+								onClick={(e) => {
+								 setUserType(e.currentTarget.value)
+								 setMarketBg('lightBlue')
+								 setBackground('white')}}
+							   	style={{backgroundColor: `${marketBg}`}}>
+								Market
+          					</Button>
+						</div>
+						<div>
+							<Button 
+								variant="outlined"  
+								color="primary"
+								value={vendor}
+								onClick={(e) => {
+								 setUserType(e.currentTarget.value)
+								 setBackground('lightBlue')
+								 setMarketBg('white')}}
+								style={{backgroundColor: `${background}`}}>
+								Vendor
+          					</Button>
+						</div>
+					</div>
+					
 					<Button
 						type="submit"
 						fullWidth
