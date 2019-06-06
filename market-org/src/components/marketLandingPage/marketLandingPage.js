@@ -2,8 +2,18 @@ import React, { useState, useEffect, useContext,} from 'react';
 import { MarketProfilesContext } from '../context/GlobalContext.js';
 import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
+import styled from 'styled-components'
+
 
 import axios from 'axios';
+
+const MarketLandingContainer = styled.div`
+    width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const MarketLandingPage = (props) => {
 
@@ -28,15 +38,16 @@ const MarketLandingPage = (props) => {
 
     return (
         <React.Fragment>
-        <div className="marketLandingPage"> 
-        Test
+        <MarketLandingContainer> 
+        <h1> List of Markets</h1>
         {markets.map(market => {
 
         return (<MarketProfileCard profile={market} />)
 
         })}
 
-        </div>
+
+        </MarketLandingContainer>
         </React.Fragment>
     )
 }
