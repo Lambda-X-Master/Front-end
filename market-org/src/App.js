@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import axios from 'axios';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { withRouter } from 'react-router'
-
+import { withRouter } from 'react-router';
 
 
 
 import Homepage from './components/homepage/Homepage';
+import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 import { AuthProvider } from './components/authContext/authState';
+import { MarketProfilesProvider } from './components/context/GlobalContext.js';
 
 import { auth } from './firebase';
 
@@ -111,6 +112,11 @@ function App() {
         <CssBaseline />
         <Switch>
           <Route exact path="/" component={Homepage} />
+
+          <MarketProfilesProvider >
+          <Route path="/markets" component={MarketLandingPage}/>
+          </MarketProfilesProvider >
+        
         </Switch>
         
       </React.Fragment>
