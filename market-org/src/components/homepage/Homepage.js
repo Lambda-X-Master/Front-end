@@ -51,15 +51,15 @@ const Homepage = props => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = localStorage.getItem("ra");
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
     axios
-      .get("/users")
+      .get("/users", currentUser)
       .then(res => {
-        // console.log(res.data);
+        console.log("resdata:",res.data);
         setUsers(res.data);
       })
       .catch(err => {
-        console.log(err.message);
+        console.log("err",err.message);
       });
   }, []);
 

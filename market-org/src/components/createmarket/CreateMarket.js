@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -43,7 +43,7 @@ class CreateMarket extends React.Component {
         // }
         // console.log('newmarket', newmarket)
         console.log("initstripe")
-        axios.get('https://market-organizer.herokuapp.com/stripe/authorize')
+        axios.get('/stripe/authorize')
              .then(res => {
                 window.location.href=res.data
              })
