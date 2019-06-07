@@ -50,6 +50,10 @@ function ButtonAppBar(props) {
           setOpenReg(false)
       }
 
+      const routetoCreate = () => {
+          props.history.push("/create-market")
+      }
+
     
   const logout = () => {
     auth.signOut();
@@ -70,11 +74,20 @@ function ButtonAppBar(props) {
                     </Typography>
                     {
                         currentUser ?
+                        <>
+                        <Button
+                        color="inherit"
+                        onClick={routetoCreate}
+                        style={{ backgroundColor: '#30cc32', margin: '10px' }}>
+                        Register Market
+                        </Button>
                        <Button color="inherit"
                                 onClick={logout}
                                 style={{ backgroundColor: '#30cc32', margin: '10px' }}>
                                 Log Out
-                        </Button> :
+                        </Button>
+                        </>
+                         :
                         <>
                         <Button color="inherit"
                                 onClick={handleRegOpen}

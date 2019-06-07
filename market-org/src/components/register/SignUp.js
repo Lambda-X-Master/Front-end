@@ -80,7 +80,7 @@ function Register(props) {
 								.catch(err => {
 									console.log(err)
 								})
-							props.history.push('/')
+							
 						
 					}
 				}
@@ -88,6 +88,7 @@ function Register(props) {
 			.catch(err => {
 				console.log(err);
 			})
+			props.history.push('/create-market')
 	}
 
 
@@ -119,13 +120,14 @@ function Register(props) {
 							.catch(err => {
 								console.log(err)
 							})
-							props.history.replace('/')
+							
 					}
 				}
 			})
 			.catch(err => {
 				console.log(err);
 			})
+			// props.history.push('/create-market')
 
 
 	}

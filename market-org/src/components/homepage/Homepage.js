@@ -1,7 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
+import { Route } from 'react-router-dom';
 import { Container, Grid, Paper, makeStyles } from '@material-ui/core'
 
-import Navbar from '../navbar/Navbar';
+// import Navbar from '../navbar/Navbar';
 import Searchbar from '../navbar/Searchbar';
 import { AuthContext } from '../authContext/authState';
 
@@ -69,7 +70,7 @@ const Homepage = (props) => {
     return (
         <React.Fragment>
             <Container maxWidth="lg">
-                <Navbar />
+                {/* <Navbar /> */}
                 <Grid container style={{ height: '500px' }}>
                     <Grid item xs={6}>
                         <Paper className={classes.paperImageOne}>
