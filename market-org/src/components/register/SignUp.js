@@ -58,7 +58,8 @@ function Register(props) {
 				console.log("user:", user);
 				if (user) {
 					const { uid, ra, email } = user;
-					localStorage.setItem('token', ra)
+					localStorage.setItem('token', ra);
+					localStorage.setItem('firebaseId', uid)
 					if (user.email) {
 						const { email } = user;
 						console.log("emailuser", user)
@@ -116,6 +117,7 @@ function Register(props) {
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								localStorage.setItem('firebaseId', res.data.firebase_id);
 
 							})
 							.catch(err => {
@@ -127,9 +129,7 @@ function Register(props) {
 			})
 			.catch(err => {
 				console.log(err);
-			})
-
-
+			});
 	}
 
 	const { currentUser } = useContext(AuthContext);

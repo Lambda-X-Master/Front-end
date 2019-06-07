@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext,} from 'react';
 import { MarketProfilesContext } from '../context/GlobalContext.js';
 import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
-import styled from 'styled-components'
-
+import styled from 'styled-components';
 
 import axios from '../../axios-instance';
 
@@ -51,5 +50,6 @@ const MarketLandingPage = (props) => {
         </React.Fragment>
     )
 }
+
 
 export default MarketLandingPage;

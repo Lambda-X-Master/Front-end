@@ -62,7 +62,8 @@ function SignIn(props) {
         auth.signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
 				console.log(user)
-				localStorage.setItem('ra', user.ra)
+				localStorage.setItem('ra', user.ra);
+				localStorage.setItem('firebaseId', user.uid);
             })
             .catch(err => {
                 console.log(err);
