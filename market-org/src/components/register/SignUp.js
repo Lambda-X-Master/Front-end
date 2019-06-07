@@ -7,7 +7,7 @@ import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 const styles = theme => ({
 	main: {
@@ -58,7 +58,8 @@ function Register(props) {
 				console.log("user:", user);
 				if (user) {
 					const { uid, ra, email } = user;
-					localStorage.setItem('token', ra)
+					localStorage.setItem('token', ra);
+					localStorage.setItem('firebaseId', uid)
 					if (user.email) {
 						const { email } = user;
 						console.log("emailuser", user)
@@ -74,7 +75,7 @@ function Register(props) {
 							return console.log('null')
 						} else {
 							axios.defaults.headers.common['Authorization'] = user.ra
-							axios.post('http://localhost:5000/users/register', { ...userObj })
+							axios.post('/users/register', { ...userObj })
 								.then(res => {
 									console.log("res:", res);
 
@@ -113,9 +114,10 @@ function Register(props) {
 							user_type: `${userType}`
 						}
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
+						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
+								localStorage.setItem('firebaseId', res.data.firebase_id);
 
 							})
 							.catch(err => {
@@ -127,9 +129,7 @@ function Register(props) {
 			})
 			.catch(err => {
 				console.log(err);
-			})
-
-
+			});
 	}
 
 	const { currentUser } = useContext(AuthContext);
