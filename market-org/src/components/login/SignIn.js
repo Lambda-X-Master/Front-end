@@ -65,7 +65,7 @@ function SignIn(props) {
 					console.log(userObj)
 				
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('http://localhost:5000/users/register', { ...userObj })
+						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 
@@ -104,7 +104,7 @@ function SignIn(props) {
 					console.log(userObj)
 				
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('http://localhost:5000/users/register', { ...userObj })
+						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 
