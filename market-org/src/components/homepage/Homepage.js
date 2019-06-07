@@ -54,7 +54,7 @@ const Homepage = (props) => {
 
     useEffect(() => {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-        axios.get('http://localhost:5000/users', currentUser)
+        axios.get('https://market-organizer.herokuapp.com/users', currentUser)
         .then(res => {
             console.log(res.data)
             setUsers(res.data)
