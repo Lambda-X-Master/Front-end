@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext }from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,8 @@ import SignIn from '../login/SignIn';
 import SignUp from '../register/SignUp';
 import { auth } from '../../firebase';
 import { Route, withRouter } from 'react-router-dom'
+
+import { AuthContext } from '../authContext/authState';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -54,7 +56,7 @@ function ButtonAppBar(props) {
     localStorage.clear();
     props.history.push('/')
   }
-    
+    const { currentUser } = useContext(AuthContext);
 
     const classes = useStyles();
     return (
@@ -66,9 +68,27 @@ function ButtonAppBar(props) {
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                     </Typography>
-                    <Button color="inherit" onClick={logout} style={{ backgroundColor: '#30cc32', margin: '10px' }}>Log Out</Button>
-                    <Button color="inherit" onClick={handleRegOpen} style={{ backgroundColor: '#30cc32', margin: '10px' }}>Sign Up</Button>
-                    <Button color="inherit" onClick={handleOpen} style={{ backgroundColor: '#30cc32', margin: '10px' }}>Login</Button>
+                    {
+                        currentUser ?
+                       <Button color="inherit"
+                                onClick={logout}
+                                style={{ backgroundColor: '#30cc32', margin: '10px' }}>
+                                Log Out
+                        </Button> :
+                        <>
+                        <Button color="inherit"
+                                onClick={handleRegOpen}
+                                style={{ backgroundColor: '#30cc32', margin: '10px' }}>
+                                Sign Up
+                        </Button>
+                        <Button color="inherit"
+                                onClick={handleOpen}
+                                style={{ backgroundColor: '#30cc32', margin: '10px' }}>
+                                Log In
+                        </Button>
+                        </>  
+                    }
+                    
                     <Modal
                         aria-labelledby="simple-modal-title"
                         aria-describedby="simple-modal-description"

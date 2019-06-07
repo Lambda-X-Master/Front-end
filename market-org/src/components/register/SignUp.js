@@ -70,9 +70,7 @@ function Register(props) {
 						console.log("setUsertype", userType)
 						console.log('userra', user.ra)
 						console.log(userObj)
-						if (userType === null) {
-							return console.log('null')
-						} else {
+					
 							axios.defaults.headers.common['Authorization'] = user.ra
 							axios.post('http://localhost:5000/users/register', { ...userObj })
 								.then(res => {
@@ -83,7 +81,7 @@ function Register(props) {
 									console.log(err)
 								})
 							props.history.push('/')
-						}
+						
 					}
 				}
 			})
@@ -113,7 +111,7 @@ function Register(props) {
 							user_type: `${userType}`
 						}
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
+						axios.post('http://localhost:5000/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 
