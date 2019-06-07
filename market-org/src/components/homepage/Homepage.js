@@ -6,7 +6,7 @@ import Searchbar from "../navbar/Searchbar";
 // import VendorForm from '../vendor/VendorForm';
 import { AuthContext } from "../authContext/authState";
 
-import axios from "../../axios-instance";
+import axios from '../../axios-instance';
 
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
@@ -102,6 +102,7 @@ const Homepage = props => {
     </React.Fragment>
   );
 };
+
 
 // <div style={{ textAlign: 'center', marginTop: '200px' }}>
 // {users && users.map(user => {
