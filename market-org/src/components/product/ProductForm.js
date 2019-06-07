@@ -66,9 +66,9 @@ const ProductForm = props => {
           multiline={false}
           rows={2}
           rowsMax={2}
-        //   className={classes.textField}
+          className={classes.textField}
           onChange={e => setTitle(e.target.value)}
-          //   value={}
+            value={title}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -94,7 +94,7 @@ const ProductForm = props => {
           rowsMax={2}
           className={classes.textField}
           onChange={e => setDescription(e.target.value)}
-          //   value={}
+            value={description}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -120,7 +120,7 @@ const ProductForm = props => {
           rowsMax={2}
           className={classes.textField}
           onChange={e => setPrice(e.target.value)}
-          //   value={}
+            value={price}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -143,7 +143,7 @@ const ProductForm = props => {
           type="file"
           className={classes.textField}
           onChange={e => setImage(e.target.value)}
-        //   value={}
+        //   value={image}
           margin="normal"
           variant="outlined"
           InputProps={{
