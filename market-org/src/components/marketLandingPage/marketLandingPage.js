@@ -3,7 +3,7 @@ import { MarketProfilesContext } from '../context/GlobalContext.js';
 import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
 
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 const MarketLandingPage = (props) => {
 
@@ -13,7 +13,7 @@ const MarketLandingPage = (props) => {
 
     useEffect(() => {
         console.log("Error");
-        axios.get('http://localhost:8080/markets')
+        axios.get('/markets')
         .then(res => {
             console.log(res.data)
             let markets = res.data;
