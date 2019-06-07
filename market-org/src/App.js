@@ -9,36 +9,34 @@ import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 
 
-
+import VendorForm from "./components/vendor/VendorForm";
+import ProductForm from "./components/product/ProductForm";
 
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
-import { AuthProvider } from './components/authContext/authState';
-import { MarketProfilesProvider } from './components/context/GlobalContext.js';
 
-
-
-import './App.css';
+import { ContextProvider } from './components/context/state';
+import "./App.css";
 
 function App() {
 
 
 
   return (
-    <AuthProvider>
       <React.Fragment>
         <CssBaseline />
+        <ContextProvider>
         <Navbar />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
-          <MarketProfilesProvider>
-          <Route path="/markets" component={MarketLandingPage}/>
-          </MarketProfilesProvider>
+          <Route path="/vendor" component={VendorForm} />
+          <Route path="/productForm" component={ProductForm} />
+          <Route path="/markets" component={MarketLandingPage} />
         </Switch>
+        </ContextProvider>
       </React.Fragment>
-    </AuthProvider>
-  );
+  )
 }
 
 export default withRouter(App);

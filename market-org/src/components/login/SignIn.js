@@ -3,7 +3,7 @@ import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel, with
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Link, withRouter } from 'react-router-dom'
 import { auth, googleProvider } from '../../firebase';
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 import { AuthContext } from '../authContext/authState';
 
@@ -65,7 +65,7 @@ function SignIn(props) {
 					console.log(userObj)
 				
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
+						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 
@@ -104,7 +104,7 @@ function SignIn(props) {
 					console.log(userObj)
 				
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('https://market-organizer.herokuapp.com/users/register', { ...userObj })
+						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 
