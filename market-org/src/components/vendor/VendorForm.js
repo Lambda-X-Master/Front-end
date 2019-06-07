@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { withStyles, Typography, TextField, Button } from "@material-ui/core";
-import axios from "axios";
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   newgroup: {
@@ -70,7 +70,7 @@ const VendorForm = props => {
     };
 
     axios
-      .post("http://localhost:5000/vendor", { ...VendorObj })
+      .post("/vendor", { ...VendorObj })
       .then(res => {
         console.log("res:", res);
 

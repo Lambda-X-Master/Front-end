@@ -6,7 +6,7 @@ import Searchbar from "../navbar/Searchbar";
 // import VendorForm from '../vendor/VendorForm';
 import { AuthContext } from "../authContext/authState";
 
-import axios from "axios";
+import axios from "../../axios-instance";
 
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
@@ -51,7 +51,7 @@ const Homepage = props => {
   useEffect(() => {
     axios.defaults.headers.common["Authorization"] = localStorage.getItem("ra");
     axios
-      .get("http://localhost:5000/users")
+      .get("/users")
       .then(res => {
         // console.log(res.data);
         setUsers(res.data);
