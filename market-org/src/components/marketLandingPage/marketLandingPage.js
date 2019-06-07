@@ -5,7 +5,7 @@ import MarketProfileCard from "./marketProfileCard";
 import styled from 'styled-components'
 
 
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 const MarketLandingContainer = styled.div`
     width: 850px;
@@ -23,7 +23,7 @@ const MarketLandingPage = (props) => {
 
     useEffect(() => {
         console.log("Error");
-        axios.get('http://localhost:8080/markets')
+        axios.get('/markets')
         .then(res => {
             console.log(res.data)
             let markets = res.data;

@@ -5,7 +5,7 @@ import Navbar from '../navbar/Navbar';
 import Searchbar from '../navbar/Searchbar';
 import { AuthContext } from '../authContext/authState';
 
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 import fruit from '../../images/fruit-stand.jpg'
 import market from '../../images/market-stand.jpg'
@@ -53,7 +53,7 @@ const Homepage = (props) => {
 
     useEffect(() => {
         axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-        axios.get('https://market-organizer.herokuapp.com/users', currentUser)
+        axios.get('/users', currentUser)
         .then(res => {
             console.log(res.data)
             setUsers(res.data)
