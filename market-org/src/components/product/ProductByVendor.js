@@ -10,7 +10,7 @@ const ProductByVendor = () => {
     return (
         <div>
 <Link to='/markets'>Markets</Link>
-            product by vendor
+            List of your vendor products
             
         </div>
     )
