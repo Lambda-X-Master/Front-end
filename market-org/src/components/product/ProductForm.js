@@ -100,8 +100,7 @@ const ProductForm = props => {
       console.log('product res post', res);
     })
     .catch(err => {
-      console.log(err);
-      
+      console.log(err);      
     });
     props.history.replace('/productsByVendor');
   }
@@ -259,7 +258,7 @@ const ProductForm = props => {
         onClick={submitProductProfile}
         className={classes.submit}
       >
-        Submit your product info.
+        Submit your product info
       </Button>
     </>
   );
