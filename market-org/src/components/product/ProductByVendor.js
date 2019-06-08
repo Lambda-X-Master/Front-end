@@ -9,6 +9,7 @@ import Card from "@material-ui/core/Card";
 const ProductByVendor = () => {
     return (
         <div>
+<Link to='/markets'>Markets</Link>
             product by vendor
             
         </div>
