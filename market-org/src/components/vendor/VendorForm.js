@@ -300,7 +300,7 @@ const VendorForm = props => {
         onClick={submitVendorProfile}
         className={classes.submit}
       >
-        Submit
+        Submit your vendor info
       </Button>
     </>
   );

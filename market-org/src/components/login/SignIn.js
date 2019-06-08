@@ -49,6 +49,7 @@ function SignIn(props) {
         auth.signInWithPopup(googleProvider)
             .then(({user}) => {
 			localStorage.setItem('ra', user.ra)
+			localStorage.setItem('firebaseId', user.uid);
             console.log("user:", user);
             })
             .catch(err => {

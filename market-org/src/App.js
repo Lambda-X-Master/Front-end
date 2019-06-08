@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import Homepage from "./components/homepage/Homepage";
 import VendorForm from "./components/vendor/VendorForm";
 import ProductForm from "./components/product/ProductForm";
+import ProductByVendor from './components/product/ProductByVendor';
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 import { AuthProvider } from "./components/authContext/authState";
@@ -124,6 +125,7 @@ function App() {
           <Route path="/markets" component={MarketLandingPage} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
+          <Route path="/productsByVendor" component={ProductByVendor} />
         </Switch>
       </ContextProvider>
     </React.Fragment>
