@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
+
 import { ProductContext } from "../context/product";
 import {
   withStyles,
@@ -80,6 +81,7 @@ const ProductByVendor = props => {
   const toCart = () => {
     props.history.push("/carts");
   };
+  console.log('vendor profile in product', vendorProfile);
 
   return (
     <>
@@ -127,7 +129,7 @@ const ProductByVendor = props => {
                       Product Description: {eachProduct.description}
                     </Typography>
                     <Typography component="p">
-                      Product price: {eachProduct.price}
+                      Product price: $ {eachProduct.price}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -136,6 +138,8 @@ const ProductByVendor = props => {
                       alt="Vendor product"
                       className="productImage"
                     />
+                    testing:
+                    {vendorProfile.company_name}
                   </CardContent>
                 </Card>
               </>
