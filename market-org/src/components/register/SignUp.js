@@ -71,9 +71,7 @@ function Register(props) {
 						console.log("setUsertype", userType)
 						console.log('userra', user.ra)
 						console.log(userObj)
-						if (userType === null) {
-							return console.log('null')
-						} else {
+					
 							axios.defaults.headers.common['Authorization'] = user.ra
 							axios.post('/users/register', { ...userObj })
 								.then(res => {
@@ -83,14 +81,15 @@ function Register(props) {
 								.catch(err => {
 									console.log(err)
 								})
-							props.history.push('/')
-						}
+							
+						
 					}
 				}
 			})
 			.catch(err => {
 				console.log(err);
 			})
+			props.history.push('/create-market')
 	}
 
 
@@ -123,13 +122,16 @@ function Register(props) {
 							.catch(err => {
 								console.log(err)
 							})
-							props.history.replace('/')
+							
 					}
 				}
 			})
 			.catch(err => {
 				console.log(err);
-			});
+			})
+			// props.history.push('/create-market')
+
+
 	}
 
 	const { currentUser } = useContext(AuthContext);

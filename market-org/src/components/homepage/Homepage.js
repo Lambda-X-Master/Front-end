@@ -1,10 +1,12 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from 'react';
+
+// import Navbar from '../navbar/Navbar';
+import Searchbar from '../navbar/Searchbar';
+import { AuthContext } from '../authContext/authState';
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
 
-import Navbar from "../navbar/Navbar";
-import Searchbar from "../navbar/Searchbar";
 // import VendorForm from '../vendor/VendorForm';
-import { AuthContext } from "../authContext/authState";
+
 
 import axios from '../../axios-instance';
 
@@ -49,15 +51,15 @@ const Homepage = props => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = localStorage.getItem("ra");
+    axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
     axios
-      .get("/users")
+      .get("/users", currentUser)
       .then(res => {
-        // console.log(res.data);
+        console.log("resdata:",res.data);
         setUsers(res.data);
       })
       .catch(err => {
-        console.log(err.message);
+        console.log("err",err.message);
       });
   }, []);
 
@@ -70,7 +72,6 @@ const Homepage = props => {
   return (
     <React.Fragment>
       <Container maxWidth="lg">
-        <Navbar />
         <Grid container style={{ height: "500px" }}>
           <Grid item xs={6}>
             <Paper className={classes.paperImageOne} />
