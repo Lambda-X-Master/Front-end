@@ -160,8 +160,8 @@ const ProductByVendor = props => {
                       alt="Vendor product"
                       className="productImage"
                     />
-                    testing global context:
-                    {vendorProfile.company_name}
+                    testing global context: {' '}
+                     {vendorProfile.company_name}
                   </CardContent>
                 </Card>
               </>
