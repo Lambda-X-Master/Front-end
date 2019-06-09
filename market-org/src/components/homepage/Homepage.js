@@ -68,7 +68,7 @@ const Homepage = props => {
   };
 
   const toProductForm = () => {
-    props.history.push("/productForm");
+    props.history.replace("/productForm");
   };
 
   return (
