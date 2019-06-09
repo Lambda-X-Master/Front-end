@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { storage } from "../../firebase";
+
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
-import { withStyles, Typography, TextField, Button, CardContent } from "@material-ui/core";
+import {
+  withStyles,
+  Typography,
+  TextField,
+  Button,
+  CardContent
+} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
 
 import axios from "axios";
 
@@ -70,6 +73,7 @@ const ProductForm = props => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
@@ -85,25 +89,57 @@ const ProductForm = props => {
       });
   }, []);
 
-  const submitProductProfile = () => {
-    const vendorId = localStorage.getItem("firebaseId");
-    const productObj = {
-      vendors_id: vendorId,
-      title: title,
-      description: description,
-      price: price,
-      image: image
-    };
+  const submitProductProfile = e => {
+    e.preventDefault();
 
-    axios.post(`http://localhost:5000/products/vendor/${vendorId}`, {...productObj})
-    .then(res => {
-      console.log('product res post', res);
-    })
-    .catch(err => {
-      console.log(err);      
-    });
-    props.history.replace('/productsByVendor');
-  }
+    const vendorId = localStorage.getItem("firebaseId");
+
+    let currentProductName = "product-image-" + Date.now();
+
+    let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
+
+    uploadImage.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        alert(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(currentProductName)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url);
+            setImage(url);
+
+            const productObj = {
+              vendors_id: vendorId,
+              title: title,
+              description: description,
+              price: price,
+              image: url
+            };
+
+            axios
+              .post(`http://localhost:5000/products/vendor/${vendorId}`, {
+                ...productObj
+              })
+              .then(res => {
+                console.log("product res post", res);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          });
+      }
+    );
+    props.history.replace("/productsByVendor");
+  };
+
+  const fileHandler = e => {
+    setFile(e.target.files[0]);
+  };
 
   return (
     <>
@@ -139,13 +175,12 @@ const ProductForm = props => {
           <Typography component="p">
             Vendor company url: {vendorProfile.company_url}
           </Typography>
+          {vendorProfile.firebase_id}
         </CardContent>
       </Card>
 
-      <Typography component="p">
-      Product form: 
-          </Typography>
-      
+      <Typography component="p">Product form:</Typography>
+
       <form>
         <TextField
           id="outlined-name"
@@ -232,7 +267,7 @@ const ProductForm = props => {
           name="image"
           type="file"
           className={classes.textField}
-          onChange={e => setImage(e.target.value)}
+          onChange={e => fileHandler(e)}
           value={image}
           margin="normal"
           variant="outlined"
