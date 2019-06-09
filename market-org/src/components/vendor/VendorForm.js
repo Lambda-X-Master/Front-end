@@ -80,6 +80,7 @@ const VendorForm = props => {
       });
     props.history.push("/productForm");
   };
+
   return (
     <>
       <form>
@@ -302,6 +303,7 @@ const VendorForm = props => {
       >
         Submit your vendor info
       </Button>
+
     </>
   );
 };

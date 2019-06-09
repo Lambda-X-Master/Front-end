@@ -67,6 +67,10 @@ const Homepage = props => {
   props.history.push(`/vendor`);
   };
 
+  const toProductForm = () => {
+    props.history.push("/productForm");
+  };
+
   return (
     <React.Fragment>
       <Container maxWidth="lg">
@@ -86,6 +90,14 @@ const Homepage = props => {
           <div style={{ textAlign: "center", marginTop: "200px" }}>
             <Button>Create Market profile</Button>
             <Button onClick={vendorFormPage}>Create vendor Profile</Button>
+            
+      <Button
+              onClick={toProductForm}
+              color="inherit"
+              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+            >
+              Add more product if Vendor
+            </Button>
             {users &&
               users.map(user => {
                 return (
