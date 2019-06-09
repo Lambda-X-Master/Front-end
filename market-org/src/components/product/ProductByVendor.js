@@ -83,6 +83,14 @@ const ProductByVendor = props => {
   };
   console.log('vendor profile in product', vendorProfile);
 
+  const backToProductForm = () => {
+    props.history.push("/productForm");
+  };
+
+  const backToHome = () => {
+    props.history.push("/");
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -93,6 +101,20 @@ const ProductByVendor = props => {
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+              onClick={backToHome}
+              color="inherit"
+              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+            >
+              Home
+            </Button>
+          <Button
+              onClick={backToProductForm}
+              color="inherit"
+              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+            >
+              Add more products
+            </Button>
             <Button
               // onClick={toCart}
               color="inherit"
