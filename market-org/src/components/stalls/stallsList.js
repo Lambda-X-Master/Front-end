@@ -8,14 +8,14 @@ const StallsList = (props) => {
             Test
             test
             test
-
+        // props.history.match.params
             test
             test
             test
 
 
 
-            {props.market_id}
+            {props.location.state.firebase_id}
 
 
             testsss

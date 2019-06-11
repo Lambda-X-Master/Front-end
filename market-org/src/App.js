@@ -7,7 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
-
+import StallsList from './components/stalls/stallsList';
 
 import VendorForm from "./components/vendor/VendorForm";
 import ProductForm from "./components/product/ProductForm";
@@ -33,6 +33,7 @@ function App() {
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
+          <Route path="/stalls/" component={StallsList}/>  
         </Switch>
         </ContextProvider>
       </React.Fragment>
