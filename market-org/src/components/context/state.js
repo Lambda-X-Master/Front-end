@@ -22,6 +22,8 @@ function ContextProvider({ children }) {
         <ProductProvider />,
         <MarketProfilesProvider />,
         <AuthProvider />
+        // stalls provider 
+        // currentSelectedMarketVendor  
       ]}
     >
       {children}
