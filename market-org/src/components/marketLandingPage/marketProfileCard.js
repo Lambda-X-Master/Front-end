@@ -51,7 +51,7 @@ return (
     {props.profile.firebase_id}
 
     <Link to={{
-      pathname: '/stalls',
+      pathname: '/stalls/',
       search: `?firebase_id=${props.profile.firebase_id}`,
       state: { firebase_id: props.profile.firebase_id}
     }}>
