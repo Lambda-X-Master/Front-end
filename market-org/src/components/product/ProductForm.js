@@ -93,9 +93,8 @@ const ProductForm = props => {
     e.preventDefault();
 
     const vendorId = localStorage.getItem("firebaseId");
-
+    const token = localStorage.getItem("token");
     let currentProductName = "product-image-" + Date.now();
-
     let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
     uploadImage.on(
@@ -124,6 +123,10 @@ const ProductForm = props => {
             axios
               .post(`http://localhost:5000/products/vendor/${vendorId}`, {
                 ...productObj
+              },
+              {
+                "Content-Type": "application/json",
+                headers: { Authorization: token }
               })
               .then(res => {
                 console.log("product res post", res);

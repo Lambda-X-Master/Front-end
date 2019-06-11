@@ -6,8 +6,6 @@ import { AuthContext } from '../authContext/authState';
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
 
 // import VendorForm from '../vendor/VendorForm';
-
-
 import axios from '../../axios-instance';
 
 import fruit from "../../images/fruit-stand.jpg";
@@ -66,7 +64,7 @@ const Homepage = props => {
   console.log("curr", currentUser);
 
   const vendorFormPage = () => {
-  props.history.push(`/vendor`);
+  props.history.replace(`/vendor`);
   };
 
   const toProductForm = () => {
