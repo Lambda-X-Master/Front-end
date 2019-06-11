@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, withRouter, Route } from "react-router-dom";
+import { Link, withRouter, Route, Switch } from "react-router-dom";
 
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
@@ -113,7 +113,7 @@ const VendorLandingPage = props => {
                     <Typography component="p">
                       Company website: {eachVendor.company_url}
                     </Typography>
-                    <Link to={`/product-list/${eachVendor.firebase_id}`}>
+                    <Link to={`/allVendors/${eachVendor.firebase_id}`}>
                     <Typography component="p">View my products</Typography></Link>
                   </CardContent>
                   <CardContent />
@@ -122,13 +122,16 @@ const VendorLandingPage = props => {
             </>
           );
         })}
-
-      <Route
-        path="/product-list/:firebase_id"
-        render={props => <ProductByVendorCard {...props} vendor={allVendors} />}
-      />
+        <Switch>
+        <Route
+          path="/allVendors/:firebase_id" render={props => <ProductByVendorCard {...props} vendor={allVendors} />}
+        />  
+        </Switch>
+        
+      
     </>
   );
 };
 
 export default withRouter(withStyles(styles)(VendorLandingPage));
+// export default withStyles(styles)(VendorLandingPage);
