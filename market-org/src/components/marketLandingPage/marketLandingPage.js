@@ -2,8 +2,17 @@ import React, { useState, useEffect, useContext,} from 'react';
 import { MarketProfilesContext } from '../context/GlobalContext.js';
 import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
+import styled from 'styled-components';
 
-import axios from 'axios';
+import axios from '../../axios-instance';
+
+const MarketLandingContainer = styled.div`
+    width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const MarketLandingPage = (props) => {
 
@@ -13,7 +22,7 @@ const MarketLandingPage = (props) => {
 
     useEffect(() => {
         console.log("Error");
-        axios.get('http://localhost:5000/markets')
+        axios.get('/markets')
         .then(res => {
             console.log(res.data)
             let markets = res.data;
@@ -28,17 +37,19 @@ const MarketLandingPage = (props) => {
 
     return (
         <React.Fragment>
-        <div className="marketLandingPage"> 
-        Test
+        <MarketLandingContainer> 
+        <h1> List of Markets</h1>
         {markets.map(market => {
 
         return (<MarketProfileCard profile={market} />)
 
         })}
 
-        </div>
+
+        </MarketLandingContainer>
         </React.Fragment>
     )
 }
+
 
 export default MarketLandingPage;

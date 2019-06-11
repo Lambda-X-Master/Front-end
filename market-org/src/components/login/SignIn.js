@@ -3,6 +3,7 @@ import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel, with
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { Link, withRouter } from 'react-router-dom'
 import { auth, googleProvider } from '../../firebase';
+import axios from '../../axios-instance';
 
 import { AuthContext } from '../authContext/authState';
 
@@ -47,29 +48,80 @@ function SignIn(props) {
 
 	const signInWithGoogle = () => {
         auth.signInWithPopup(googleProvider)
-            .then(({user}) => {
-			localStorage.setItem('ra', user.ra)
-			localStorage.setItem('firebaseId', user.uid);
-            console.log("user:", user);
-            })
-            .catch(err => {
-                console.log(err.message)
-            })   
+		.then(({ user }) => {
+			console.log("user:", user);
+			if (user) {
+				const { uid, ra, email } = user;
+				localStorage.setItem('token', ra);
+				localStorage.setItem('firebaseId', uid);
+				if (user.email) {
+					const { email } = user;
+					console.log("emailuser", user)
+					const userObj = {
+						email,
+						uid,
+						
+					}
+					console.log('userra', user.ra)
+					console.log(userObj)
+				
+						axios.defaults.headers.common['Authorization'] = user.ra
+						axios.post('/users/register', { ...userObj })
+							.then(res => {
+								console.log("res:", res);
+
+							})
+							.catch(err => {
+								console.log(err)
+							})
+						props.history.push('/')
+					
+				}
+			}
+		})
+		.catch(err => {
+			console.log(err);
+		})
     }
 
 
     const signInWithEmailAndPassword = () => {
   
         auth.signInWithEmailAndPassword(email, password)
-            .then(({ user }) => {
-				console.log(user)
-				localStorage.setItem('ra', user.ra);
-				localStorage.setItem('firebaseId', user.uid);
-            })
-            .catch(err => {
-                console.log(err);
-			})
-			props.history.push('/')
+		.then(({ user }) => {
+			console.log("user:", user);
+			if (user) {
+				const { uid, ra, email } = user;
+				localStorage.setItem('token', ra);
+				localStorage.setItem('firebaseId', uid);
+				if (user.email) {
+					const { email } = user;
+					console.log("emailuser", user)
+					const userObj = {
+						email,
+						uid,
+						
+					}
+					console.log('userra', user.ra)
+					console.log(userObj)
+				
+						axios.defaults.headers.common['Authorization'] = user.ra
+						axios.post('/users/register', { ...userObj })
+							.then(res => {
+								console.log("res:", res);
+
+							})
+							.catch(err => {
+								console.log(err)
+							})
+						props.history.push('/')
+					
+				}
+			}
+		})
+		.catch(err => {
+			console.log(err);
+		})
 		
 	 }
 	 

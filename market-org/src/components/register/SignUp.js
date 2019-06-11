@@ -7,7 +7,7 @@ import { auth, googleProvider } from '../../firebase';
 import { Link, withRouter } from 'react-router-dom'
 
 import { AuthContext } from '../authContext/authState';
-import axios from 'axios';
+import axios from '../../axios-instance';
 
 const styles = theme => ({
 	main: {
@@ -71,11 +71,9 @@ function Register(props) {
 						console.log("setUsertype", userType)
 						console.log('userra', user.ra)
 						console.log(userObj)
-						if (userType === null) {
-							return console.log('null')
-						} else {
+					
 							axios.defaults.headers.common['Authorization'] = user.ra
-							axios.post('http://localhost:5000/users/register', { ...userObj })
+							axios.post('/users/register', { ...userObj })
 								.then(res => {
 									console.log("res:", res);
 									// localStorage.setItem('firebaseId', res.data.firebase_id);
@@ -84,14 +82,15 @@ function Register(props) {
 								.catch(err => {
 									console.log(err)
 								})
-							props.history.push('/')
-						}
+							
+						
 					}
 				}
 			})
 			.catch(err => {
 				console.log(err);
 			})
+			props.history.push('/create-market')
 	}
 
 
@@ -105,7 +104,8 @@ function Register(props) {
 
 				if (user) {
 					const { uid, ra, email } = user;
-					localStorage.setItem('token', ra)
+					localStorage.setItem('token', ra);
+					localStorage.setItem('firebaseId', uid);
 					if (user.email && userType) {
 						const { email } = user;
 						console.log("emailuser", user)
@@ -115,7 +115,7 @@ function Register(props) {
 							user_type: `${userType}`
 						}
 						axios.defaults.headers.common['Authorization'] = user.ra
-						axios.post('http://localhost:5000/users/register', { ...userObj })
+						axios.post('/users/register', { ...userObj })
 							.then(res => {
 								console.log("res:", res);
 								localStorage.setItem('firebaseId', res.data.firebase_id);
@@ -124,13 +124,16 @@ function Register(props) {
 							.catch(err => {
 								console.log(err)
 							})
-							props.history.replace('/')
+							
 					}
 				}
 			})
 			.catch(err => {
 				console.log(err);
-			});
+			})
+			// props.history.push('/create-market')
+
+
 	}
 
 	const { currentUser } = useContext(AuthContext);

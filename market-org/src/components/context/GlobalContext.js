@@ -1,4 +1,3 @@
-    
 import React, { useState }  from 'react';
 
 // have global storage for user, and selected market profile OR vendor profile 
@@ -27,3 +26,4 @@ export const MarketProfilesProvider = (props) => {
 //         </div>
 //     )
 // }
+
