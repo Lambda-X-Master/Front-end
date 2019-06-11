@@ -11,6 +11,7 @@ import PrivateRoute from './components/privateroute/PrivateRoute';
 
 import VendorForm from "./components/vendor/VendorForm";
 import ProductForm from "./components/product/ProductForm";
+import ProductByVendor from './components/product/ProductByVendor';
 
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
@@ -32,6 +33,7 @@ function App() {
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
+          <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
         </Switch>
         </ContextProvider>
