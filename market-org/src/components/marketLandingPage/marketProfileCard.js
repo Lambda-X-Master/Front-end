@@ -53,7 +53,7 @@ return (
     <Link to={{
       pathname: '/stalls/',
       search: `?firebase_id=${props.profile.firebase_id}`,
-      state: { firebase_id: props.profile.firebase_id}
+      state: { firebase_id: props.profile.firebase_id, market_name: props.profile.market_name}
     }}>
     Rent Stalls
     </Link>

@@ -1,25 +1,53 @@
-import React from "react";
-import styled from 'styled-components'
+import React, { useEffect, useState } from "react";
+import styled from 'styled-components';
+
+import axios from "../../axios-instance";
+import Stall from "./stall.js";
+
+
+// {
+//     // "id": 0,
+//     // "size": {
+//     // },
+//     // "market_id": "",
+//     // "available": false,
+//     // "qty": 0
+// }
+
+const StallsContainer = styled.div`
+    width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const StallsList = (props) => {
 
-    return (
-        <div className="test">
-            Test
-            test
-            test
-        // props.history.match.params
-            test
-            test
-            test
+    const [stalls, setStalls] = useState([]);
 
+    useEffect(() => {
+        axios.get(`/stalls/market/${props.location.state.firebase_id}`)
+        .then(res => {
+            console.log("Stalls : ", res.data)
+            let stallItems = res.data;
+            console.log("Total stalls:", stallItems);
+            // stalls = stalls.map(stall => JSON.parse(stall));
+           setStalls(stallItems);
+            console.log("stalls", stalls)
+        }).catch(err => {
+                console.log(err.message);
+        })
+    }, []);
 
-
-            {props.location.state.firebase_id}
-
-
-            testsss
-        </div>
+    console.log("Getting stalls ", stalls);
+    return(
+        <StallsContainer>
+            <h2> List of available stalls for {props.location.state.market_name}</h2>
+            {stalls.map(stall_item => {
+                return (<Stall stall={stall_item}/>)
+            })}
+        </StallsContainer>
     )
 }
 
