@@ -137,7 +137,7 @@ const ProductForm = props => {
           });
       }
     );
-    props.history.replace("/productsByVendor");
+    props.history.push("/productsByVendor");
   };
 
   const fileHandler = e => {

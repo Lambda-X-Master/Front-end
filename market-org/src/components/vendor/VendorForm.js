@@ -86,7 +86,7 @@ const VendorForm = props => {
       .catch(err => {
         console.log(err);
       });
-    props.history.replace("/productForm");
+    props.history.push("/productForm");
   };
 
   return (
@@ -314,7 +314,5 @@ const VendorForm = props => {
     </>
   );
 };
-
-// export default VendorForm;
 
 export default withRouter(withStyles(styles)(VendorForm));

@@ -72,7 +72,7 @@ const OneVendorPublic = props => {
   }, []);
   return (
     <>
-      <Container maxWidth="lg" key={aPublicVendor.firebase_id}>
+      <Container maxWidth="lg" key={aPublicVendor.firebase_id} style={{ marginTop: "50px" }}>
         <Card className={classes.card}>
           <CardContent>
             <Typography component="p">

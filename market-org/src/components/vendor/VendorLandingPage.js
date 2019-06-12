@@ -95,24 +95,6 @@ const VendorLandingPage = props => {
                     <Typography component="p">
                       Full Name: {eachVendor.contact_fullname}
                     </Typography>
-                    {/* <Typography component="p">
-                      Address: {eachVendor.address}
-                    </Typography>
-                    <Typography component="p">
-                      City: {eachVendor.city}
-                    </Typography>
-                    <Typography component="p">
-                      State: {eachVendor.state}
-                    </Typography>
-                    <Typography component="p">
-                      Zip Code: {eachVendor.zip_code}
-                    </Typography>
-                    <Typography component="p">
-                      Phone: {eachVendor.phone_number}
-                    </Typography>
-                    <Typography component="p">
-                      Company website: {eachVendor.company_url}
-                    </Typography> */}
                     {/* <Link to={`/allVendors/${eachVendor.firebase_id}`}>
                       <Typography component="p">View my products</Typography>
                     </Link> */}

@@ -54,6 +54,8 @@ const styles = theme => ({
   }
 });
 
+// public page of products by Vendor
+
 const ProductByVendorCard = props => {
   const { classes } = props;
   const { firebase_id } = props.match.params;
@@ -73,7 +75,7 @@ const ProductByVendorCard = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/vendor/${props.vendor.firebase_id}`)
+      .get(`http://localhost:5000/products/vendor/${firebase_id}`)
       // .get(`http://localhost:5000/products/vendor/${props.location.state.firebase_id}`)
       .then(res => {
         console.log(res, "product by vendor Id");
@@ -91,7 +93,7 @@ const ProductByVendorCard = props => {
         component="p"
         style={{ fontWeight: "bold", fontSize: "40px" }}
       >
-        Product information
+        Products I sell
       </Typography>
       {productsByVendor &&
         productsByVendor.map(eachVendorProduct => {
@@ -106,7 +108,7 @@ const ProductByVendorCard = props => {
                     Product Description: {eachVendorProduct.description}
                   </Typography>
                   <Typography component="p">
-                    Product price: $ {eachVendorProduct.price}
+                    Product price: ${eachVendorProduct.price}
                   </Typography>
                 </CardContent>
                 <CardContent>

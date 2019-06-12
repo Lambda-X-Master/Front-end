@@ -91,6 +91,18 @@ const ProductByVendor = props => {
     props.history.push("/");
   };
 
+  const deleteProduct = (e, productId) => {
+    e.preventDefault();
+    axios.delete(`http://localhost:5000/products/${productId}`).then(res => {
+      console.log(res); 
+      setProducts(res.data);
+      
+
+    }).catch(err => {
+      console.log(err);
+    });
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -151,7 +163,7 @@ const ProductByVendor = props => {
                       Product Description: {eachProduct.description}
                     </Typography>
                     <Typography component="p">
-                      Product price: $ {eachProduct.price}
+                      Product price: ${eachProduct.price}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -163,6 +175,13 @@ const ProductByVendor = props => {
                     testing global context: {' '}
                      {vendorProfile.company_name}
                   </CardContent>
+                  <Button
+              onClick={e => deleteProduct(e, eachProduct.id)}
+              color="inherit"
+              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+            >
+              Delete Product
+            </Button>
                 </Card>
               </>
             );
