@@ -15,7 +15,6 @@ const ProfileCard = styled.div`
 
 // https://medium.com/trabe/passing-callbacks-down-with-react-hooks-4723c4652aff
 
-const isRented = false;
 
 const Rent = (payload) => {
     const dispatch = useContext(CartDispatch);
@@ -41,7 +40,7 @@ const UnRent = (payload) => {
 
 const MainButtons = (payload) => {
     console.log("stall and cart id ", payload)
-    if (!payload.isRented) {
+    if (payload.rentStatus) {
         return(
             <div className="rent">
             <Rent payload={payload}/>
@@ -62,12 +61,13 @@ const CartDispatch = createContext(null);
 const Stall = (props) => {
 
     const [isRented, setRentStatus] = useState(false);
+    const [buttonState, setButtonState] = useState(false);
 
     const reducer = (state, action) => {
             console.log("action: ", action);
           switch (action.type) {
             case "rent":
-                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {"stalls_id": action.payload.stall_id}).then( 
+                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stall_id}).then( 
 
                     axios.put(`stalls/${action.payload.stall_id}`, {available: false})
                     .then(() => {
@@ -79,11 +79,12 @@ const Stall = (props) => {
 
              
             case "unrent":
-                axios.put(`/delete-stall-from-cart/${action.payload.stall_id}`, {available: true}).then(
+                axios.delete(`cart/delete-stall-from-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stall_id}).then(
 
                     axios.put(`stalls/${action.payload.stall_id}`, {available: true})
                     .then(() => {
                     setRentStatus(true);
+
                     })
                     .catch(err => console.log(err))
 
