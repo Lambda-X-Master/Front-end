@@ -5,7 +5,7 @@ import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 import { AuthContext } from "../authContext/authState";
 
-import ProductByVendorCard from "../product/ProductByVendorCard";
+// import ProductByVendorCard from "../product/ProductByVendorCard";
 
 import {
   withStyles,
@@ -95,7 +95,7 @@ const VendorLandingPage = props => {
                     <Typography component="p">
                       Full Name: {eachVendor.contact_fullname}
                     </Typography>
-                    <Typography component="p">
+                    {/* <Typography component="p">
                       Address: {eachVendor.address}
                     </Typography>
                     <Typography component="p">
@@ -112,9 +112,12 @@ const VendorLandingPage = props => {
                     </Typography>
                     <Typography component="p">
                       Company website: {eachVendor.company_url}
-                    </Typography>
-                    <Link to={`/allVendors/${eachVendor.firebase_id}`}>
+                    </Typography> */}
+                    {/* <Link to={`/allVendors/${eachVendor.firebase_id}`}>
                       <Typography component="p">View my products</Typography>
+                    </Link> */}
+                    <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
+                      <Typography component="p">Get more information about me</Typography>
                     </Link>
                   </CardContent>
                   <CardContent />
@@ -123,14 +126,14 @@ const VendorLandingPage = props => {
             </>
           );
         })}
-      <Switch>
+      {/* <Switch>
         <Route
           path="/allVendors/:firebase_id"
           render={props => (
             <ProductByVendorCard {...props} vendor={allVendors} />
           )}
         />
-      </Switch>
+      </Switch> */}
     </>
   );
 };

@@ -58,11 +58,14 @@ const ProductByVendorCard = props => {
   const { classes } = props;
   const { firebase_id } = props.match.params;
 
-  const eachVendor = props.vendor.find(
-    aVendor => `${aVendor.firebase_id}` === firebase_id
-  );
+  console.log(props.vendor);
 
-  console.log("rendering Item: ", props.vendor, eachVendor);
+  // const eachVendor = props.vendor.find(
+  //   aVendor => `${aVendor.firebase_id}` === firebase_id
+  // );
+
+  // console.log("rendering Item: ", props.vendor, eachVendor);
+  console.log("rendering Item: ", props.vendor);
   // if (!eachVendor) {
   //   return <h3>Loading items...</h3>;
   // }
@@ -70,10 +73,11 @@ const ProductByVendorCard = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/vendor/${eachVendor.firebase_id}`)
+      .get(`http://localhost:5000/products/vendor/${props.vendor.firebase_id}`)
+      // .get(`http://localhost:5000/products/vendor/${props.location.state.firebase_id}`)
       .then(res => {
         console.log(res, "product by vendor Id");
-        setProductsByVendor(res.data);        
+        setProductsByVendor(res.data);
       })
       .catch(err => {
         console.log(err.message);
@@ -83,21 +87,18 @@ const ProductByVendorCard = props => {
   return (
     <>
       {" "}
-      <h2 style={{ marginTop: "100px" }}>{eachVendor.company_name}</h2>
+      <Typography
+        component="p"
+        style={{ fontWeight: "bold", fontSize: "40px" }}
+      >
+        Product information
+      </Typography>
       {productsByVendor &&
         productsByVendor.map(eachVendorProduct => {
           return (
             <>
-                         
-
               <Card className={classes.card}>
                 <CardContent>
-                  <Typography
-                    component="p"
-                    style={{ fontWeight: "bold", fontSize: "40px" }}
-                  >
-                    Product information
-                  </Typography>
                   <Typography component="p">
                     Product Title: {eachVendorProduct.title}
                   </Typography>

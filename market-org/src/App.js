@@ -12,7 +12,7 @@ import VendorForm from "./components/vendor/VendorForm";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import ProductByVendor from './components/product/ProductByVendor';
-// import ProductByVendorCard from './components/product/ProductByVendorCard';
+import OneVendorPublic from './components/vendor/OneVendorPublic';
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 
@@ -33,10 +33,7 @@ function App() {
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
           <Route path="/allVendors" component={VendorLandingPage} />
-          {/* <Route
-          path="/allVendors/:id"
-          render={props => <ProductByVendorCard {...props} />}
-        /> */}
+          <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
         </Switch>
         </ContextProvider>
       </React.Fragment>
