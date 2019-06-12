@@ -19,7 +19,7 @@ import {
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-import axios from "axios";
+import axios from "../../axios-instance.js";
 
 const styles = theme => ({
   root: {
@@ -63,7 +63,7 @@ const ProductByVendor = props => {
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
     axios
-      .get(`http://localhost:5000/products/vendor/${firebaseId}`)
+      .get(`/products/vendor/${firebaseId}`)
       .then(res => {
         console.log(res, "products by vendor Id");
         setProducts(res.data);
