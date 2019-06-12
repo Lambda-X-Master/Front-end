@@ -44,12 +44,13 @@ return (
 
     <div>
     {props.profile.contact_first_name}
+    <span> </span>
     {props.profile.contact_last_name}
-    
+    <span> </span>
     {props.profile.phone_number}
-
+    <span> </span>
     {props.profile.firebase_id}
-
+    <span> </span>
     <Link to={{
       pathname: '/stalls/',
       search: `?firebase_id=${props.profile.firebase_id}`,
@@ -57,6 +58,8 @@ return (
     }}>
     Rent Stalls
     </Link>
+    <span> </span>
+    
     <Link to={{
       pathname: '/markets/marketProfile/',
       search: `?firebase_id=${props.profile.firebase_id}`,
