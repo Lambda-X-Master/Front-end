@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
-
+import axios from "../../axios-instance";
 
 const ProfileCard = styled.div`
     border-radius: 3px;
@@ -14,6 +14,9 @@ const ProfileCard = styled.div`
 `
 
 const Stall = (props) => {
+
+    const isRented = false; 
+
     return(
         <ProfileCard>
             <div>

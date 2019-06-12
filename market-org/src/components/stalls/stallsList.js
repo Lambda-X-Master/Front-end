@@ -30,7 +30,7 @@ const StallsList = (props) => {
         axios.get(`/stalls/market/${props.location.state.firebase_id}`)
         .then(res => {
             console.log("Stalls : ", res.data)
-            let stallItems = res.data;
+            let stallItems = res.data.stallData;
             console.log("Total stalls:", stallItems);
             // stalls = stalls.map(stall => JSON.parse(stall));
            setStalls(stallItems);
