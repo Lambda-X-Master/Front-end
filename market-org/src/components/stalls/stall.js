@@ -41,7 +41,7 @@ const UnRent = (payload) => {
 
 const MainButtons = (payload) => {
     console.log("stall and cart id ", payload)
-    if (!isRented) {
+    if (!payload.isRented) {
         return(
             <div className="rent">
             <Rent payload={payload}/>
@@ -61,16 +61,17 @@ const CartDispatch = createContext(null);
 
 const Stall = (props) => {
 
+    const [isRented, setRentStatus] = useState(false);
 
     const reducer = (state, action) => {
             console.log("action: ", action);
           switch (action.type) {
             case "rent":
-                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {"id": action.payload.stall_id}).then( 
+                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {"stalls_id": action.payload.stall_id}).then( 
 
-                    axios.put(`stall/${action.payload.stall_id}`, {available: false})
+                    axios.put(`stalls/${action.payload.stall_id}`, {available: false})
                     .then(() => {
-                    isRented = true;
+                    setRentStatus(false);
                     })
                     .catch(err => console.log(err))
 
@@ -78,11 +79,11 @@ const Stall = (props) => {
 
              
             case "unrent":
-                axios.put().then(
+                axios.put(`/delete-stall-from-cart/${action.payload.stall_id}`, {available: true}).then(
 
-                    axios.put(`stall/${action.payload.stall_id}`, {available: true})
+                    axios.put(`stalls/${action.payload.stall_id}`, {available: true})
                     .then(() => {
-                    isRented = true;
+                    setRentStatus(true);
                     })
                     .catch(err => console.log(err))
 
@@ -96,8 +97,13 @@ const Stall = (props) => {
 
     const cart_id = localStorage.getItem("firebaseId");
 
+    console.log("is Rented:" ,isRented);
+    console.log(props.stall);
+
     return(
         <ProfileCard>
+        "Rented" : 
+        {isRented ? "Unavailable" : "Available"}
         <CartDispatch.Provider value={dispatch}>
 
             <div>
@@ -114,7 +120,7 @@ const Stall = (props) => {
             </div>
 
             <div>
-                <MainButtons stall_id={props.stall.id} cart_id={cart_id} />
+                <MainButtons stall_id={props.stall.id} cart_id={cart_id} rentStatus={isRented} />
             </div>
         </CartDispatch.Provider>
         </ProfileCard>
