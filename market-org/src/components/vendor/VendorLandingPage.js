@@ -66,7 +66,7 @@ const VendorLandingPage = props => {
       .then(res => {
         console.log(res, "vendor by Id");
         setAllVendors(res.data);
-        // console.log(vendorProfile);
+        // console.log(allVendors);
       })
       .catch(err => {
         console.log(err.message);
