@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter, Redirect } from 'react-router-dom'
 import axios from '../../axios-instance';
+import queryString from 'query-string';
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,10 @@ const styles = {
 
     }
 };
+const url = 'http://localhost:3000'
+const state = Math.random()
+        .toString(36)
+        .slice(2);
 
 class CreateMarket extends React.Component {
     state = {
@@ -37,21 +42,18 @@ class CreateMarket extends React.Component {
     }
     
     initStripeConnection = () => {
-        // const newmarket = {
-        //     firebase_id: 'DRuaCJxSQUQYRr1iRipl1Ty4OgP2',
-        //     newmarket: this.state
-        // }
-        // console.log('newmarket', newmarket)
+    
         console.log("initstripe")
-        axios.get('/stripe/authorize')
+        axios.get('stripe/authorize')
              .then(res => {
-                window.location.href=res.data
+                    window.location.href = res.data
              })
              .catch(err => {
                  console.log(err)
              })
-    }
 
+    }
+   
 
     changeHandler = (e) => {
         this.setState({
