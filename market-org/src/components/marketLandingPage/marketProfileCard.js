@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from 'styled-components'
 import {Route, NavLink, Link, Switch } from 'react-router-dom';
 import StallsList from "../stalls/stallsList";
-import MarketLandingPage from "./marketLandingPage.js";
+import MarketLandingPage from '../markets/marketProfile';
 import Axios from "axios";
 
 const ProfileCard = styled.div`
@@ -56,6 +56,13 @@ return (
       state: { firebase_id: props.profile.firebase_id}
     }}>
     Rent Stalls
+    </Link>
+    <Link to={{
+      pathname: '/markets/marketProfile',
+      search: `?firebase_id=${props.profile.firebase_id}`,
+      state: { firebase_id: props.profile.firebase_id}
+    }}>
+    See Market Profile
     </Link>
     </div>
     </ProfileMiniCard>
