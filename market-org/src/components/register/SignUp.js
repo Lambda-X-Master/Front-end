@@ -77,6 +77,7 @@ function Register(props) {
 							axios.post('/users/register', { ...userObj })
 								.then(res => {
 									console.log("res:", res);
+									// localStorage.setItem('firebaseId', res.data.firebase_id);
 
 								})
 								.catch(err => {
@@ -104,9 +105,9 @@ function Register(props) {
 
 				if (user) {
 					const { uid, ra, email } = user;
-					localStorage.setItem('token', ra)
-					console.log("Create user ra token :",  ra);
-					console.log("Getting uid ", uid);
+					console.log("incoming user", user);
+					localStorage.setItem('token', ra);
+					localStorage.setItem('firebaseId', uid);
 					if (user.email && userType) {
 						const { email } = user;
 						console.log("emailuser", user)
