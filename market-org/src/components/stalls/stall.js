@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useReducer, createContext } from "react";
 import styled from 'styled-components';
 import axios from "../../axios-instance";
 
@@ -13,12 +13,93 @@ const ProfileCard = styled.div`
     justify-content: space-between;
 `
 
+// https://medium.com/trabe/passing-callbacks-down-with-react-hooks-4723c4652aff
+
+const isRented = false;
+
+const Rent = (payload) => {
+    const dispatch = useContext(CartDispatch);
+    console.log("payload", payload);
+    console.log("stall and cart id ", payload.payload);
+    return (
+      <div className="action-rent">
+        <button onClick={() => dispatch({ type: "rent", payload: {stall_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Rent</button>
+      </div>
+    );
+  };
+
+const UnRent = (payload) => {
+    const dispatch = useContext(CartDispatch);
+    
+    return (
+      <div className="action-unrent">
+        <button onClick={() => dispatch({ type: "unrent", payload: {stall_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Unrent</button>
+      </div>
+    );
+  };
+
+
+const MainButtons = (payload) => {
+    console.log("stall and cart id ", payload)
+    if (!isRented) {
+        return(
+            <div className="rent">
+            <Rent payload={payload}/>
+            </div>
+        )
+    }
+    else{
+        return(
+            <div className="unrent">
+            <UnRent payload={payload}/>
+            </div>
+        )
+    }
+}
+
+const CartDispatch = createContext(null);
+
 const Stall = (props) => {
 
-    const isRented = false; 
+
+    const reducer = (state, action) => {
+            console.log("action: ", action);
+          switch (action.type) {
+            case "rent":
+                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {"id": action.payload.stall_id}).then( 
+
+                    axios.put(`stall/${action.payload.stall_id}`, {available: false})
+                    .then(() => {
+                    isRented = true;
+                    })
+                    .catch(err => console.log(err))
+
+                ).catch(err => console.log(err))
+
+             
+            case "unrent":
+                axios.put().then(
+
+                    axios.put(`stall/${action.payload.stall_id}`, {available: true})
+                    .then(() => {
+                    isRented = true;
+                    })
+                    .catch(err => console.log(err))
+
+                ).catch(err => console.log(err))
+            default:
+              return state;
+          }
+    }; 
+
+    const [state, dispatch] = useReducer(reducer);
+
+    const cart_id = localStorage.getItem("firebaseId");
 
     return(
         <ProfileCard>
+        <CartDispatch.Provider value={dispatch}>
+
             <div>
             <h3>Quantity</h3>
             {props.stall.qty}
@@ -33,11 +114,9 @@ const Stall = (props) => {
             </div>
 
             <div>
-                <button>
-                    Rent
-                </button>
-
+                <MainButtons stall_id={props.stall.id} cart_id={cart_id} />
             </div>
+        </CartDispatch.Provider>
         </ProfileCard>
     )
 }
