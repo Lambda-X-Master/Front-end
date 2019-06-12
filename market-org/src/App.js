@@ -12,7 +12,7 @@ import StallsList from './components/stalls/stallsList';
 import VendorForm from "./components/vendor/VendorForm";
 import ProductForm from "./components/product/ProductForm";
 
-
+import MarketProfilePage from './components/markets/marketProfile'
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 
 import { ContextProvider } from './components/context/state';
@@ -33,7 +33,8 @@ function App() {
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
-          <Route path="/stalls/" component={StallsList}/>  
+          <Route path="/stalls/" component={StallsList}/> 
+          <Route path="/markets/marketProfile/" component={MarketProfilePage} />
         </Switch>
         </ContextProvider>
       </React.Fragment>

@@ -58,7 +58,7 @@ return (
     Rent Stalls
     </Link>
     <Link to={{
-      pathname: '/markets/marketProfile',
+      pathname: '/markets/marketProfile/',
       search: `?firebase_id=${props.profile.firebase_id}`,
       state: { firebase_id: props.profile.firebase_id}
     }}>
