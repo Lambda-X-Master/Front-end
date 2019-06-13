@@ -6,10 +6,7 @@ import { AuthContext } from '../authContext/authState';
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
 
 // import VendorForm from '../vendor/VendorForm';
-
-
 import axios from '../../axios-instance';
-
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
 

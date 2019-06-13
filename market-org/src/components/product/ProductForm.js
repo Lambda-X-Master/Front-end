@@ -4,38 +4,19 @@ import { AuthContext } from "../authContext/authState";
 import { ProductContext } from "../context/product";
 import { withStyles, Typography, TextField, Button } from "@material-ui/core";
 import axios from "axios";
+import './ProductForm.css'
 
 const styles = theme => ({
-    newgroup: {
-      display: "flex",
-      width: "500px",
-      height: "500px",
-      margin: "0px auto",
-      marginTop: "200px",
-      justifyContent: "center",
-      fontWeight: "bold",
-      color: "#026440",
-      fontSize: "40px",
-      letterSpacing: "4px"
-    },
-    form: {
-      width: "110%",
-      height: "850px",
-      margin: "0 auto",
-      marginTop: "-240px"
-    },
-    textField: {
-      width: "330px"
-    },
     textColor: {
       borderWidth: "1px",
-      color: "#026440",
+      color: "#ffffff !important",
       borderColor: "#026440 !important"
     },
     notchedOutline: {
-      borderWidth: "1px",
-      borderColor: "#026440 !important",
-      color: "#026440"
+      borderWidth: "3px",
+      borderColor: 'rgba(180, 45, 90, 0.911) !important',
+      color: "#ffffff",
+      borderRadius: '25px'
     },
     input: {
       color: "#026440"
@@ -55,18 +36,19 @@ const ProductForm = props => {
   
   return (
     <>
-      Product form
+      <div className='product-form'>
+      <h1>Enter Your Stall Information:</h1>
       <form>
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Title"
           type="search"
           name="title"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setTitle(e.target.value)}
             value={title}
           margin="normal"
@@ -77,22 +59,17 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Description"
           type="search"
           name="description"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setDescription(e.target.value)}
             value={description}
           margin="normal"
@@ -103,22 +80,17 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Price"
           type="search"
           name="price"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setPrice(e.target.value)}
             value={price}
           margin="normal"
@@ -129,19 +101,14 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="upload-button"
           accept="image/*"
           label="Upload Image"
           name="photoFile"
           type="file"
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setImage(e.target.value)}
         //   value={image}
           margin="normal"
@@ -152,14 +119,26 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-              color: "#026440"
-            }
-          }}
+          // InputLabelProps={{
+          //   shrink: true,
+          //   style: {
+          //     color: "#026440"
+          //   }
+          // }}
         />
       </form>
+      <div className='submit-section-product'>
+      <Button className='submit-button-product'
+        type="submit"
+        // fullWidth
+        //variant="contained"
+        //color="secondary"
+        //onClick={submitVendorProfile}
+      >
+        Submit
+      </Button>
+      </div>
+      </div>
     </>
   );
 };

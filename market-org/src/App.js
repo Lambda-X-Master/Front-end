@@ -6,6 +6,7 @@ import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
+import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
 
@@ -24,11 +25,12 @@ function App() {
 
   return (
       <React.Fragment>
+        <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        <Navbar />
+        <Navbar className='nav-bar' />
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
@@ -37,6 +39,7 @@ function App() {
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
         </Switch>
         </ContextProvider>
+        </div>
       </React.Fragment>
   )
 }
