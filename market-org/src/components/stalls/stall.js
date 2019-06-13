@@ -154,8 +154,8 @@ const Stall = (props) => {
             <div>
                 <h3> Size </h3>
                 <ul>
-                <li><b>Length:</b>{props.stall.size.width}</li>
-                <li><b>Width:</b> {props.stall.size.height}</li>
+                <li><b>Length:</b>{props.stall.size.length}</li>
+                <li><b>Width:</b> {props.stall.size.width}</li>
                 </ul>
             </div>
 
