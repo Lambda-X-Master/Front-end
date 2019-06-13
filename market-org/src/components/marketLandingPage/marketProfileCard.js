@@ -36,6 +36,9 @@ return (
     </div>
 
     <div>
+
+    {/* <Link to={`/vendors/${props.profile.firebase_id}`} key={item.id}> */}
+
     {props.profile.address}
     {props.profile.city}
     {props.profile.state}
