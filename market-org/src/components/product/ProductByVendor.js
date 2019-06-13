@@ -60,6 +60,7 @@ const ProductByVendor = props => {
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
+  const [activeItem, setActiveItem] = useState(null);
 
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
@@ -73,11 +74,11 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
-      console.log(delProduct)
+    console.log(delProduct);
 
-      // return (
-      //   deleteProduct()
-      // )
+    // return (
+    //   deleteProduct()
+    // )
   }, []);
 
   const toMarkets = () => {
@@ -110,7 +111,26 @@ const ProductByVendor = props => {
         console.log(res);
         setDelProduct(res.data);
         // props.history.replace('/productsByVendor');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
+  const setProductUpdateForm = (e, theProduct) => {
+    e.preventDefault();
+    setActiveItem(theProduct);
+    props.history.push('/productForm')
+  };
+
+  const updateProduct = (e, theProduct) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/products/${theProduct.id}`, theProduct)
+      .then(res => {
+        setActiveItem(null);
+        setProducts(res.data);
+        props.history.push("/productsByVendor");
       })
       .catch(err => {
         console.log(err);
@@ -193,7 +213,7 @@ const ProductByVendor = props => {
                     Delete Product
                   </Button>
                   <Button
-                    // onClick={e => updateProduct(e, eachProduct.id)}
+                    onClick={e => setProductUpdateForm(e, eachProduct)}
                     color="inherit"
                     style={{ backgroundColor: "#30cc32", margin: "10px" }}
                   >

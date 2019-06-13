@@ -69,6 +69,8 @@ const ProductForm = props => {
   const [product, setProduct] = useContext(ProductContext);
   const { currentUser } = useContext(AuthContext);
 
+  const [activeItem, setActiveItem] = useState(null);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
