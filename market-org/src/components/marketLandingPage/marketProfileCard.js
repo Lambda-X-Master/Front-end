@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
+import { Route, NavLink, Switch } from 'react-router-dom';
+
 
 const ProfileCard = styled.div`
     border-radius: 3px;
@@ -30,6 +32,9 @@ return (
     </div>
 
     <div>
+
+    {/* <Link to={`/vendors/${props.profile.firebase_id}`} key={item.id}> */}
+
     {props.profile.address}
     {props.profile.city}
     {props.profile.state}
@@ -41,6 +46,13 @@ return (
     {props.profile.contact_last_name}
     
     {props.profile.phone_number}
+    {props.profile.firebase_id}
+
+    {/* <NavLink to={`/stalls/${props.profle.firebase_id}`}>Rent Stalls/</NavLink> */}
+    {/* <Route path="/stalls/:market_id" 
+    render={props =><stallsList {...props} 
+    market_id={props.profile.firebase_id}/>} 
+    />*/}
     </div>
     </ProfileMiniCard>
 

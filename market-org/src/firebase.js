@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/storage';
 
 
 const config = {
@@ -14,11 +15,17 @@ const config = {
 
   firebase.initializeApp(config);
 
-  export const auth = firebase.auth();
-  export const googleProvider = new firebase.auth.GoogleAuthProvider();
+//   export const auth = firebase.auth();
+//   export const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const auth = firebase.auth();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const storage = firebase.storage();
 
   googleProvider.setCustomParameters({
       "prompt": "select_account"
   })
 
-  export default firebase;
+//   export default firebase;
+export {
+    googleProvider, auth, storage, firebase as default
+}
