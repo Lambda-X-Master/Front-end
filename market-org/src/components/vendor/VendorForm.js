@@ -43,21 +43,30 @@ const VendorForm = props => {
       city,
       state,
       zip_code: zipcode,
-      phone_nunmber: phone,
+      phone_number: phone,
       company_url: companyUrl
     };
 
+    const token = localStorage.getItem("token");
+
     axios
-      .post("/vendor", { ...VendorObj })
+      .post(
+        "/vendor",
+        { ...VendorObj },
+        {
+          "Content-Type": "application/json",
+          headers: { Authorization: token }
+        }
+      )
       .then(res => {
         console.log("res:", res);
-
       })
       .catch(err => {
         console.log(err);
       });
-    props.history.push("/productForm");
+    props.history.replace("/productForm");
   };
+
   return (
     <>
       <div className='vendor-form'>
@@ -241,7 +250,7 @@ const VendorForm = props => {
         onClick={submitVendorProfile}
         //className={classes.submit}
       >
-        Submit
+        Submit your vendor info
       </Button>
       </div>
       </div>

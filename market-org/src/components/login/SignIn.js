@@ -52,7 +52,8 @@ function SignIn(props) {
 			console.log("user:", user);
 			if (user) {
 				const { uid, ra, email } = user;
-				localStorage.setItem('token', ra)
+				localStorage.setItem('token', ra);
+				localStorage.setItem('firebaseId', uid);
 				if (user.email) {
 					const { email } = user;
 					console.log("emailuser", user)
@@ -91,7 +92,8 @@ function SignIn(props) {
 			console.log("user:", user);
 			if (user) {
 				const { uid, ra, email } = user;
-				localStorage.setItem('token', ra)
+				localStorage.setItem('token', ra);
+				localStorage.setItem('firebaseId', uid);
 				if (user.email) {
 					const { email } = user;
 					console.log("emailuser", user)

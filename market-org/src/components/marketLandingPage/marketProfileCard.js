@@ -5,6 +5,8 @@ import StallsList from "../stalls/stallsList";
 import MarketLandingPage from '../markets/marketProfile';
 import Axios from "axios";
 
+
+
 const ProfileCard = styled.div`
     border-radius: 3px;
     border: 2px solid palevioletred;
@@ -36,6 +38,9 @@ return (
     </div>
 
     <div>
+
+    {/* <Link to={`/vendors/${props.profile.firebase_id}`} key={item.id}> */}
+
     {props.profile.address}
     {props.profile.city}
     {props.profile.state}
@@ -67,6 +72,13 @@ return (
     }}>
     See Market Profile
     </Link>
+    {props.profile.firebase_id}
+
+    {/* <NavLink to={`/stalls/${props.profle.firebase_id}`}>Rent Stalls/</NavLink> */}
+    {/* <Route path="/stalls/:market_id" 
+    render={props =><stallsList {...props} 
+    market_id={props.profile.firebase_id}/>} 
+    />*/}
     </div>
     </ProfileMiniCard>
 
