@@ -25,27 +25,30 @@ const StallsContainer = styled.div`
 const StallsList = (props) => {
 
     const [stalls, setStalls] = useState([]);
+    const [hasAStallChanged, setStallChangeStatus] = useState(false);
 
     useEffect(() => {
         axios.get(`/stalls/market/${props.location.state.firebase_id}`)
         .then(res => {
             console.log("Stalls : ", res.data)
             let stallItems = res.data.stallData;
-            console.log("Total stalls:", stallItems);
             // stalls = stalls.map(stall => JSON.parse(stall));
            setStalls(stallItems);
-            console.log("stalls", stalls)
+            console.log("stalls", stalls);
+           setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
-    }, []);
+
+
+    }, [hasAStallChanged]);
 
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
             <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
-                return (<Stall stall={stall_item}/>)
+                return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
             })}
         </StallsContainer>
     )
