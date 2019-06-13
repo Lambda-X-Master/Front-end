@@ -4,9 +4,11 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
+import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
+
 
 
 import VendorForm from "./components/vendor/VendorForm";
@@ -33,6 +35,7 @@ function App() {
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
+          <Route path="/landing-page" component={LandingPage}/>
         </Switch>
         </ContextProvider>
       </React.Fragment>
