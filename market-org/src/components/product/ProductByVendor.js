@@ -59,6 +59,7 @@ const ProductByVendor = props => {
   const [product, setProduct] = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
+  const [delProduct, setDelProduct] = useState(0);
 
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
@@ -72,6 +73,11 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
+      console.log(delProduct)
+
+      // return (
+      //   deleteProduct()
+      // )
   }, []);
 
   const toMarkets = () => {
@@ -81,7 +87,7 @@ const ProductByVendor = props => {
   const toCart = () => {
     props.history.push("/carts");
   };
-  console.log('vendor profile in product', vendorProfile);
+  console.log("vendor profile in product", vendorProfile);
 
   const backToProductForm = () => {
     props.history.push("/productForm");
@@ -93,34 +99,45 @@ const ProductByVendor = props => {
 
   const deleteProduct = (e, productId) => {
     e.preventDefault();
-    axios.delete(`http://localhost:5000/products/${productId}`).then(res => {
-      console.log(res); 
-      setProducts(res.data);
-      
 
-    }).catch(err => {
-      console.log(err);
-    });
+    const token = localStorage.getItem("token");
+    axios
+      .delete(`http://localhost:5000/products/${productId}`, {
+        "Content-Type": "application/json",
+        headers: { Authorization: token }
+      })
+      .then(res => {
+        console.log(res);
+        setDelProduct(res.data);
+        // props.history.replace('/productsByVendor');
+
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
     <>
       <Container maxWidth="lg">
-        <Typography style={{ marginTop: "100px" }}>
-          List of your products
+        <Typography
+          component="p"
+          style={{ fontWeight: "bold", fontSize: "40px" }}
+        >
+          Your Product information
         </Typography>
 
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
+            <Button
               onClick={backToHome}
               color="inherit"
               style={{ backgroundColor: "#30cc32", margin: "10px" }}
             >
               Home
             </Button>
-          <Button
+            <Button
               onClick={backToProductForm}
               color="inherit"
               style={{ backgroundColor: "#30cc32", margin: "10px" }}
@@ -150,12 +167,6 @@ const ProductByVendor = props => {
               <>
                 <Card className={classes.card}>
                   <CardContent>
-                    <Typography
-                      component="p"
-                      style={{ fontWeight: "bold", fontSize: "40px" }}
-                    >
-                      Your Product information
-                    </Typography>
                     <Typography component="p">
                       Product Title: {eachProduct.title}
                     </Typography>
@@ -172,16 +183,22 @@ const ProductByVendor = props => {
                       alt="Vendor product"
                       className="productImage"
                     />
-                    testing global context: {' '}
-                     {vendorProfile.company_name}
+                    testing global context: {vendorProfile.company_name}
                   </CardContent>
                   <Button
-              onClick={e => deleteProduct(e, eachProduct.id)}
-              color="inherit"
-              style={{ backgroundColor: "#30cc32", margin: "10px" }}
-            >
-              Delete Product
-            </Button>
+                    onClick={e => deleteProduct(e, eachProduct.id)}
+                    color="inherit"
+                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                  >
+                    Delete Product
+                  </Button>
+                  <Button
+                    // onClick={e => updateProduct(e, eachProduct.id)}
+                    color="inherit"
+                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                  >
+                    Edit Product
+                  </Button>
                 </Card>
               </>
             );
