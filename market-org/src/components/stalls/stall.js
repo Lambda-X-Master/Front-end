@@ -22,7 +22,7 @@ const Rent = (payload) => {
     console.log("stall and cart id ", payload.payload);
     return (
       <div className="action-rent">
-        <button onClick={() => dispatch({ type: "rent", payload: {stall_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Rent</button>
+        <button onClick={() => dispatch({ type: "rent", payload: {stalls_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Rent</button>
       </div>
     );
   };
@@ -32,7 +32,7 @@ const UnRent = (payload) => {
     
     return (
       <div className="action-unrent">
-        <button onClick={() => dispatch({ type: "unrent", payload: {stall_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Unrent</button>
+        <button onClick={() => dispatch({ type: "unrent", payload: {stalls_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Unrent</button>
       </div>
     );
   };
@@ -60,18 +60,22 @@ const CartDispatch = createContext(null);
 
 const Stall = (props) => {
 
-    const [isRented, setRentStatus] = useState(false);
+    const [isAvailable, setAvailableStatus] = useState(props.stall.available);
     const [buttonState, setButtonState] = useState(false);
 
     const reducer = (state, action) => {
-            console.log("action: ", action);
+            console.log("action: ", action.payload);
           switch (action.type) {
             case "rent":
-                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stall_id}).then( 
+                axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stalls_id}).then( 
 
-                    axios.put(`stalls/${action.payload.stall_id}`, {available: false})
-                    .then(() => {
-                    setRentStatus(false);
+                    axios.request({
+                        method: 'PUT',
+                        url: `stalls/${action.payload.stalls_id}`, 
+                        data: {available: false}})
+                    .then((res) => {
+                        console.log(res);
+                        // setRentStatus(false);
                     })
                     .catch(err => console.log(err))
 
@@ -79,32 +83,40 @@ const Stall = (props) => {
 
              
             case "unrent":
-                axios.delete(`cart/delete-stall-from-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stall_id}).then(
+                axios.request({
+                    method: 'DELETE',
+                    url: `/cart/delete-stall-from-cart/${action.payload.cart_id}`, 
+                    data: {stalls_id: action.payload.stalls_id}
+                    }).then(
 
-                    axios.put(`stalls/${action.payload.stall_id}`, {available: true})
+                    axios.put(`stalls/${action.payload.stalls_id}`, {available: true})
                     .then(() => {
-                    setRentStatus(true);
+                    // setRentStatus(true);
 
                     })
                     .catch(err => console.log(err))
 
                 ).catch(err => console.log(err))
+
             default:
               return state;
           }
     }; 
 
+    useEffect(() => {
+        setAvailableStatus(props.stall.available)
+    }, []);
+
     const [state, dispatch] = useReducer(reducer);
 
     const cart_id = localStorage.getItem("firebaseId");
 
-    console.log("is Rented:" ,isRented);
-    console.log(props.stall);
-
     return(
         <ProfileCard>
-        "Rented" : 
-        {isRented ? "Unavailable" : "Available"}
+        <div>
+        <h2>Available to rent:</h2>
+        <h3>{isAvailable ? "Available" : "Unavailable"}</h3>
+        </div>
         <CartDispatch.Provider value={dispatch}>
 
             <div>
@@ -121,7 +133,7 @@ const Stall = (props) => {
             </div>
 
             <div>
-                <MainButtons stall_id={props.stall.id} cart_id={cart_id} rentStatus={isRented} />
+                <MainButtons stall_id={props.stall.id} cart_id={cart_id} rentStatus={isAvailable} />
             </div>
         </CartDispatch.Provider>
         </ProfileCard>
