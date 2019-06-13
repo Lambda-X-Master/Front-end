@@ -11,6 +11,7 @@ const ProfileCard = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: ${props => props.toggled ? "red" : "blue"}
 `
 
 // https://medium.com/trabe/passing-callbacks-down-with-react-hooks-4723c4652aff
@@ -18,8 +19,6 @@ const ProfileCard = styled.div`
 
 const Rent = (payload) => {
     const dispatch = useContext(CartDispatch);
-    console.log("payload", payload);
-    console.log("stall and cart id ", payload.payload);
     return (
       <div className="action-rent">
         <button onClick={() => dispatch({ type: "rent", payload: {stalls_id: payload.payload.stall_id, cart_id: payload.payload.cart_id }})}>Rent</button>
@@ -39,7 +38,6 @@ const UnRent = (payload) => {
 
 
 const MainButtons = (payload) => {
-    console.log("stall and cart id ", payload)
     if (payload.rentStatus) {
         return(
             <div className="rent">
@@ -62,24 +60,33 @@ const Stall = (props) => {
 
     const [isAvailable, setAvailableStatus] = useState(props.stall.available);
     const [buttonState, setButtonState] = useState(false);
+    console.log("Current stall:", props.stall)
 
     const reducer = (state, action) => {
-            console.log("action: ", action.payload);
           switch (action.type) {
             case "rent":
                 axios.post(`cart/add-stall-to-cart/${action.payload.cart_id}`, {stalls_id: action.payload.stalls_id}).then( 
+                res => {
+
+                    console.log("Rent: ", res);
 
                     axios.request({
                         method: 'PUT',
                         url: `stalls/${action.payload.stalls_id}`, 
                         data: {available: false}})
                     .then((res) => {
-                        console.log(res);
+                        console.log("Update unavailable:" , res);
                         // setRentStatus(false);
+                        // setAvailableStatus(false);
+                        // setButtonState(false);
+                        props.setStallChangedStatus(true);
+                        // setAvailableStatus(false);
                     })
                     .catch(err => console.log(err))
 
-                ).catch(err => console.log(err))
+
+
+                }).catch(err => console.log(err))
 
              
             case "unrent":
@@ -87,16 +94,27 @@ const Stall = (props) => {
                     method: 'DELETE',
                     url: `/cart/delete-stall-from-cart/${action.payload.cart_id}`, 
                     data: {stalls_id: action.payload.stalls_id}
-                    }).then(
+                    }).then(res => {
 
-                    axios.put(`stalls/${action.payload.stalls_id}`, {available: true})
-                    .then(() => {
+                        console.log("Unrent: ", res);
+
+
+                        axios.request({
+                            method: 'PUT',
+                            url: `stalls/${action.payload.stalls_id}`, 
+                            data: {available: true}})
+                        .then((res) => {
+                        console.log("Update available:", res);
                     // setRentStatus(true);
+                    // setAvailableStatus(true);
+                        // setButtonState(true);
+                        props.setStallChangedStatus(true);
+                        // setAvailableStatus(true);
 
                     })
                     .catch(err => console.log(err))
 
-                ).catch(err => console.log(err))
+                    }).catch(err => console.log(err))
 
             default:
               return state;
@@ -111,13 +129,22 @@ const Stall = (props) => {
 
     const cart_id = localStorage.getItem("firebaseId");
 
+
+
     return(
-        <ProfileCard>
+        <ProfileCard toggled={props.stall.available}>
         <div>
         <h2>Available to rent:</h2>
-        <h3>{isAvailable ? "Available" : "Unavailable"}</h3>
+        <h3>{props.stall.available ? "Available" : "Unavailable"}</h3>
         </div>
         <CartDispatch.Provider value={dispatch}>
+
+            <div>
+            <h3>Stall Id:</h3>
+
+            {props.stall.id}
+
+            </div>
 
             <div>
             <h3>Quantity</h3>
@@ -133,7 +160,7 @@ const Stall = (props) => {
             </div>
 
             <div>
-                <MainButtons stall_id={props.stall.id} cart_id={cart_id} rentStatus={isAvailable} />
+                <MainButtons stall_id={props.stall.id} cart_id={cart_id} rentStatus={props.stall.available} />
             </div>
         </CartDispatch.Provider>
         </ProfileCard>
