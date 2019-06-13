@@ -61,7 +61,7 @@ const VendorForm = props => {
   return (
     <>
       <div className='vendor-form'>
-      <h1>Register A Vendor</h1>
+      <h1>Register A Vendor:</h1>
       <form>
         <TextField className ='input-field'
           id="outlined-name"
