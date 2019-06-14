@@ -13,6 +13,7 @@ import axios from '../../axios-instance';
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
