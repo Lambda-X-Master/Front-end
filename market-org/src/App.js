@@ -7,6 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
+import StallsList from './components/stalls/stallsList';
 
 import VendorForm from "./components/vendor/VendorForm";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
+          <Route path="/stalls/" component={StallsList}/>  
           <Route path="/allVendors" component={VendorLandingPage} />
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        

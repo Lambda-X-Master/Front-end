@@ -1,4 +1,6 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from 'react';
+import { withRouter } from 'react-router-dom'
+import queryString from 'query-string';
 
 // import Navbar from '../navbar/Navbar';
 import Searchbar from "../navbar/Searchbar";
@@ -47,23 +49,38 @@ const Homepage = props => {
   const classes = useStyles();
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const [stripe_acc_id, setStripeAccId] = useState(null)
 
   useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
-      "token"
-    );
-    axios
-      .get("/users", currentUser)
-      .then(res => {
-        console.log("resdata:", res.data);
-        setUsers(res.data);
-      })
-      .catch(err => {
-        console.log("err", err.message);
-      });
+    let params = queryString.parse(props.location.search)
+    console.log('params:', params['code'])
+    axios.get(`/stripe/token/?code=${params['code']}`)
+          .then(res => {
+            console.log('homepage:', res.data.body.stripe_user_id)
+            setStripeAccId(res.data.body.stripe_user_id)
+          })
+    fetchData()
+    
   }, []);
 
-  console.log("curr", currentUser);
+  const stripeDashboardLink = () => {
+    console.log('sci',stripe_acc_id)
+    axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
+         .then(res => {
+           console.log('link:', res.data.url)
+           window.location.href=res.data.url
+         })
+  }
+
+  const fetchData = () => {
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
+    axios
+    .get("/users").then(res => {
+      setUsers(res.data)
+    })
+
+  }
+
 
   const vendorFormPage = () => {
     props.history.replace(`/vendor`);
@@ -89,6 +106,8 @@ const Homepage = props => {
         </div>
         {currentUser ? (
           <div style={{ textAlign: "center", marginTop: "200px" }}>
+            <Button>Create Market profile</Button>
+            <Button onClick={stripeDashboardLink}>Stripe Dashboard</Button>
             <Button onClick={vendorFormPage}>Create vendor Profile</Button>
 
             <Button
@@ -123,4 +142,4 @@ const Homepage = props => {
 // })}
 // </div>
 
-export default Homepage;
+export default withRouter(Homepage);

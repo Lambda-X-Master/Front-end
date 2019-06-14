@@ -59,7 +59,8 @@ function Register(props) {
 				if (user) {
 					const { uid, ra, email } = user;
 					localStorage.setItem('token', ra);
-					localStorage.setItem('firebaseId', uid)
+					// localStorage.setItem('firebaseId', uid)
+					console.log("getting uId :", uid);
 					if (user.email) {
 						const { email } = user;
 						console.log("emailuser", user)
@@ -104,6 +105,7 @@ function Register(props) {
 
 				if (user) {
 					const { uid, ra, email } = user;
+					console.log("incoming user", user);
 					localStorage.setItem('token', ra);
 					localStorage.setItem('firebaseId', uid);
 					if (user.email && userType) {
@@ -119,6 +121,8 @@ function Register(props) {
 							.then(res => {
 								console.log("res:", res);
 								localStorage.setItem('firebaseId', res.data.firebase_id);
+								// console.log("Create firebaseId :",  res.data.firebase_id);
+
 
 							})
 							.catch(err => {

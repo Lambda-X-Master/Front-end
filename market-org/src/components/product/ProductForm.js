@@ -17,7 +17,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "axios";
+import axios from "../../axios-instance.js";
 
 const styles = theme => ({
   newgroup: {
@@ -78,7 +78,7 @@ const ProductForm = props => {
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
     axios
-      .get(`http://localhost:5000/vendor/${firebaseId}`)
+      .get(`/vendor/${firebaseId}`)
       .then(res => {
         console.log(res, "vendor by Id");
         setVendorProfile(res.data);
@@ -121,16 +121,13 @@ const ProductForm = props => {
             };
 
             axios
-              .post(
-                `http://localhost:5000/products/vendor/${vendorId}`,
-                {
-                  ...productObj
-                },
-                {
-                  "Content-Type": "application/json",
-                  headers: { Authorization: token }
-                }
-              )
+              .post(`/products/vendor/${vendorId}`, {
+                ...productObj
+              },
+              {
+                "Content-Type": "application/json",
+                headers: { Authorization: token }
+              })
               .then(res => {
                 console.log("product res post", res);
               })

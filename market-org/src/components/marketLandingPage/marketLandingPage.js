@@ -3,6 +3,8 @@ import { MarketProfilesContext } from '../context/GlobalContext.js';
 import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
 import styled from 'styled-components';
+import { Route, NavLink, Switch } from 'react-router-dom';
+import stallsList from "../stallsList/stallsList";
 
 import axios from '../../axios-instance';
 
@@ -22,7 +24,7 @@ const MarketLandingPage = (props) => {
 
     useEffect(() => {
         console.log("Error");
-        axios.get('/markets')
+        axios.get('/markets/')
         .then(res => {
             console.log(res.data)
             let markets = res.data;
