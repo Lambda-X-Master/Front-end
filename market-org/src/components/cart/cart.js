@@ -1,9 +1,95 @@
 import React, { useEffect, useState} from 'react'
 import axios from '../../axios-instance';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Button from "@material-ui/core/Button";
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: '2rem',
+    marginBottom: '4rem'
+  },
+  cartItems: {
+    display: 'flex',
+    // marginTop: '3rem',
+    justifyContent: 'center'
+  },
+  title: {
+    fontSize: '3rem',
+    fontWeight: 'bold',
+    padding: '2rem'
+  },
+
+  headers: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    width: '75%',
+    margin: '0 auto'
+
+  },
+  priceHeader: {
+      marginRight: '20rem',
+      fontSize: '1.3rem',
+  },
+  qtyHeader: {
+    marginRight: '7rem',
+    fontSize: '1.3rem',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'space-around',
+    // textAlign: 'justify',
+    // color: theme.palette.text.secondary,
+    color: 'black',
+  },
+  subtotal: {
+      fontSize: '2rem',
+      textAlign: 'right',
+      marginRight: '10rem',
+      marginTop: '3rem',
+  },
+  checkout: {
+      
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '3rem',
+    // '&:hover': {
+    //     backgroundColor: "#F5885F",
+    //     textDecoration: 'underline'
+    //  },
+  },
+  checkoutButton: {
+    backgroundColor: '#F5885F',
+    color: 'white',
+     '&:hover': {
+        backgroundColor: "lightgreen",
+        color: 'white',
+        border: '1px solid #F5885F'
+     },
+  }
+}));
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [total, setTotal] = useState('')
+    const [quantity, setQuantity] = useState(1)
     useEffect(() => {
         let firebase_id = localStorage.getItem('firebaseId')
         console.log(firebase_id)
@@ -21,27 +107,71 @@ const Cart = () => {
                 console.log(err)
             })
     }, [])
+
+    const  handleChange = (event)  => {
+        setQuantity(oldQuantity => ({
+          ...oldQuantity,
+          [event.target.name]: event.target.value,
+        }));
+      }
     console.log(cartItems.length, 'cart item type')
+    const classes = useStyles();
+
     return (
-        
-        <div>
-            <h3> View Cart </h3>
-            { 
-    Object.keys(cartItems).map((item, i) => (
-        <div className="travelcompany-input" key={i}>
-            
-            <h3>Stall Dimensions: </h3>
-            <h3>Length: {cartItems[item].size.len} Width: {cartItems[item].size.width}</h3>
-            <h3 className="input-label"> Stall Price { cartItems[item].price}</h3>
+        <div className={classes.root}>
+            <Typography className={classes.title}>Shopping Cart</Typography>
+            <div className={classes.headers}>
+                <Typography className={classes.priceHeader}>Price</Typography>
+                <Typography className={classes.qtyHeader}>Quantity</Typography>
+           </div>
+           
+            {Object.keys(cartItems).map((item, i) => (
+            <div  key={i}>
+             <Grid container spacing={6} className={classes.cartItems}>
+                <Grid item xs={10}>
+                
+                    <Paper className={classes.paper}>
+                        <Typography variant="h6" component="h5">
+                            Stall Dimensions: Length: {cartItems[item].size.len} ft. X  Width: {cartItems[item].size.width} ft.
+                        </Typography>
+                        <Typography variant="h6" component="h5">
+                        
+                            Stall Price: ${cartItems[item].price} 
+                        </Typography>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            {/* <InputLabel  htmlFor="outlined-age-simple">
+                            Quantity
+                            </InputLabel> */}
+                            <Select
+                                value={quantity}
+                                onChange={handleChange}
+                                placeholder='Quantity'
+                                input={<OutlinedInput  name="quantity" id="outlined-age-simple" />}
+                            >
+                                {/* <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem> */}
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
+                                <MenuItem value={4}>4</MenuItem>
+                                <MenuItem value={3}>5</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Paper>
+                </Grid>
+            </Grid>
         </div>
     ))
 } 
-            {/* <h3>{cartItems[0]}</h3> */}
-            {/* {cartItems.map(item => {
-                return(<h4>{item}</h4>)
-            })} */}
-            <h3>Total ${total}</h3>
+         <Typography className={classes.subtotal}>Subtotal({cartItems.length} items): ${total}</Typography>
+         <div className={classes.checkout}>
+         <Button variant="outlined" size="large" color="primary" className={classes.checkoutButton}>
+             <Typography>Proceed to checkout</Typography>
+         </Button>
+         </div>
         </div>
+
     )
 }
 

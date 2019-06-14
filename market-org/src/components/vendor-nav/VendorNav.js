@@ -49,7 +49,7 @@ function VendorNav (props) {
       const getCart = () => {
           let firebase_id = localStorage.getItem('firebaseId')
           props.history.push(`/cart/${firebase_id}`)
-    //   console.log('click')
+      console.log('click')
     // let firebase_id = localStorage.getItem('firebaseId')
     // console.log(firebase_id, 'from ger cart')
     // axios.get(`/cart/${firebase_id}`)
