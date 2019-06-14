@@ -1,9 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
+
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
-import { withStyles, Typography, TextField, Button } from "@material-ui/core";
-import axios from "../../axios-instance";
+import { ProductContext } from "../context/product";
+
+import {
+  withStyles,
+  Typography,
+  TextField,
+  Button,
+  CardContent
+} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardMedia from "@material-ui/core/CardMedia";
+
+import axios from "axios";
 
 const styles = theme => ({
   newgroup: {
@@ -39,59 +53,68 @@ const styles = theme => ({
   },
   input: {
     color: "#026440"
+  },
+  card: {
+    maxWidth: 800
+  },
+  media: {
+    height: 300
   }
 });
 
-const VendorForm = props => {
+const UpdateVendorForm = props => {
   const { classes } = props;
-  const [vendorProfile, setVendorProfile] = useContext(VendorContext);
-  const { currentUser } = useContext(AuthContext);
+  const { firebase_id } = props.match.params;
 
-  const [companyName, setCompanyName] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [phone, setPhone] = useState("");
-  const [companyUrl, setCompanyUrl] = useState("");
+  const [companyName, setCompanyName] = useState(props.aPrivateVendor.company_name);
+  const [fullName, setFullName] = useState(props.aPrivateVendor.contact_fullname);
+  const [address, setAddress] = useState(props.aPrivateVendor.address);
+  const [city, setCity] = useState(props.aPrivateVendor.city);
+  const [state, setState] = useState(props.aPrivateVendor.state);
+  const [zipcode, setZipcode] = useState(props.aPrivateVendor.zip_code);
+  const [phone, setPhone] = useState(props.aPrivateVendor.phone_number);
+  const [companyUrl, setCompanyUrl] = useState(props.aPrivateVendor.company_url);
 
-  const submitVendorProfile = () => {
-    const VendorObj = {
-      firebase_id: localStorage.getItem("firebaseId"),
-      company_name: companyName,
-      contact_fullname: fullName,
-      address,
-      city,
-      state,
-      zip_code: zipcode,
-      phone_number: phone,
-      company_url: companyUrl
-    };
+  const [editVendor, setEditedVendor] = useState(props.aPrivateVendor);
 
+  const updateVendor = (e, id, updatedVendor) => {
+    e.preventDefault();
+    
     const token = localStorage.getItem("token");
 
+    updatedVendor = {
+        firebase_id: firebase_id,        
+        company_name: companyName,
+        contact_fullname: fullName,
+        address,
+        city,
+        state,
+        zip_code: zipcode,
+        phone_number: phone,
+        company_url: companyUrl
+      };
+
     axios
-      .post(
-        "/vendor",
-        { ...VendorObj },
-        {
-          "Content-Type": "application/json",
-          headers: { Authorization: token }
-        }
-      )
-      .then(res => {
-        console.log("res:", res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    props.history.replace("/productForm");
-  };
+    .put(`http://localhost:5000/vendor/${firebase_id}`, updatedVendor, {
+      "Content-Type": "application/json",
+      headers: { Authorization: token }
+    })
+    .then(res => {
+      console.log("product res put", res);
+      
+      setEditedVendor(res.data)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+    props.history.push("/productForm");
+  }
+
 
   return (
     <>
-      <form>
+          <form>
         <TextField
           id="outlined-name"
           label="Company Name"
@@ -103,7 +126,7 @@ const VendorForm = props => {
           rowsMax={2}
           className={classes.textField}
           onChange={e => setCompanyName(e.target.value)}
-          //   value={}
+            // value={props.aPrivateVendor.company_name}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -301,20 +324,19 @@ const VendorForm = props => {
           }}
         />
       </form>
+
       <Button
         type="submit"
         fullWidth
         variant="contained"
         color="secondary"
-        onClick={submitVendorProfile}
+        onClick={e => updateVendor(e, firebase_id, editVendor)}
         className={classes.submit}
       >
-        Submit your vendor info
+        Update Your Profile
       </Button>
     </>
-  );
+  ) 
 };
 
-// export default VendorForm;
-
-export default withRouter(withStyles(styles)(VendorForm));
+export default withRouter(withStyles(styles)(UpdateVendorForm));
