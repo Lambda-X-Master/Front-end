@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext } from 'react';
 import { Route, NavLink, Switch } from 'react-router-dom';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,24 +10,28 @@ import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 
 
-
+import VendorNav from './components/vendor-nav/VendorNav';
 import VendorForm from "./components/vendor/VendorForm";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
 import ProductByVendor from './components/product/ProductByVendor';
 // import ProductByVendorCard from './components/product/ProductByVendorCard';
-
+import VendorCart from './components/cart/cart';
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 
 import { ContextProvider } from './components/context/state';
+import { AuthContext } from "./components/authContext/authState";
 import "./App.css";
 
 function App() {
+  // const { currentUser } = useContext(AuthContext);
+  // console.log(currentUser, 'from app js')
   return (
       <React.Fragment>
         <CssBaseline />
         <ContextProvider>
-        <Navbar />
+          <VendorNav/>
+        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Homepage} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
@@ -37,6 +41,7 @@ function App() {
           <Route path="/markets" component={MarketLandingPage} />
           <Route path="/landing-page" component={LandingPage}/>
           <Route path="/allVendors" component={VendorLandingPage} />
+          <Route path='/cart/:id' component={VendorCart}/>
           {/* <Route
           path="/allVendors/:id"
           render={props => <ProductByVendorCard {...props} />}

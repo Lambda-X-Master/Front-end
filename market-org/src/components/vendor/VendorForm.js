@@ -71,9 +71,11 @@ const VendorForm = props => {
 
     const token = localStorage.getItem("token");
 
+
+ 
     axios
       .post(
-        "/vendor",
+        `/vendor/${VendorObj.firebase_id}`,
         { ...VendorObj },
         {
           "Content-Type": "application/json",
@@ -86,6 +88,7 @@ const VendorForm = props => {
       .catch(err => {
         console.log(err);
       });
+    
     props.history.replace("/productForm");
   };
 
