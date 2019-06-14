@@ -99,8 +99,8 @@ const Cart = () => {
         axios.get(`/cart/${firebase_id}`)
             .then(res => {
                 console.log(res.data)
-                let cartData = res.data.cartItem
-                let total = res.data.total
+                let cartData = res.data[0]
+                let total = res.data[1]
                 console.log('Total', total)
                 console.log('cart data', cartData)
                 setCartItems(cartData)
@@ -178,11 +178,11 @@ const Cart = () => {
         billingAddress
         shippingAddress
       /> */}
-         {/* <div className={classes.checkout}>
+         <div className={classes.checkout}>
          <Button variant="outlined" size="large" color="primary" className={classes.checkoutButton}>
              <Typography>Proceed to checkout</Typography>
          </Button>
-         </div> */}
+         </div>
         </div>
 
     )
