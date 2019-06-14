@@ -14,6 +14,8 @@ import ProductForm from "./components/product/ProductForm";
 import UpdateProductForm from "./components/product/UpdateProductForm";
 import ProductByVendor from './components/product/ProductByVendor';
 import OneVendorPublic from './components/vendor/OneVendorPublic';
+import OneVendorPrivate from './components/vendor/OneVendorPrivate';
+
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 
@@ -38,6 +40,7 @@ function App() {
           <Route path="/markets" component={MarketLandingPage} />
           <Route path="/allVendors" component={VendorLandingPage} />
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
+          <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        
         </Switch>
         </ContextProvider>
       </React.Fragment>

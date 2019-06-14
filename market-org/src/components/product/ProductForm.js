@@ -69,9 +69,6 @@ const ProductForm = props => {
   const [product, setProduct] = useContext(ProductContext);
   const { currentUser } = useContext(AuthContext);
 
-  // const [updatedProduct, setUpdatedProduct] = useState(product.activeItem);
-  // const [activeItem, setActiveItem] = useState(null);
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
@@ -79,10 +76,6 @@ const ProductForm = props => {
   const [file, setFile] = useState(null);
 
   useEffect(() => {
-    // if (product.activeItem && product.activeItem !== updatedProduct) {
-    //   setUpdatedProduct(product.activeItem);      
-    // };
-
     const firebaseId = localStorage.getItem("firebaseId");
     axios
       .get(`http://localhost:5000/vendor/${firebaseId}`)
@@ -97,82 +90,62 @@ const ProductForm = props => {
   }, []);
 
   const submitProductProfile = e => {
-    // if(product.activeItem) {
-    //   product.updateProduct(e, updatedProduct);
-    // } else {
-      e.preventDefault();
+    e.preventDefault();
 
-      const vendorId = localStorage.getItem("firebaseId");
-      const token = localStorage.getItem("token");
-      let currentProductName = "product-image-" + Date.now();
-      let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
-  
-      uploadImage.on(
-        "state_changed",
-        snapshot => {},
-        error => {
-          alert(error);
-        },
-        () => {
-          storage
-            .ref("images")
-            .child(currentProductName)
-            .getDownloadURL()
-            .then(url => {
-              console.log(url);
-              setImage(url);
-  
-              const productObj = {
-                vendors_id: vendorId,
-                title: title,
-                description: description,
-                price: price,
-                image: url
-              };
-  
-              axios
-                .post(`http://localhost:5000/products/vendor/${vendorId}`, {
+    const vendorId = localStorage.getItem("firebaseId");
+    const token = localStorage.getItem("token");
+    let currentProductName = "product-image-" + Date.now();
+    let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
+
+    uploadImage.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        alert(error);
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(currentProductName)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url);
+            setImage(url);
+
+            const productObj = {
+              vendors_id: vendorId,
+              title: title,
+              description: description,
+              price: price,
+              image: url
+            };
+
+            axios
+              .post(
+                `http://localhost:5000/products/vendor/${vendorId}`,
+                {
                   ...productObj
                 },
                 {
                   "Content-Type": "application/json",
                   headers: { Authorization: token }
-                })
-                .then(res => {
-                  console.log("product res post", res);
-                })
-                .catch(err => {
-                  console.log(err);
-                });
-            });
-        }
-      );
-      props.history.push("/productsByVendor");
-    // }
-    // setTitle('');
-    // setDescription('');
-    // setPrice(0);
-    // setImage('');
-    // setFile(null);
+                }
+              )
+              .then(res => {
+                console.log("product res post", res);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          });
+      }
+    );
+    props.history.push("/productsByVendor");
   };
 
   const fileHandler = e => {
     setFile(e.target.files[0]);
   };
-
-  // const updateProduct = (e, theProduct) => {
-  //   e.preventDefault();
-  //   axios
-  //     .put(`http://localhost:5000/products/${theProduct.id}`, theProduct)
-  //     .then(res => {
-  //       product.setActiveItem(null);
-  //       product.setProducts(res.data);
-  //       props.history.push("/productsByVendor");
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <>
@@ -208,8 +181,10 @@ const ProductForm = props => {
           <Typography component="p">
             Vendor company url: {vendorProfile.company_url}
           </Typography>
-          {vendorProfile.firebase_id}
         </CardContent>
+        <Link to={`/oneVendorPrivate/${vendorProfile.firebase_id}`}>
+          <Typography component="p">My Profile Settings</Typography>
+        </Link>
       </Card>
 
       <Typography component="p">Product form:</Typography>
@@ -332,5 +307,4 @@ const ProductForm = props => {
   );
 };
 
-// export default ProductForm;
 export default withRouter(withStyles(styles)(ProductForm));

@@ -71,11 +71,11 @@ const UpdateProductForm = props => {
   const [product, setProduct] = useContext(ProductContext);
   const { currentUser } = useContext(AuthContext);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState(props.eachProduct.title);
+  const [description, setDescription] = useState(props.eachProduct.description);
+  const [price, setPrice] = useState(props.eachProduct.price);
+  const [image, setImage] = useState(props.eachProduct.image);
+  // const [file, setFile] = useState(props.eachProduct.file);
 
   const [editProduct, setEditedProduct] = useState(props.eachProduct);
 
@@ -83,33 +83,32 @@ const UpdateProductForm = props => {
 
   const updateProduct = (e, id, updatedProduct) => {
     e.preventDefault();
-
-    const vendorId = localStorage.getItem("firebaseId");
+    
     const token = localStorage.getItem("token");
-    let currentProductName = "product-image-" + Date.now();
-    let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
+    // let currentProductName = "product-image-" + Date.now();
+    // let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
-    uploadImage.on(
-      "state_changed",
-      snapshot => {},
-      error => {
-        alert(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(currentProductName)
-          .getDownloadURL()
-          .then(url => {
-            console.log(url);
-            setImage(url);
+    // uploadImage.on(
+    //   "state_changed",
+    //   snapshot => {},
+    //   error => {
+    //     alert(error);
+    //   },
+    //   () => {
+    //     storage
+    //       .ref("images")
+    //       .child(currentProductName)
+    //       .getDownloadURL()
+    //       .then(url => {
+    //         console.log(url);
+    //         setImage(url);
 
             updatedProduct = {
               // vendors_id: vendorId,
               title: title,
               description: description,
               price: price,
-              image: url
+              // image: url
             };
 
             axios
@@ -125,15 +124,15 @@ const UpdateProductForm = props => {
               .catch(err => {
                 console.log(err);
               });
-          });
-      }
-    );
+          // });
+      // }
+    // );
     props.history.push("/productsByVendor");
   };
 
-  const fileHandler = e => {
-    setFile(e.target.files[0]);
-  };
+  // const fileHandler = e => {
+  //   setFile(e.target.files[0]);
+  // };
 
   return (
     <>
@@ -222,7 +221,7 @@ const UpdateProductForm = props => {
             }
           }}
         />
-        <TextField
+        {/* <TextField
           id="upload-button"
           accept="image/*"
           label="Upload Image"
@@ -245,8 +244,9 @@ const UpdateProductForm = props => {
               color: "#026440"
             }
           }}
-        />
+        /> */}
       </form>
+      
       <Button
         type="submit"
         fullWidth

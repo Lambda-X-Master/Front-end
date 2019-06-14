@@ -62,7 +62,7 @@ const ProductByVendor = props => {
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
-  const [editProduct, setEditProduct] = useState({});
+ 
 
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
@@ -80,10 +80,6 @@ const ProductByVendor = props => {
         console.log(err.message);
       });
     console.log(delProduct);
-
-    // return (
-    //   deleteProduct()
-    // )
   }, []);
 
   const toMarkets = () => {
@@ -127,55 +123,6 @@ const ProductByVendor = props => {
     // setActiveItem(updatedProduct);
     props.history.push("/updateProductForm");
   };
-
-  // const updateProduct = (id, updatedProduct) => {
-  //   // e.preventDefault();
-
-  //   const vendorId = localStorage.getItem("firebaseId");
-  //   const token = localStorage.getItem("token");
-  //   let currentProductName = "product-image-" + Date.now();
-  //   let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
-
-  //   uploadImage.on(
-  //     "state_changed",
-  //     snapshot => {},
-  //     error => {
-  //       alert(error);
-  //     },
-  //     () => {
-  //       storage
-  //         .ref("images")
-  //         .child(currentProductName)
-  //         .getDownloadURL()
-  //         .then(url => {
-  //           console.log(url);
-  //           setImage(url);
-
-  //           // const productObj = {
-  //           //   vendors_id: vendorId,
-  //           //   title: title,
-  //           //   description: description,
-  //           //   price: price,
-  //           //   image: url
-  //           // };
-
-  //           axios
-  //             .put(`http://localhost:5000/products/${id}`, updatedProduct, {
-  //               "Content-Type": "application/json",
-  //               headers: { Authorization: token }
-  //             })
-  //             .then(res => {
-  //               console.log("product res put", res);
-  //               setEditProduct(res.data)
-  //             })
-  //             .catch(err => {
-  //               console.log(err);
-  //             });
-  //         });
-  //     }
-  //   );
-  //   props.history.push("/productsByVendor");
-  // };
 
   return (
     <>
@@ -253,20 +200,13 @@ const ProductByVendor = props => {
                     Delete Product
                   </Button>
 
-                  {/* <Button
-                    onClick={e => setProductUpdateForm(e, eachProduct)}
-                    color="inherit"
-                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
-                  >
-                    Edit Product
-                  </Button> */}
 
                   <Link
                     to={`productsByVendor/${eachProduct.id}/updateProductForm`}
                   >
                     <Typography
                       color="inherit"
-                      style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                      // style={{ backgroundColor: "#30cc32", margin: "10px" }}
                     >
                       Edit Product
                     </Typography>
