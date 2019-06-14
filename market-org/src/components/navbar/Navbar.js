@@ -11,6 +11,7 @@ import SignIn from "../login/SignIn";
 import SignUp from "../register/SignUp";
 import { auth } from "../../firebase";
 import { Route, withRouter } from "react-router-dom";
+import axios from '../../axios-instance';
 
 import { AuthContext } from "../authContext/authState";
 
@@ -56,11 +57,28 @@ function ButtonAppBar(props) {
     props.history.push("/allVendors");
   };
 
+  const cart = () => {
+    let firebase_id = localStorage.getItem('firebaseId')
+      props.history.push(`cart/${firebase_id}`)
+  }
   const logout = () => {
     auth.signOut();
     localStorage.clear();
     props.history.push("/");
   };
+
+//   const getCart = () => {
+//       console.log('click')
+//     let firebase_id = localStorage.getItem('firebaseId')
+//     console.log(firebase_id, 'from ger cart')
+//     axios.get(`/cart/${firebase_id}`)
+//     .then(res => {
+//         console.log(res)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
+//   }
   const { currentUser } = useContext(AuthContext);
 
   const classes = useStyles();
@@ -86,6 +104,7 @@ function ButtonAppBar(props) {
               >
                 List of vendors
               </Button>
+              {/* <button onClick={props.history.push('/cart/:id')}>cart</button> */}
               <Button
                 color="inherit"
                 onClick={routetoCreate}
