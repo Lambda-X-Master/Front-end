@@ -12,7 +12,6 @@ import axios from '../../axios-instance';
 
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
-import { connectableObservableDescriptor } from '../../../../../../../../AppData/Local/Microsoft/TypeScript/3.5/node_modules/rxjs/internal/observable/ConnectableObservable';
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -43,7 +43,8 @@ const CreateMarket = (props) => {
     const [quantity, setQuantity] = useState('')
 
     const [price, setPrice] = useState('')
-    const [size, setSize] = useState('')
+    const [width, setWidth] = useState('')
+    const [length, setLength] = useState('')
     const [available, setAvailable] = useState(true)
 
     const [open, setOpen] = useState(false);
@@ -124,7 +125,10 @@ const CreateMarket = (props) => {
     const addStall = () => {
 
         const stall = {
-            size,
+            size: {
+                "length": length,
+                "width": width
+            },
             price,
             available
         }
@@ -336,11 +340,23 @@ const CreateMarket = (props) => {
                             <TextField
                                 style={{ width: '20%' }}
                                 id="outlined-bare"
-                                label="size(ft)"
-                                value={size}
-                                defaultValue="10x10"
+                                label="width(ft)"
+                                value={width}
+                                type="number"
                                 className={classes.textField}
-                                onChange={e => setSize(e.target.value)}
+                                onChange={e => setWidth(e.target.value)}
+                                margin="normal"
+                                variant="outlined"
+                                inputProps={{ 'aria-label': 'bare' }}
+                            />
+                             <TextField
+                                style={{ width: '20%' }}
+                                id="outlined-bare"
+                                label="length(ft)"
+                                value={length}
+                                type="number"
+                                className={classes.textField}
+                                onChange={e => setLength(e.target.value)}
                                 margin="normal"
                                 variant="outlined"
                                 inputProps={{ 'aria-label': 'bare' }}
