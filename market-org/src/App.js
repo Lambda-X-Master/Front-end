@@ -7,11 +7,13 @@ import Navbar from './components/navbar/Navbar';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
 import PrivateRoute from './components/privateroute/PrivateRoute';
-
+import StallsList from './components/stalls/stallsList';
 
 import VendorForm from "./components/vendor/VendorForm";
+import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
-
+import ProductByVendor from './components/product/ProductByVendor';
+// import ProductByVendorCard from './components/product/ProductByVendorCard';
 
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
 
@@ -19,9 +21,6 @@ import { ContextProvider } from './components/context/state';
 import "./App.css";
 
 function App() {
-
-
-
   return (
       <React.Fragment>
         <CssBaseline />
@@ -32,7 +31,14 @@ function App() {
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
+          <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
+          <Route path="/stalls/" component={StallsList}/>  
+          <Route path="/allVendors" component={VendorLandingPage} />
+          {/* <Route
+          path="/allVendors/:id"
+          render={props => <ProductByVendorCard {...props} />}
+        /> */}
         </Switch>
         </ContextProvider>
       </React.Fragment>

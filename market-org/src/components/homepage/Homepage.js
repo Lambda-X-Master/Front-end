@@ -8,8 +8,6 @@ import { AuthContext } from '../authContext/authState';
 import { Container, Grid, Paper, makeStyles, Button } from "@material-ui/core";
 
 // import VendorForm from '../vendor/VendorForm';
-
-
 import axios from '../../axios-instance';
 
 import fruit from "../../images/fruit-stand.jpg";
@@ -98,7 +96,11 @@ const Homepage = props => {
   
 
   const vendorFormPage = () => {
-  props.history.push(`/vendor`);
+  props.history.replace(`/vendor`);
+  };
+
+  const toProductForm = () => {
+    props.history.replace("/productForm");
   };
 
   return (
@@ -120,6 +122,14 @@ const Homepage = props => {
             <Button>Create Market profile</Button>
             <Button onClick={stripeDashboardLink}>Stripe Dashboard</Button>
             <Button onClick={vendorFormPage}>Create vendor Profile</Button>
+            
+      <Button
+              onClick={toProductForm}
+              color="inherit"
+              style={{ backgroundColor: "#30cc32", margin: "10px" }}
+            >
+              Add more product if Vendor
+            </Button>
             {users &&
               users.map(user => {
                 return (
