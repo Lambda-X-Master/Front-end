@@ -12,6 +12,7 @@ import axios from '../../axios-instance';
 import fruit from "../../images/fruit-stand.jpg";
 import market from "../../images/market-stand.jpg";
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -49,27 +50,39 @@ const Homepage = props => {
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const [stripe_acc_id, setStripeAccId] = useState(null)
+  const firebase_id = localStorage.getItem('firebaseId')
+
 
   useEffect(() => {
+    console.log(currentUser)
     let params = queryString.parse(props.location.search)
-    console.log('params:', params['code'])
-    axios.get(`/stripe/token/?code=${params['code']}`)
-          .then(res => {
-            console.log('homepage:', res.data.body.stripe_user_id)
-            setStripeAccId(res.data.body.stripe_user_id)
-          })
+    console.log('params:', params)
+      axios.get(`/stripe/token/?code=${params['code']}&state=${params['state']}`)
+      .then(res => {
+        console.log('homepage:', res.data)
+        setStripeAccId(res.data.body.stripe_user_id)
+        return axios.put(`/markets/${firebase_id}`, {stripeAccountId: res.data.body.stripe_user_id})
+        .then(res => {
+          console.log("put", res)
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
     fetchData()
     
-  }, []);
+  }, [props]);
 
   const stripeDashboardLink = () => {
     console.log('sci',stripe_acc_id)
     axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
          .then(res => {
-           console.log('link:', res.data.url)
-           window.location.href=res.data.url
+           console.log('link:', res.data)
+           window.open(res.data.url)
          })
   }
+
+
 
   const fetchData = () => {
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
@@ -79,7 +92,7 @@ const Homepage = props => {
     })
 
   }
-
+  
 
   const vendorFormPage = () => {
   props.history.replace(`/vendor`);
