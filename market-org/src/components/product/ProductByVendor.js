@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Route, Link, withRouter, Switch } from "react-router-dom";
-import { storage } from "../../firebase";
+import { Link, withRouter } from "react-router-dom";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
-import { ProductContext } from "../context/product";
 
-import UpdateProductForm from "./UpdateProductForm";
+import { ProductContext } from "../context/product";
 import {
   withStyles,
   Typography,
@@ -61,11 +59,6 @@ const ProductByVendor = props => {
   const [product, setProduct] = useContext(ProductContext);
 
   const [products, setProducts] = useState([]);
-  const [delProduct, setDelProduct] = useState(0);
- 
-
-  const [image, setImage] = useState("");
-  const [file, setFile] = useState(null);
 
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
@@ -79,7 +72,6 @@ const ProductByVendor = props => {
       .catch(err => {
         console.log(err.message);
       });
-    console.log(delProduct);
   }, []);
 
   const toMarkets = () => {
@@ -89,7 +81,7 @@ const ProductByVendor = props => {
   const toCart = () => {
     props.history.push("/carts");
   };
-  console.log("vendor profile in product", vendorProfile);
+  console.log('vendor profile in product', vendorProfile);
 
   const backToProductForm = () => {
     props.history.push("/productForm");
@@ -99,52 +91,24 @@ const ProductByVendor = props => {
     props.history.push("/");
   };
 
-  const deleteProduct = (e, productId) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    axios
-      .delete(`http://localhost:5000/products/${productId}`, {
-        "Content-Type": "application/json",
-        headers: { Authorization: token }
-      })
-      .then(res => {
-        console.log(res);
-        setDelProduct(res.data);
-        // props.history.replace('/productsByVendor');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const setProductUpdateForm = (e, updatedProduct) => {
-    e.preventDefault();
-    // setActiveItem(updatedProduct);
-    props.history.push("/updateProductForm");
-  };
-
   return (
     <>
       <Container maxWidth="lg">
-        <Typography
-          component="p"
-          style={{ fontWeight: "bold", fontSize: "40px" }}
-        >
-          Your Product information
+        <Typography style={{ marginTop: "100px" }}>
+          List of your products
         </Typography>
 
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button
+          <Button
               onClick={backToHome}
               color="inherit"
               style={{ backgroundColor: "#30cc32", margin: "10px" }}
             >
               Home
             </Button>
-            <Button
+          <Button
               onClick={backToProductForm}
               color="inherit"
               style={{ backgroundColor: "#30cc32", margin: "10px" }}
@@ -174,6 +138,12 @@ const ProductByVendor = props => {
               <>
                 <Card className={classes.card}>
                   <CardContent>
+                    <Typography
+                      component="p"
+                      style={{ fontWeight: "bold", fontSize: "40px" }}
+                    >
+                      Your Product information
+                    </Typography>
                     <Typography component="p">
                       Product Title: {eachProduct.title}
                     </Typography>
@@ -181,7 +151,7 @@ const ProductByVendor = props => {
                       Product Description: {eachProduct.description}
                     </Typography>
                     <Typography component="p">
-                      Product price: ${eachProduct.price}
+                      Product price: $ {eachProduct.price}
                     </Typography>
                   </CardContent>
                   <CardContent>
@@ -190,42 +160,14 @@ const ProductByVendor = props => {
                       alt="Vendor product"
                       className="productImage"
                     />
-                    testing global context: {vendorProfile.company_name}
+                    testing global context: {' '}
+                     {vendorProfile.company_name}
                   </CardContent>
-                  <Button
-                    onClick={e => deleteProduct(e, eachProduct.id)}
-                    color="inherit"
-                    style={{ backgroundColor: "#30cc32", margin: "10px" }}
-                  >
-                    Delete Product
-                  </Button>
-
-
-                  <Link
-                    to={`productsByVendor/${eachProduct.id}/updateProductForm`}
-                  >
-                    <Typography
-                      color="inherit"
-                      // style={{ backgroundColor: "#30cc32", margin: "10px" }}
-                    >
-                      Edit Product
-                    </Typography>
-                  </Link>
                 </Card>
-                <Switch>
-        <Route
-          path="/productsByVendor/:id/updateProductForm"
-          render={props => (
-            <UpdateProductForm {...props} eachProduct={eachProduct} />
-          )}
-        />
-      </Switch>
               </>
-              
             );
           })}
       </Container>
-
     </>
   );
 };
