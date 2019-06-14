@@ -58,7 +58,7 @@ function ButtonAppBar(props) {
   };
 
   const toAllMarkets = () => {
-    props.history.push("/allVendors");
+    props.history.push("/markets");
   };
 
   const cart = () => {
@@ -146,6 +146,13 @@ function ButtonAppBar(props) {
                 style={{ backgroundColor: "#30cc32", margin: "10px" }}
               >
                 Log In
+              </Button>
+              <Button
+                color="inherit"
+                onClick={cart}
+                style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              >
+                Cart
               </Button>
             </>
           )}
