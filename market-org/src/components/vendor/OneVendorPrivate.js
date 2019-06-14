@@ -57,7 +57,7 @@ const OneVendorPrivate = props => {
   const { firebase_id } = props.match.params;
 
   const [aPrivateVendor, setAPrivateVendor] = useState([]);
-  const [delVendor, setDelVendor] = useState(0);
+  const [delVendor, setDelVendor] = useState('');
 
   useEffect(() => {
     axios
@@ -69,6 +69,7 @@ const OneVendorPrivate = props => {
       .catch(err => {
         console.log(err.message);
       });
+      console.log(delVendor, 'Deleted Vendor')
   }, []);
 
   const deleteVendor = (e, vendorId) => {
@@ -83,7 +84,7 @@ const OneVendorPrivate = props => {
       .then(res => {
         console.log(res);
         setDelVendor(res.data);
-        // props.history.replace('/productsByVendor');
+        props.history.replace('/');
       })
       .catch(err => {
         console.log(err);
