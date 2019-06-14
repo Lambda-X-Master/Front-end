@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from 'styled-components'
-import { Route, NavLink, Switch } from 'react-router-dom';
-
+import {Route, NavLink, Link, Switch } from 'react-router-dom';
+import StallsList from "../stalls/stallsList";
+import MarketLandingPage from "./marketLandingPage.js";
+import Axios from "axios";
 
 const ProfileCard = styled.div`
     border-radius: 3px;
@@ -16,6 +18,8 @@ const ProfileCard = styled.div`
 const ProfileMiniCard = styled.div`
     width: 33%;
 `
+
+const firebase_id = null; 
 
 const MarketProfileCard = (props) => {
 
@@ -46,13 +50,16 @@ return (
     {props.profile.contact_last_name}
     
     {props.profile.phone_number}
+
     {props.profile.firebase_id}
 
-    {/* <NavLink to={`/stalls/${props.profle.firebase_id}`}>Rent Stalls/</NavLink> */}
-    {/* <Route path="/stalls/:market_id" 
-    render={props =><stallsList {...props} 
-    market_id={props.profile.firebase_id}/>} 
-    />*/}
+    <Link to={{
+      pathname: '/stalls/',
+      search: `?firebase_id=${props.profile.firebase_id}`,
+      state: { firebase_id: props.profile.firebase_id, market_name: props.profile.market_name}
+    }}>
+    Rent Stalls
+    </Link>
     </div>
     </ProfileMiniCard>
 
