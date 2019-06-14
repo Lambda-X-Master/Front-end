@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import {Route, NavLink, Link, Switch } from 'react-router-dom';
 import StallsList from "../stalls/stallsList";
 import MarketLandingPage from '../markets/marketProfile';
-import Axios from "axios";
-
 
 
 const ProfileCard = styled.div`
@@ -54,12 +52,13 @@ return (
     <span> </span>
     {props.profile.phone_number}
     <span> </span>
+
     {props.profile.firebase_id}
     <span> </span>
     <Link to={{
       pathname: '/stalls/',
       search: `?firebase_id=${props.profile.firebase_id}`,
-      state: { firebase_id: props.profile.firebase_id}
+      state: { firebase_id: props.profile.firebase_id, market_name: props.profile.market_name}
     }}>
     Rent Stalls
     </Link>

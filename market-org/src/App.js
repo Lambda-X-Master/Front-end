@@ -37,8 +37,8 @@ function App() {
           <Route path="/productForm" component={ProductForm} />
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
-          <Route path="/stalls/" component={StallsList}/> 
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
+          <Route path="/stalls/" component={StallsList}/>  
           <Route path="/allVendors" component={VendorLandingPage} />
           {/* <Route
           path="/allVendors/:id"

@@ -162,7 +162,7 @@ const ProductForm = props => {
   return (
     <>
       <div className='product-form'>
-      <h1>Enter Your Stall Information:</h1>
+      
       <Card className={classes.card}>
         {/* <CardContent> */}
           <Typography
@@ -199,8 +199,8 @@ const ProductForm = props => {
         {/* </CardContent> */}
       </Card>
 
-      <Typography component="p">Product form:</Typography>
-
+      
+      <h1>Enter Your Product Information:</h1>
       <form>
         <TextField className ='input-field-product'
           id="outlined-name"
@@ -293,25 +293,14 @@ const ProductForm = props => {
       <div className='submit-section-product'>
       <Button className='submit-button-product'
         type="submit"
-        // fullWidth
-        //variant="contained"
-        //color="secondary"
-        //onClick={submitVendorProfile}
+        onClick={submitProductProfile}
+        //className={classes.submit}
       >
         Submit
       </Button>
       </div>
       </div>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
-        onClick={submitProductProfile}
-        className={classes.submit}
-      >
-        Submit your product info
-      </Button>
+      
     </>
   );
 };
