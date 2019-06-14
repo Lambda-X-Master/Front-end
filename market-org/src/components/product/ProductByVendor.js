@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Route, Link, withRouter, Switch } from "react-router-dom";
+import { storage } from "../../firebase";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
-
 import { ProductContext } from "../context/product";
+
+import UpdateProductForm from "./UpdateProductForm";
 import {
   withStyles,
   Typography,
@@ -60,7 +62,10 @@ const ProductByVendor = props => {
 
   const [products, setProducts] = useState([]);
   const [delProduct, setDelProduct] = useState(0);
-  const [activeItem, setActiveItem] = useState(null);
+  const [editProduct, setEditProduct] = useState({});
+
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
@@ -117,25 +122,60 @@ const ProductByVendor = props => {
       });
   };
 
-  const setProductUpdateForm = (e, theProduct) => {
+  const setProductUpdateForm = (e, updatedProduct) => {
     e.preventDefault();
-    setActiveItem(theProduct);
-    props.history.push('/productForm')
+    // setActiveItem(updatedProduct);
+    props.history.push("/updateProductForm");
   };
 
-  const updateProduct = (e, theProduct) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:5000/products/${theProduct.id}`, theProduct)
-      .then(res => {
-        setActiveItem(null);
-        setProducts(res.data);
-        props.history.push("/productsByVendor");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  // const updateProduct = (id, updatedProduct) => {
+  //   // e.preventDefault();
+
+  //   const vendorId = localStorage.getItem("firebaseId");
+  //   const token = localStorage.getItem("token");
+  //   let currentProductName = "product-image-" + Date.now();
+  //   let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
+
+  //   uploadImage.on(
+  //     "state_changed",
+  //     snapshot => {},
+  //     error => {
+  //       alert(error);
+  //     },
+  //     () => {
+  //       storage
+  //         .ref("images")
+  //         .child(currentProductName)
+  //         .getDownloadURL()
+  //         .then(url => {
+  //           console.log(url);
+  //           setImage(url);
+
+  //           // const productObj = {
+  //           //   vendors_id: vendorId,
+  //           //   title: title,
+  //           //   description: description,
+  //           //   price: price,
+  //           //   image: url
+  //           // };
+
+  //           axios
+  //             .put(`http://localhost:5000/products/${id}`, updatedProduct, {
+  //               "Content-Type": "application/json",
+  //               headers: { Authorization: token }
+  //             })
+  //             .then(res => {
+  //               console.log("product res put", res);
+  //               setEditProduct(res.data)
+  //             })
+  //             .catch(err => {
+  //               console.log(err);
+  //             });
+  //         });
+  //     }
+  //   );
+  //   props.history.push("/productsByVendor");
+  // };
 
   return (
     <>
@@ -212,18 +252,40 @@ const ProductByVendor = props => {
                   >
                     Delete Product
                   </Button>
-                  <Button
+
+                  {/* <Button
                     onClick={e => setProductUpdateForm(e, eachProduct)}
                     color="inherit"
                     style={{ backgroundColor: "#30cc32", margin: "10px" }}
                   >
                     Edit Product
-                  </Button>
+                  </Button> */}
+
+                  <Link
+                    to={`productsByVendor/${eachProduct.id}/updateProductForm`}
+                  >
+                    <Typography
+                      color="inherit"
+                      style={{ backgroundColor: "#30cc32", margin: "10px" }}
+                    >
+                      Edit Product
+                    </Typography>
+                  </Link>
                 </Card>
+                <Switch>
+        <Route
+          path="/productsByVendor/:id/updateProductForm"
+          render={props => (
+            <UpdateProductForm {...props} eachProduct={eachProduct} />
+          )}
+        />
+      </Switch>
               </>
+              
             );
           })}
       </Container>
+
     </>
   );
 };
