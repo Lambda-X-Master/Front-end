@@ -300,6 +300,77 @@ const CreateMarket = props => {
             }}
           />
 
+          <div style={{ width: "100%", marginTop: "25px" }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              style={{ textAlign: "center", fontSize: "16px" }}
+            >
+              Available Stalls
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-evenly"
+            }}
+          >
+            <TextField
+              style={{ width: "20%" }}
+              id="outlined-number"
+              label="quantity"
+              value={quantity}
+              onChange={e => setQuantity(e.target.value)}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              style={{ width: "20%" }}
+              id="outlined-bare"
+              label="width(ft)"
+              value={width}
+              type="number"
+              className={classes.textField}
+              onChange={e => setWidth(e.target.value)}
+              margin="normal"
+              variant="outlined"
+              inputProps={{ "aria-label": "bare" }}
+            />
+            <TextField
+              style={{ width: "20%" }}
+              id="outlined-bare"
+              label="length(ft)"
+              value={length}
+              type="number"
+              className={classes.textField}
+              onChange={e => setLength(e.target.value)}
+              margin="normal"
+              variant="outlined"
+              inputProps={{ "aria-label": "bare" }}
+            />
+            <TextField
+              id="outlined-adornment-amount"
+              style={{ width: "20%" }}
+              className={classes.textField}
+              variant="outlined"
+              margin="normal"
+              label="price"
+              value={price}
+              onChange={e => setPrice(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">$</InputAdornment>
+                )
+              }}
+            />
+          </div>
+
           <div
             style={{
               display: "flex",
