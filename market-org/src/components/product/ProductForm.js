@@ -5,62 +5,77 @@ import { storage } from "../../firebase";
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
-import {
-  withStyles,
-  Typography,
-  TextField,
-  Button,
-  CardContent
-} from "@material-ui/core";
+import { withStyles, Typography, TextField, Button } from "@material-ui/core";
+import axios from "axios";
+import './ProductForm.css'
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "../../axios-instance.js";
-
 const styles = theme => ({
-  newgroup: {
-    display: "flex",
-    width: "500px",
-    height: "500px",
-    margin: "0px auto",
-    marginTop: "200px",
-    justifyContent: "center",
-    fontWeight: "bold",
-    color: "#026440",
-    fontSize: "40px",
-    letterSpacing: "4px"
-  },
-  form: {
-    width: "110%",
-    height: "850px",
-    margin: "0 auto",
-    marginTop: "-240px"
-  },
-  textField: {
-    width: "330px"
-  },
-  textColor: {
-    borderWidth: "1px",
-    color: "#026440",
-    borderColor: "#026440 !important"
-  },
-  notchedOutline: {
-    borderWidth: "1px",
-    borderColor: "#026440 !important",
-    color: "#026440"
-  },
-  input: {
-    color: "#026440"
-  },
-  card: {
-    maxWidth: 800
-  },
-  media: {
-    height: 300
-  }
-});
+    textColor: {
+      borderWidth: "1px",
+      color: "#ffffff !important",
+      borderColor: "#026440 !important"
+    },
+    notchedOutline: {
+      borderWidth: "3px",
+      borderColor: 'rgba(180, 45, 90, 0.911) !important',
+      color: "#ffffff",
+      borderRadius: '25px'
+    },
+    input: {
+      color: "#026440"
+    }
+  });
+
+
+
+
+
+// const styles = theme => ({
+//   newgroup: {
+//     display: "flex",
+//     width: "500px",
+//     height: "500px",
+//     margin: "0px auto",
+//     marginTop: "200px",
+//     justifyContent: "center",
+//     fontWeight: "bold",
+//     color: "#026440",
+//     fontSize: "40px",
+//     letterSpacing: "4px"
+//   },
+//   form: {
+//     width: "110%",
+//     height: "850px",
+//     margin: "0 auto",
+//     marginTop: "-240px"
+//   },
+//   textField: {
+//     width: "330px"
+//   },
+//   textColor: {
+//     borderWidth: "1px",
+//     color: "#026440",
+//     borderColor: "#026440 !important"
+//   },
+//   notchedOutline: {
+//     borderWidth: "1px",
+//     borderColor: "#026440 !important",
+//     color: "#026440"
+//   },
+//   input: {
+//     color: "#026440"
+//   },
+//   card: {
+//     maxWidth: 800
+//   },
+//   media: {
+//     height: 300
+//   }
+// });
 
 const ProductForm = props => {
   const { classes } = props;
@@ -146,8 +161,10 @@ const ProductForm = props => {
 
   return (
     <>
+      <div className='product-form'>
+      
       <Card className={classes.card}>
-        <CardContent>
+        {/* <CardContent> */}
           <Typography
             component="p"
             style={{ fontWeight: "bold", fontSize: "40px" }}
@@ -179,22 +196,22 @@ const ProductForm = props => {
             Vendor company url: {vendorProfile.company_url}
           </Typography>
           {vendorProfile.firebase_id}
-        </CardContent>
+        {/* </CardContent> */}
       </Card>
 
-      <Typography component="p">Product form:</Typography>
-
+      
+      <h1>Enter Your Product Information:</h1>
       <form>
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Title"
           type="search"
           name="title"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setTitle(e.target.value)}
           value={title}
           margin="normal"
@@ -205,22 +222,17 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Description"
           type="search"
           name="description"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setDescription(e.target.value)}
           value={description}
           margin="normal"
@@ -231,22 +243,17 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="outlined-name"
           label="Price"
           type="search"
           name="price"
-          style={{ width: "450px" }}
+          //style={{ width: "450px" }}
           multiline={false}
           rows={2}
           rowsMax={2}
-          className={classes.textField}
+          //className={classes.textField}
           onChange={e => setPrice(e.target.value)}
           value={price}
           margin="normal"
@@ -257,21 +264,16 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
         />
-        <TextField
+        <TextField className ='input-field-product'
           id="upload-button"
           accept="image/*"
           label="Upload Image"
           name="image"
           type="file"
-          className={classes.textField}
-          onChange={e => fileHandler(e)}
-          value={image}
+          //className={classes.textField}
+          onChange={e => setImage(e.target.value)}
+        //   value={image}
           margin="normal"
           variant="outlined"
           InputProps={{
@@ -280,24 +282,25 @@ const ProductForm = props => {
               input: classes.input
             }
           }}
-          InputLabelProps={{
-            shrink: true,
-            style: {
-              color: "#026440"
-            }
-          }}
+          // InputLabelProps={{
+          //   shrink: true,
+          //   style: {
+          //     color: "#026440"
+          //   }
+          // }}
         />
       </form>
-      <Button
+      <div className='submit-section-product'>
+      <Button className='submit-button-product'
         type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
         onClick={submitProductProfile}
-        className={classes.submit}
+        //className={classes.submit}
       >
-        Submit your product info
+        Submit
       </Button>
+      </div>
+      </div>
+      
     </>
   );
 };

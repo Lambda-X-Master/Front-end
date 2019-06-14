@@ -7,6 +7,7 @@ import Navbar from './components/navbar/Navbar';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
 import Homepage from './components/homepage/Homepage';
+import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
 
@@ -15,6 +16,8 @@ import VendorNav from './components/vendor-nav/VendorNav';
 import VendorForm from "./components/vendor/VendorForm";
 import VendorLandingPage from "./components/vendor/VendorLandingPage";
 import ProductForm from "./components/product/ProductForm";
+
+import MarketProfilePage from './components/markets/marketProfile'
 import ProductByVendor from './components/product/ProductByVendor';
 // import ProductByVendorCard from './components/product/ProductByVendorCard';
 import VendorCart from './components/cart/cart';
@@ -29,17 +32,20 @@ function App() {
   // console.log(currentUser, 'from app js')
   return (
       <React.Fragment>
+        <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-          <VendorNav/>
+        <Navbar className='nav-bar' />
+          {/* <VendorNav/> */}
         {/* <Navbar /> */}
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
+          <Route path="/markets/marketProfile/" component={MarketProfilePage} />
 
           <Route path="/landing-page" component={LandingPage}/>
 
@@ -53,6 +59,7 @@ function App() {
         /> */}
         </Switch>
         </ContextProvider>
+        </div>
       </React.Fragment>
   )
 }
