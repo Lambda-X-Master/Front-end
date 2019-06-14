@@ -57,6 +57,10 @@ function ButtonAppBar(props) {
     props.history.push("/allVendors");
   };
 
+  const toAllMarkets = () => {
+    props.history.push("/allVendors");
+  };
+
   const cart = () => {
     let firebase_id = localStorage.getItem('firebaseId')
       props.history.push(`cart/${firebase_id}`)
@@ -103,6 +107,13 @@ function ButtonAppBar(props) {
                 style={{ backgroundColor: "#30cc32", margin: "10px" }}
               >
                 List of vendors
+              </Button>
+              <Button
+                color="inherit"
+                onClick={toAllMarkets}
+                style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              >
+                List of Markets
               </Button>
               {/* <button onClick={props.history.push('/cart/:id')}>cart</button> */}
               <Button
