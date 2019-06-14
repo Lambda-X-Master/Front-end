@@ -25,29 +25,50 @@ import logo2 from '../../images/logo2.png'
 import vegetables from '../../images/vegetables.png'
 import team from '../../images/team.png'
 import StallsList from '../stalls/stallsList'
+import queryString from 'query-string';
+
 
 
 
 const Homepage2 = props => {
+
+  
+  
   const [users, setUsers] = useState([]);
   const { currentUser } = useContext(AuthContext);
+  const [stripe_acc_id, setStripeAccId] = useState(null)
+  const firebase_id = localStorage.getItem('firebaseId')
 
-  useEffect(() => {
-    axios.defaults.headers.common["Authorization"] = localStorage.getItem(
-      "token"
-    );
-    axios
-      .get("/users", currentUser)
+ useEffect(() => {
+    console.log(currentUser)
+    let params = queryString.parse(props.location.search)
+    console.log('params:', params)
+      axios.get(`/stripe/token/?code=${params['code']}&state=${params['state']}`)
       .then(res => {
-        console.log("resdata:", res.data);
-        setUsers(res.data);
+        console.log('homepage:', res.data)
+        setStripeAccId(res.data.body.stripe_user_id)
+        return axios.put(`/markets/${firebase_id}`, {stripeAccountId: res.data.body.stripe_user_id})
+        .then(res => {
+          console.log("put", res)
+        })
       })
       .catch(err => {
-        console.log("err", err.message);
-      });
-  }, []);
+        console.log(err)
+      })
+    
+    
+  }, [props]);
 
   console.log("curr", currentUser);
+
+  const stripeDashboardLink = () => {
+    console.log('sci',stripe_acc_id)
+    axios.post('/stripe/stripe-dashboard', {stripe_acc_id})
+         .then(res => {
+           console.log('link:', res.data)
+           window.open(res.data.url)
+         })
+  }
 
   const vendorFormPage = () => {
     props.history.push(`/vendor`);
@@ -65,6 +86,8 @@ const Homepage2 = props => {
             <Button className="button" onClick={vendorFormPage}>
               Create vendor Profile
             </Button>
+            <Button className="button" onClick={stripeDashboardLink}>Stripe Dashboard</Button>
+
           </div>
         ) : (
           <div className="home-wrapper">
