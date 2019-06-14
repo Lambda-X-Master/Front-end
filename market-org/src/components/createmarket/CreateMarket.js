@@ -1,13 +1,17 @@
-<<<<<<< HEAD
-import React from "react";
+import React, {useContext, useState} from "react";
 import { withRouter, Redirect } from "react-router-dom";
 import axios from "../../axios-instance";
 import "./CreateMarket.css";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import { Container, Paper, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core'
+import { withStyles} from "@material-ui/core";
+import queryString from 'query-string';
+import { AuthContext } from '../authContext/authState';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
-import { Container, Paper, withStyles, Button } from "@material-ui/core";
+
 
 const styles = theme => ({
   textColor: {
@@ -22,180 +26,164 @@ const styles = theme => ({
     borderRadius: "25px"
   }
 });
-=======
-import React, { useState, useContext } from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
-import axios from '../../axios-instance';
-import queryString from 'query-string';
 
-import { AuthContext } from '../authContext/authState';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+// class CreateMarket extends React.Component {
+//   state = {
+//     marketName: "",
+//     firstName: "",
+//     lastName: "",
+//     address1: "",
+//     address2: "",
+//     city: "",
+//     state: "",
+//     zipCode: "",
+//     country: ""
+//   };
 
-import { Container, Paper, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core'
->>>>>>> b9ee467e7acbbab2ce30b5d051aecc60ed62830a
+//   routeToHome = () => {
+//     this.props.history.push("/");
+//   };
 
-class CreateMarket extends React.Component {
-  state = {
-    marketName: "",
-    firstName: "",
-    lastName: "",
-    address1: "",
-    address2: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    country: ""
-  };
+//   initStripeConnection = () => {
+//     // const newmarket = {
+//     //     firebase_id: 'DRuaCJxSQUQYRr1iRipl1Ty4OgP2',
+//     //     newmarket: this.state
+//     // }
+//     // console.log('newmarket', newmarket)
+//     console.log("initstripe");
+//     axios
+//       .get("/stripe/authorize")
+//       .then(res => {
+//         window.location.href = res.data;
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//   };
 
-<<<<<<< HEAD
-  routeToHome = () => {
-    this.props.history.push("/");
-  };
+//   changeHandler = e => {
+//     this.setState({
+//       [e.target.name]: e.target.value
+//     });
+//   };
 
-  initStripeConnection = () => {
-    // const newmarket = {
-    //     firebase_id: 'DRuaCJxSQUQYRr1iRipl1Ty4OgP2',
-    //     newmarket: this.state
-    // }
-    // console.log('newmarket', newmarket)
-    console.log("initstripe");
-    axios
-      .get("/stripe/authorize")
-      .then(res => {
-        window.location.href = res.data;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  changeHandler = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const {
-      marketName,
-      firstName,
-      lastName,
-      address1,
-      address2,
-      city,
-      state,
-      zipCode,
-      country
-    } = this.state;
-    return (
+//   render() {
+//     const { classes } = this.props;
+//     const {
+//       marketName,
+//       firstName,
+//       lastName,
+//       address1,
+//       address2,
+//       city,
+//       state,
+//       zipCode,
+//       country
+//     } = this.state;
+//     return (
      
-      <React.Fragment>
-        <div className="market-registration-form">
-            <h1>Register A Market</h1>
-          <form>
-            <TextField
-              className="input-field-market-register"
-              required
-              id="marketName"
-              name="marketName"
-              label="Market Name"
-              value={marketName}
-              onChange={this.changeHandler}
-              fullWidth
-              autoComplete="fname"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+//       <React.Fragment>
+//         <div className="market-registration-form">
+//             <h1>Register A Market</h1>
+//           <form>
+//             <TextField
+//               className="input-field-market-register"
+//               required
+//               id="marketName"
+//               name="marketName"
+//               label="Market Name"
+//               value={marketName}
+//               onChange={this.changeHandler}
+//               fullWidth
+//               autoComplete="fname"
+//               margin="normal"
+//               variant="outlined"
+//               InputProps={{
+//                 classes: {
+//                   notchedOutline: classes.notchedOutline,
+//                   input: classes.input
+//                 }
+//               }}
+//             />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="firstName"
-              name="firstName"
-              value={firstName}
-              onChange={this.changeHandler}
-              label="First name"
-              fullWidth
-              autoComplete="fname"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+//             <TextField
+//               className="input-field-market-register"
+//               required
+//               id="firstName"
+//               name="firstName"
+//               value={firstName}
+//               onChange={this.changeHandler}
+//               label="First name"
+//               fullWidth
+//               autoComplete="fname"
+//               margin="normal"
+//               variant="outlined"
+//               InputProps={{
+//                 classes: {
+//                   notchedOutline: classes.notchedOutline,
+//                   input: classes.input
+//                 }
+//               }}
+//             />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="lastName"
-              name="lastName"
-              value={lastName}
-              onChange={this.changeHandler}
-              label="Last name"
-              fullWidth
-              autoComplete="lname"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+//             <TextField
+//               className="input-field-market-register"
+//               required
+//               id="lastName"
+//               name="lastName"
+//               value={lastName}
+//               onChange={this.changeHandler}
+//               label="Last name"
+//               fullWidth
+//               autoComplete="lname"
+//               margin="normal"
+//               variant="outlined"
+//               InputProps={{
+//                 classes: {
+//                   notchedOutline: classes.notchedOutline,
+//                   input: classes.input
+//                 }
+//               }}
+//             />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="address1"
-              name="address1"
-              value={address1}
-              onChange={this.changeHandler}
-              label="Address line 1"
-              fullWidth
-              autoComplete="billing address-line1"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+//             <TextField
+//               className="input-field-market-register"
+//               required
+//               id="address1"
+//               name="address1"
+//               value={address1}
+//               onChange={this.changeHandler}
+//               label="Address line 1"
+//               fullWidth
+//               autoComplete="billing address-line1"
+//               margin="normal"
+//               variant="outlined"
+//               InputProps={{
+//                 classes: {
+//                   notchedOutline: classes.notchedOutline,
+//                   input: classes.input
+//                 }
+//               }}
+//             />
 
-            <TextField
-              className="input-field-market-register"
-              id="address2"
-              name="address2"
-              value={address2}
-              onChange={this.changeHandler}
-              label="Address line 2"
-              fullWidth
-              autoComplete="billing address-line2"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
-=======
+//             <TextField
+//               className="input-field-market-register"
+//               id="address2"
+//               name="address2"
+//               value={address2}
+//               onChange={this.changeHandler}
+//               label="Address line 2"
+//               fullWidth
+//               autoComplete="billing address-line2"
+//               margin="normal"
+//               variant="outlined"
+//               InputProps={{
+//                 classes: {
+//                   notchedOutline: classes.notchedOutline,
+//                   input: classes.input
+//                 }
+//               }}
+//             />
 
 
 const useStyles = makeStyles(theme => ({
@@ -336,68 +324,6 @@ const CreateMarket = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    // const addMore = () => {
-    //     console.log(stalls)
-    //     setStalls([...stalls, stalls])
-    // }
-
-    // const createUi = () => {
-    //     return stalls.map((el, i) => {
-    //         console.log("el", el)
-    //         return (
-    //             <div key={i} style={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
-    //                 <TextField
-    //                     style={{ width: '20%' }}
-    //                     id="outlined-number"
-    //                     label="quantity"
-    //                     value={el || ''}
-    //                     onChange={event => handleChange(i, event)}
-    //                     type="number"
-    //                     className={classes.textField}
-    //                     InputLabelProps={{
-    //                         shrink: true,
-    //                     }}
-    //                     margin="normal"
-    //                     variant="outlined"
-    //                 />
-    //                 <TextField
-    //                     style={{ width: '20%' }}
-    //                     id="outlined-bare"
-    //                     label="size(ft)"
-    //                     value={el || ''}
-    //                     defaultValue="10x10"
-    //                     className={classes.textField}
-    //                     onChange={event => handleChange(i, event)}
-    //                     margin="normal"
-    //                     variant="outlined"
-    //                     inputProps={{ 'aria-label': 'bare' }}
-    //                 />
-    //                 <TextField
-    //                     id="outlined-adornment-amount"
-    //                     style={{ width: '20%' }}
-    //                     className={classes.textField}
-    //                     variant="outlined"
-    //                     margin="normal"
-    //                     label="price"
-    //                     value={el || ''}
-    //                     onChange={event => handleChange(i, event)}
-    //                     InputProps={{
-    //                         startAdornment: <InputAdornment position="start">$</InputAdornment>,
-    //                     }}
-    //                 />
-    //             </div>
-    //         )
-    //     }
-    //     )
-    // }
-
-    // const handleChange = (i, event) => {
-    //     let values = [...stalls]
-    //     values[i] = event.target.value;
-    //     setStalls({ values })
-    // }
-
 
     return (
 
@@ -600,118 +526,112 @@ const CreateMarket = (props) => {
         </React.Fragment>
     )
 }
->>>>>>> b9ee467e7acbbab2ce30b5d051aecc60ed62830a
+  
+    //         <TextField
+    //           className="input-field-market-register"
+    //           required
+    //           id="city"
+    //           name="city"
+    //           value={city}
+    //           onChange={this.changeHandler}
+    //           label="City"
+    //           fullWidth
+    //           autoComplete="billing address-level2"
+    //           margin="normal"
+    //           variant="outlined"
+    //           InputProps={{
+    //             classes: {
+    //               notchedOutline: classes.notchedOutline,
+    //               input: classes.input
+    //             }
+    //           }}
+    //         />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="city"
-              name="city"
-              value={city}
-              onChange={this.changeHandler}
-              label="City"
-              fullWidth
-              autoComplete="billing address-level2"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+    //         <TextField
+    //           className="input-field-market-register"
+    //           id="state"
+    //           value={state}
+    //           onChange={this.changeHandler}
+    //           name="state"
+    //           label="State/Province/Region"
+    //           fullWidth
+    //           margin="normal"
+    //           variant="outlined"
+    //           InputProps={{
+    //             classes: {
+    //               notchedOutline: classes.notchedOutline,
+    //               input: classes.input
+    //             }
+    //           }}
+    //         />
 
-            <TextField
-              className="input-field-market-register"
-              id="state"
-              value={state}
-              onChange={this.changeHandler}
-              name="state"
-              label="State/Province/Region"
-              fullWidth
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+    //         <TextField
+    //           className="input-field-market-register"
+    //           required
+    //           id="zip"
+    //           name="zipCode"
+    //           value={zipCode}
+    //           onChange={this.changeHandler}
+    //           label="Zip / Postal code"
+    //           fullWidth
+    //           autoComplete="billing postal-code"
+    //           margin="normal"
+    //           variant="outlined"
+    //           InputProps={{
+    //             classes: {
+    //               notchedOutline: classes.notchedOutline,
+    //               input: classes.input
+    //             }
+    //           }}
+    //         />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="zip"
-              name="zipCode"
-              value={zipCode}
-              onChange={this.changeHandler}
-              label="Zip / Postal code"
-              fullWidth
-              autoComplete="billing postal-code"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+    //         <TextField
+    //           className="input-field-market-register"
+    //           required
+    //           id="country"
+    //           name="country"
+    //           value={country}
+    //           onChange={this.changeHandler}
+    //           label="Country"
+    //           fullWidth
+    //           autoComplete="billing country"
+    //           margin="normal"
+    //           variant="outlined"
+    //           InputProps={{
+    //             classes: {
+    //               notchedOutline: classes.notchedOutline,
+    //               input: classes.input
+    //             }
+    //           }}
+    //         />
 
-            <TextField
-              className="input-field-market-register"
-              required
-              id="country"
-              name="country"
-              value={country}
-              onChange={this.changeHandler}
-              label="Country"
-              fullWidth
-              autoComplete="billing country"
-              margin="normal"
-              variant="outlined"
-              InputProps={{
-                classes: {
-                  notchedOutline: classes.notchedOutline,
-                  input: classes.input
-                }
-              }}
-            />
+    //         <div
+    //           style={{
+    //             display: "flex",
+    //             justifyContent: "space-between",
+    //             marginTop: "40px"
+    //           }}
+    //         >
+    //           <Button className='button-market-register'
+    //             variant="contained"
+    //             color="primary"
+    //             onClick={this.routeToHome}
+    //           >
+    //             Back
+    //           </Button>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "40px"
-              }}
-            >
-              <Button className='button-market-register'
-                variant="contained"
-                color="primary"
-                onClick={this.routeToHome}
-              >
-                Back
-              </Button>
+    //           <Button className='button-market-register'
+    //             variant="contained"
+    //             color="primary"
+    //             onClick={this.initStripeConnection}
+    //           >
+    //             Submit
+    //           </Button>
+    //         </div>
+    //       </form>
+    //     </div>
+    //   </React.Fragment>
+    // );
 
-              <Button className='button-market-register'
-                variant="contained"
-                color="primary"
-                onClick={this.initStripeConnection}
-              >
-                Submit
-              </Button>
-            </div>
-          </form>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
 
-<<<<<<< HEAD
 export default withRouter(withStyles(styles)(CreateMarket));
-=======
-export default withRouter(CreateMarket);
->>>>>>> b9ee467e7acbbab2ce30b5d051aecc60ed62830a

@@ -35,12 +35,9 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-<<<<<<< HEAD
         <Navbar className='nav-bar' />
-=======
-          <VendorNav/>
+          {/* <VendorNav/> */}
         {/* <Navbar /> */}
->>>>>>> b9ee467e7acbbab2ce30b5d051aecc60ed62830a
         <Switch>
           <Route exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
@@ -48,13 +45,10 @@ function App() {
           <Route path="/productForm" component={ProductForm} />
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/markets" component={MarketLandingPage} />
-<<<<<<< HEAD
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
-=======
 
           <Route path="/landing-page" component={LandingPage}/>
 
->>>>>>> b9ee467e7acbbab2ce30b5d051aecc60ed62830a
           <Route path="/stalls/" component={StallsList}/>  
 
           <Route path="/allVendors" component={VendorLandingPage} />
