@@ -376,9 +376,9 @@ const CreateMarket = (props) => {
                             />
                         </div>
                         {/* {createUi()} */}
-                        <div>
+                        {/* <div>
                             <Button onClick={addStall}>Add More</Button>
-                        </div>
+                        </div> */}
                     </Grid>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px' }}>
                         <Button variant="contained" color="primary" onClick={routeToHome}>
