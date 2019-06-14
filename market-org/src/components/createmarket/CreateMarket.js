@@ -87,7 +87,7 @@ const CreateMarket = (props) => {
         })
             .then(res => {
                 console.log('createmarket res data:', res.data)
-                // window.location.href = res.data
+                window.location.href = res.data
                 addMarket()
             })
             .catch(err => {
@@ -114,6 +114,7 @@ const CreateMarket = (props) => {
         axios.post(`/markets/${currentUser.uid}/add-market`, market)
             .then(res => {
                 console.log('ADD MARKET', res.data)
+                addStall()
             })
             .catch(err => {
                 console.log(err)
@@ -368,7 +369,7 @@ const CreateMarket = (props) => {
                             Back
                         </Button>
 
-                        <Button variant="contained" color="primary" onClick={addMarket}>
+                        <Button variant="contained" color="primary" onClick={handleOpen}>
                             Submit
                         </Button>
 
