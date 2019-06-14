@@ -10,6 +10,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import StripeCheckout from "react-stripe-checkout";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -90,16 +91,18 @@ const Cart = () => {
     const [cartItems, setCartItems] = useState([])
     const [total, setTotal] = useState('')
     const [quantity, setQuantity] = useState(1)
+    const [stripeId, setStripeId] = useState('')
+
     useEffect(() => {
         let firebase_id = localStorage.getItem('firebaseId')
         console.log(firebase_id)
         axios.get(`/cart/${firebase_id}`)
             .then(res => {
                 console.log(res.data)
-                let cartData = res.data[0]
-                let total = res.data[1]
+                let cartData = res.data.cartItem
+                let total = res.data.total
                 console.log('Total', total)
-                console.log('cart data', typeof cartData)
+                console.log('cart data', cartData)
                 setCartItems(cartData)
                 setTotal(total)
             })
@@ -114,7 +117,7 @@ const Cart = () => {
           [event.target.name]: event.target.value,
         }));
       }
-    console.log(cartItems.length, 'cart item type')
+    // console.log(cartItems.length, 'cart item type')
     const classes = useStyles();
 
     return (
@@ -127,6 +130,8 @@ const Cart = () => {
            
             {Object.keys(cartItems).map((item, i) => (
             <div  key={i}>
+                {/* {setCartItems(cartItems.stripeAccountId)} */}
+                {/* {console.log(cartItems.stripeId, 'stripe')} */}
              <Grid container spacing={6} className={classes.cartItems}>
                 <Grid item xs={10}>
                 
@@ -165,11 +170,19 @@ const Cart = () => {
     ))
 } 
          <Typography className={classes.subtotal}>Subtotal({cartItems.length} items): ${total}</Typography>
-         <div className={classes.checkout}>
+         {/* <StripeCheckout
+        stripeKey="pk_test_R4kvaWNKnku78DL2dwXpLiTq00R1MdFKhb"
+        token={handleToken}
+        amount={total}
+        name="Tesla Roadster"
+        billingAddress
+        shippingAddress
+      /> */}
+         {/* <div className={classes.checkout}>
          <Button variant="outlined" size="large" color="primary" className={classes.checkoutButton}>
              <Typography>Proceed to checkout</Typography>
          </Button>
-         </div>
+         </div> */}
         </div>
 
     )
