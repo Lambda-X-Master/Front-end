@@ -247,11 +247,8 @@ const VendorForm = props => {
       <div className='submit-section-vendor'>
       <Button className='submit-button-vendor'
         type="submit"
-        // fullWidth
-        // variant="contained"
         color="secondary"
         onClick={submitVendorProfile}
-        //className={classes.submit}
       >
         Submit your vendor info
       </Button>
