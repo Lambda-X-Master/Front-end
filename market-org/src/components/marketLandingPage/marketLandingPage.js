@@ -37,7 +37,7 @@ const MarketLandingPage = (props) => {
         <h1> List of Markets</h1>
         {markets.map(market => {
 
-        return (<MarketProfileCard profile={market} />)
+        return (<MarketProfileCard className='market-card' profile={market} />)
 
         })}
 
