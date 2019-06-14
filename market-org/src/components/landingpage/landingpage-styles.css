@@ -1,0 +1,16 @@
+.home {
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: url('../../images/rosie-de-la-cruz-1122986-unsplash.jpg') no-repeat center center fixed;
+
+  /* background: url('../../images/jakub-kapusnak-296131-unsplash.jpg') no-repeat center center fixed; */
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
