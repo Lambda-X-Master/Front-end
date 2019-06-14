@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
+
 import { storage } from "../../firebase";
 
 import { AuthContext } from "../authContext/authState";
@@ -17,7 +18,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "../../axios-instance.js";
+import axios from "axios";
 
 const styles = theme => ({
   newgroup: {
@@ -62,127 +63,84 @@ const styles = theme => ({
   }
 });
 
-const ProductForm = props => {
+const UpdateProductForm = props => {
   const { classes } = props;
+  const { id } = props.match.params;
 
   const [vendorProfile, setVendorProfile] = useContext(VendorContext);
   const [product, setProduct] = useContext(ProductContext);
   const { currentUser } = useContext(AuthContext);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [file, setFile] = useState(null);
+  const [title, setTitle] = useState(props.eachProduct.title);
+  const [description, setDescription] = useState(props.eachProduct.description);
+  const [price, setPrice] = useState(props.eachProduct.price);
+  const [image, setImage] = useState(props.eachProduct.image);
+  // const [file, setFile] = useState(props.eachProduct.file);
 
-  useEffect(() => {
-    const firebaseId = localStorage.getItem("firebaseId");
-    axios
-      .get(`/vendor/${firebaseId}`)
-      .then(res => {
-        console.log(res, "vendor by Id");
-        setVendorProfile(res.data);
-        // console.log(vendorProfile);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
-  }, []);
+  const [editProduct, setEditedProduct] = useState(props.eachProduct);
 
-  const submitProductProfile = e => {
+  // const [currentProduct, setCurrentProduct] = useState([]);
+
+  const updateProduct = (e, id, updatedProduct) => {
     e.preventDefault();
-
-    const vendorId = localStorage.getItem("firebaseId");
+    
     const token = localStorage.getItem("token");
-    let currentProductName = "product-image-" + Date.now();
-    let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
+    // let currentProductName = "product-image-" + Date.now();
+    // let uploadImage = storage.ref(`images/${currentProductName}`).put(file);
 
-    uploadImage.on(
-      "state_changed",
-      snapshot => {},
-      error => {
-        alert(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(currentProductName)
-          .getDownloadURL()
-          .then(url => {
-            console.log(url);
-            setImage(url);
+    // uploadImage.on(
+    //   "state_changed",
+    //   snapshot => {},
+    //   error => {
+    //     alert(error);
+    //   },
+    //   () => {
+    //     storage
+    //       .ref("images")
+    //       .child(currentProductName)
+    //       .getDownloadURL()
+    //       .then(url => {
+    //         console.log(url);
+    //         setImage(url);
 
-            const productObj = {
-              vendors_id: vendorId,
+            updatedProduct = {
+              // vendors_id: vendorId,
               title: title,
               description: description,
               price: price,
-              image: url
+              // image: url
             };
 
             axios
-              .post(`/products/vendor/${vendorId}`, {
-                ...productObj
-              },
-              {
+              .put(`http://localhost:5000/products/${id}`, updatedProduct, {
                 "Content-Type": "application/json",
                 headers: { Authorization: token }
               })
               .then(res => {
-                console.log("product res post", res);
+                console.log("product res put", res);
+                
+                setEditedProduct(res.data)
               })
               .catch(err => {
                 console.log(err);
               });
-          });
-      }
-    );
-    props.history.replace("/productsByVendor");
+          // });
+      // }
+    // );
+    props.history.push("/productsByVendor");
   };
 
-  const fileHandler = e => {
-    setFile(e.target.files[0]);
-  };
+  // const fileHandler = e => {
+  //   setFile(e.target.files[0]);
+  // };
 
   return (
     <>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography
-            component="p"
-            style={{ fontWeight: "bold", fontSize: "40px" }}
-          >
-            Your Vendor information
-          </Typography>
-          <Typography component="p">
-            Vendor Company name: {vendorProfile.company_name}
-          </Typography>
-          <Typography component="p">
-            Vendor full name: {vendorProfile.contact_fullname}
-          </Typography>
-          <Typography component="p">
-            Vendor address: {vendorProfile.address}
-          </Typography>
-          <Typography component="p">
-            Vendor City : {vendorProfile.city}
-          </Typography>
-          <Typography component="p">
-            Vendor State: {vendorProfile.state}
-          </Typography>
-          <Typography component="p">
-            Vendor Zip code: {vendorProfile.zip_code}
-          </Typography>
-          <Typography component="p">
-            Vendor Phone number: {vendorProfile.phone_nunmber}
-          </Typography>
-          <Typography component="p">
-            Vendor company url: {vendorProfile.company_url}
-          </Typography>
-          {vendorProfile.firebase_id}
-        </CardContent>
-      </Card>
-
-      <Typography component="p">Product form:</Typography>
+      <Typography component="p">Update your product here:</Typography>
+      <Typography component="p">
+        Global product context check: {product.id}
+      </Typography>
+      <Typography component="p">params check: {id}</Typography>
 
       <form>
         <TextField
@@ -263,7 +221,7 @@ const ProductForm = props => {
             }
           }}
         />
-        <TextField
+        {/* <TextField
           id="upload-button"
           accept="image/*"
           label="Upload Image"
@@ -286,21 +244,21 @@ const ProductForm = props => {
               color: "#026440"
             }
           }}
-        />
+        /> */}
       </form>
+      
       <Button
         type="submit"
         fullWidth
         variant="contained"
         color="secondary"
-        onClick={submitProductProfile}
+        onClick={e => updateProduct(e, id, editProduct)}
         className={classes.submit}
       >
-        Submit your product info
+        Update your product
       </Button>
     </>
   );
 };
 
-// export default ProductForm;
-export default withRouter(withStyles(styles)(ProductForm));
+export default withRouter(withStyles(styles)(UpdateProductForm));
