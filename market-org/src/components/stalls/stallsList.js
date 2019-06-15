@@ -25,31 +25,83 @@ const StallsContainer = styled.div`
 const StallsList = (props) => {
 
     const [stalls, setStalls] = useState([]);
-    const [hasAStallChanged, setStallChangeStatus] = useState(false);
+    const [market, setMarket] = useState({})
+    // const [hasAStallChanged, setStallChangeStatus] = useState(false);
+
+    // useEffect(() => {
+    //     axios.get(`/stalls/market/${props.location.state.firebase_id}`)
+    //     .then(res => {
+    //         console.log("Stalls : ", res.data)
+    //         let stallItems = res.data.stallData;
+    //         // stalls = stalls.map(stall => JSON.parse(stall));
+    //        setStalls(stallItems);
+    //         console.log("stalls", stalls);
+    //        setStallChangeStatus(false);
+    //     }).catch(err => {
+    //             console.log(err.message);
+    //     })
+
+
+    // }, [hasAStallChanged]);
 
     useEffect(() => {
         axios.get(`/stalls/market/${props.location.state.firebase_id}`)
         .then(res => {
             console.log("Stalls : ", res.data)
             let stallItems = res.data.stallData;
+            const market = res.data.marketData
+            setMarket(market)
             // stalls = stalls.map(stall => JSON.parse(stall));
+            console.log("stalls",typeof stalls);
            setStalls(stallItems);
-            console.log("stalls", stalls);
-           setStallChangeStatus(false);
+            
+        //    setStallChangeStatus(false);
         }).catch(err => {
                 console.log(err.message);
         })
 
 
-    }, [hasAStallChanged]);
+    }, []);
+
+    const addToCart = (id) => {
+        // const stallId = Object.keys(stalls).map((stall, index) => {
+        //     console.log(stalls[stall].id)
+        // })
+
+        // console.log(stallId, 'stall id')
+        const cart_id = localStorage.getItem('firebaseId')
+        console.log(cart_id, 'vendor firebase id')
+    axios.post(`cart/add-stall-to-cart/${cart_id}`, {id})
+    console.log('clicked')
+    }
 
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
-            <h2> List of available stalls for {props.location.state.market_name}</h2>
+            {/* <h2>{market.market_name}</h2>
+            <h2>{market.address}</h2>
+            <h2>{market.city}</h2>
+            <h2>{market.state}</h2>
+            <h2>{market.phone_number}</h2> */}
+            {Object.keys(stalls).map((stall, index) => (
+                
+                <div key ={index}>
+                    {console.log(stalls[stall].id, 'stall id')}
+                    <h2>Size: length: {stalls[stall].size.length} X width: {stalls[stall].size.width}</h2>
+                    <h2>Price: ${stalls[stall].price}</h2>
+                    <button onClick={() => addToCart(stalls[stall].id)}>Add To Cart</button>
+                </div>
+            ))}
+            {/* <h2> List of available stalls for {props.location.state.market_name}</h2>
             {stalls.map(stall_item => {
-                return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
-            })}
+                console.log(stall_item, 'stall item')
+                return (
+                    <div>
+                        {stall_item}
+                    </div>
+                )
+                // return (<Stall stall={stall_item} setStallChangedStatus={setStallChangeStatus}/>)
+            })} */}
         </StallsContainer>
     )
 }

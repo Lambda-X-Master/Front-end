@@ -31,8 +31,8 @@ function App() {
       <React.Fragment>
         <CssBaseline />
         <ContextProvider>
-          <VendorNav/>
-        {/* <Navbar /> */}
+          {/* <VendorNav/> */}
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Homepage} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
