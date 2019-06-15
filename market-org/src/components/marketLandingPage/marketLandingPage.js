@@ -5,16 +5,10 @@ import MarketProfileCard from "./marketProfileCard";
 import styled from 'styled-components';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import stallsList from "../stallsList/stallsList";
-
 import axios from '../../axios-instance';
+import "./marketLandingPage.css";
 
-const MarketLandingContainer = styled.div`
-    width: 850px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
+
 
 const MarketLandingPage = (props) => {
 
@@ -39,16 +33,16 @@ const MarketLandingPage = (props) => {
 
     return (
         <React.Fragment>
-        <MarketLandingContainer> 
+        <div className='landing-page'> 
         <h1> List of Markets</h1>
         {markets.map(market => {
 
-        return (<MarketProfileCard profile={market} />)
+        return (<MarketProfileCard className='market-card' profile={market} />)
 
         })}
 
 
-        </MarketLandingContainer>
+        </div>
         </React.Fragment>
     )
 }

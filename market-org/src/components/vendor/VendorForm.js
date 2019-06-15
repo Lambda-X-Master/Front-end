@@ -4,7 +4,7 @@ import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { withStyles, Typography, TextField, Button } from "@material-ui/core";
 import axios from "../../axios-instance";
-
+import './VendorForm.css';
 const styles = theme => ({
   newgroup: {
     display: "flex",
@@ -72,27 +72,30 @@ const VendorForm = props => {
     const token = localStorage.getItem("token");
 
     axios
-      .post(
-        "/vendor",
-        { ...VendorObj },
-        {
-          "Content-Type": "application/json",
-          headers: { Authorization: token }
-        }
-      )
-      .then(res => {
-        console.log("res:", res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    props.history.replace("/productForm");
-  };
+    .post(
+      `/vendor/${VendorObj.firebase_id}`,
+      { ...VendorObj },
+      {
+        "Content-Type": "application/json",
+        headers: { Authorization: token }
+      }
+    )
+    .then(res => {
+      console.log("res:", res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  
+  props.history.replace("/productForm");
+};
 
   return (
     <>
+    <div className='vendor-form'>
       <form>
         <TextField
+          className='input-field'
           id="outlined-name"
           label="Company Name"
           type="search"
@@ -119,6 +122,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="Full Name"
           type="search"
@@ -145,6 +149,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="Address"
           type="search"
@@ -171,6 +176,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="City"
           type="search"
@@ -197,6 +203,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="State"
           type="search"
@@ -223,6 +230,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="Zipcode"
           type="search"
@@ -249,6 +257,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="Phone number"
           type="search"
@@ -275,6 +284,7 @@ const VendorForm = props => {
           }}
         />
         <TextField
+        className='input-field'
           id="outlined-name"
           label="Company URL"
           type="search"
@@ -302,6 +312,7 @@ const VendorForm = props => {
         />
       </form>
       <Button
+        className='submit-button-vendor'
         type="submit"
         fullWidth
         variant="contained"
@@ -311,6 +322,7 @@ const VendorForm = props => {
       >
         Submit your vendor info
       </Button>
+      </div>
     </>
   );
 };
