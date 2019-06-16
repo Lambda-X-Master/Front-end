@@ -4,7 +4,7 @@ import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { withStyles, Typography, TextField, Button } from "@material-ui/core";
 import axios from "../../axios-instance";
-import './VendorForm.css';
+import "./VendorForm.css";
 const styles = theme => ({
   newgroup: {
     display: "flex",
@@ -72,261 +72,260 @@ const VendorForm = props => {
     const token = localStorage.getItem("token");
 
     axios
-    .post(
-      `vendor/${VendorObj.firebase_id}`,
-      { ...VendorObj },
-      {
-        "Content-Type": "application/json",
-        headers: { Authorization: token }
-      }
-    )
-    .then(res => {
-      console.log("res:", res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  
-  props.history.replace("/productForm");
-};
+      .post(
+        `vendor/${VendorObj.firebase_id}`,
+        { ...VendorObj },
+        {
+          "Content-Type": "application/json",
+          headers: { Authorization: token }
+        }
+      )
+      .then(res => {
+        console.log("res:", res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    props.history.replace("/productForm");
+  };
 
   return (
     <>
-    <div className='vendor-form'>
-      <form>
-        <TextField
-          className='input-field'
-          id="outlined-name"
-          label="Company Name"
-          type="search"
-          name="companyName"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setCompanyName(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="Full Name"
-          type="search"
-          name="fullName"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setFullName(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="Address"
-          type="search"
-          name="address"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setAddress(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="City"
-          type="search"
-          name="city"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setCity(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="State"
-          type="search"
-          name="state"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setState(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="Zipcode"
-          type="search"
-          name="zipcode"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setZipcode(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="Phone number"
-          type="search"
-          name="phone"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setPhone(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-        <TextField
-        className='input-field'
-          id="outlined-name"
-          label="Company URL"
-          type="search"
-          name="companyUrl"
-          style={{ width: "450px" }}
-          multiline={false}
-          rows={2}
-          rowsMax={2}
-          className={classes.textField}
-          onChange={e => setCompanyUrl(e.target.value)}
-          //   value={}
-          margin="normal"
-          variant="outlined"
-          InputProps={{
-            classes: {
-              notchedOutline: classes.notchedOutline,
-              input: classes.input
-            }
-          }}
-          InputLabelProps={{
-            style: {
-              color: "#026440"
-            }
-          }}
-        />
-      </form>
-      <Button
-        className='submit-button-vendor'
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="secondary"
-        onClick={submitVendorProfile}
-        className={classes.submit}
-      >
-        Submit your vendor info
-      </Button>
+      <div className="vendor-form">
+        <form>
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Company Name"
+            type="search"
+            name="companyName"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setCompanyName(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Full Name"
+            type="search"
+            name="fullName"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setFullName(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Address"
+            type="search"
+            name="address"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setAddress(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="City"
+            type="search"
+            name="city"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setCity(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="State"
+            type="search"
+            name="state"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setState(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Zipcode"
+            type="search"
+            name="zipcode"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setZipcode(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Phone number"
+            type="search"
+            name="phone"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setPhone(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+          <TextField
+            className="input-field"
+            id="outlined-name"
+            label="Company URL"
+            type="search"
+            name="companyUrl"
+            style={{ width: "450px" }}
+            multiline={false}
+            rows={2}
+            rowsMax={2}
+            className={classes.textField}
+            onChange={e => setCompanyUrl(e.target.value)}
+            //   value={}
+            margin="normal"
+            variant="outlined"
+            InputProps={{
+              classes: {
+                notchedOutline: classes.notchedOutline,
+                input: classes.input
+              }
+            }}
+            InputLabelProps={{
+              style: {
+                color: "#026440"
+              }
+            }}
+          />
+        </form>
+        <Button
+          className="submit-button-vendor"
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="secondary"
+          onClick={submitVendorProfile}
+          className={classes.submit}
+        >
+          Submit your vendor info
+        </Button>
       </div>
     </>
   );
 };
 
 // export default VendorForm;
-
 export default withRouter(withStyles(styles)(VendorForm));

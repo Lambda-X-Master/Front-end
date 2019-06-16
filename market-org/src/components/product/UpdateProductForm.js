@@ -112,7 +112,7 @@ const UpdateProductForm = props => {
             };
 
             axios
-              .put(`http://localhost:5000/products/${id}`, updatedProduct, {
+              .put(`products/${id}`, updatedProduct, {
                 "Content-Type": "application/json",
                 headers: { Authorization: token }
               })

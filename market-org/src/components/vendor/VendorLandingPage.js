@@ -22,7 +22,7 @@ import {
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-import axios from '../../axios-instance';
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
@@ -99,7 +99,9 @@ const VendorLandingPage = props => {
                       <Typography component="p">View my products</Typography>
                     </Link> */}
                     <Link to={`/oneVendorPublic/${eachVendor.firebase_id}`}>
-                      <Typography component="p">Get more information about me</Typography>
+                      <Typography component="p">
+                        Get more information about me
+                      </Typography>
                     </Link>
                   </CardContent>
                   <CardContent />
