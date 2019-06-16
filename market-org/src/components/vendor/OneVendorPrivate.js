@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-import axios from "axios";
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
@@ -61,7 +61,7 @@ const OneVendorPrivate = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/vendor/${firebase_id}`)
+      .get(`vendor/${firebase_id}`)
       .then(res => {
         console.log(res, "vendor by Id");
         setAPrivateVendor(res.data);
@@ -77,7 +77,7 @@ const OneVendorPrivate = props => {
 
     const token = localStorage.getItem("token");
     axios
-      .delete(`http://localhost:5000/vendor/${vendorId}`, {
+      .delete(`vendor/${vendorId}`, {
         "Content-Type": "application/json",
         headers: { Authorization: token }
       })

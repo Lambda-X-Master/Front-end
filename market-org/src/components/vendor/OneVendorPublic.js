@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-import axios from "axios";
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   root: {
@@ -60,7 +60,7 @@ const OneVendorPublic = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/vendor/${firebase_id}`)
+      .get(`vendor/${firebase_id}`)
       .then(res => {
         console.log(res, "vendor by Id");
         setAPublicVendor(res.data);

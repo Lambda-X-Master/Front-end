@@ -6,7 +6,7 @@ import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
 
-import axios from "axios";
+import axios from "../../axios-instance";
 
 import {
   withStyles,
@@ -75,7 +75,7 @@ const ProductByVendorCard = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/vendor/${firebase_id}`)
+      .get(`products/vendor/${firebase_id}`)
       // .get(`http://localhost:5000/products/vendor/${props.location.state.firebase_id}`)
       .then(res => {
         console.log(res, "product by vendor Id");

@@ -22,7 +22,7 @@ import {
 } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-import axios from "axios";
+import axios from '../../axios-instance';
 
 const styles = theme => ({
   root: {
@@ -62,7 +62,7 @@ const VendorLandingPage = props => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/vendor/`)
+      .get(`vendor/`)
       .then(res => {
         console.log(res, "vendor by Id");
         setAllVendors(res.data);

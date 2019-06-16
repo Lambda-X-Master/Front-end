@@ -65,14 +65,16 @@ const ProductByVendor = props => {
     axios
       .get(`/products/vendor/${firebaseId}`)
       .then(res => {
-        console.log(res, "products by vendor Id");
+        // console.log(res, "products by vendor Id");
         setProducts(res.data);
         // console.log(product);
       })
       .catch(err => {
         console.log(err.message);
       });
-  }, []);
+  }, [products]);
+
+
 
   const toMarkets = () => {
     props.history.push("/markets");
@@ -81,7 +83,7 @@ const ProductByVendor = props => {
   const toCart = () => {
     props.history.push("/carts");
   };
-  console.log('vendor profile in product', vendorProfile);
+  // console.log('vendor profile in product', vendorProfile);
 
   const backToProductForm = () => {
     props.history.push("/productForm");

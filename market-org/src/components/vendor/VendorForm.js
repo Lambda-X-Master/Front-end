@@ -73,7 +73,7 @@ const VendorForm = props => {
 
     axios
     .post(
-      `/vendor/${VendorObj.firebase_id}`,
+      `vendor/${VendorObj.firebase_id}`,
       { ...VendorObj },
       {
         "Content-Type": "application/json",

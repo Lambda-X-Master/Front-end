@@ -80,14 +80,14 @@ const ProductForm = props => {
     axios
       .get(`/vendor/${firebaseId}`)
       .then(res => {
-        console.log(res, "vendor by Id");
+        // console.log(res, "vendor by Id");
         setVendorProfile(res.data);
         // console.log(vendorProfile);
       })
       .catch(err => {
         console.log(err.message);
       });
-  }, []);
+  }, [vendorProfile]);
 
   const submitProductProfile = e => {
     e.preventDefault();
@@ -179,7 +179,7 @@ const ProductForm = props => {
           <Typography component="p">
             Vendor company url: {vendorProfile.company_url}
           </Typography>
-          {vendorProfile.firebase_id}
+          
         </CardContent>
       </Card>
 
