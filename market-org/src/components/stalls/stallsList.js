@@ -63,26 +63,22 @@ const StallsList = (props) => {
 
     }, []);
 
-    const addToCart = (id) => {
-        // const stallId = Object.keys(stalls).map((stall, index) => {
-        //     console.log(stalls[stall].id)
-        // })
-
-        // console.log(stallId, 'stall id')
+    const addToCart = (stalls_id) => {
         const cart_id = localStorage.getItem('firebaseId')
         console.log(cart_id, 'vendor firebase id')
-    axios.post(`cart/add-stall-to-cart/${cart_id}`, {id})
-    console.log('clicked')
+        axios.post(`cart/add-stall-to-cart/${cart_id}`, {stalls_id})
     }
 
+ 
+    // const cart_id = localStorage.getItem('firebaseId')
     console.log("Getting stalls ", stalls);
     return(
         <StallsContainer>
-            {/* <h2>{market.market_name}</h2>
-            <h2>{market.address}</h2>
-            <h2>{market.city}</h2>
-            <h2>{market.state}</h2>
-            <h2>{market.phone_number}</h2> */}
+            <h2>Market Name: {market.market_name}</h2>
+            <h2>Market street: {market.address}</h2>
+            <h2>Market city: {market.city}</h2>
+            <h2>Market state: {market.state}</h2>
+            <h2>Market phone number: {market.phone_number}</h2>
             {Object.keys(stalls).map((stall, index) => (
                 
                 <div key ={index}>
