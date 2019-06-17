@@ -72,7 +72,11 @@ const OneVendorPublic = props => {
   }, []);
   return (
     <>
-      <Container maxWidth="lg" key={aPublicVendor.firebase_id} style={{ marginTop: "50px" }}>
+      <Container
+        maxWidth="lg"
+        key={aPublicVendor.firebase_id}
+        style={{ marginTop: "50px" }}
+      >
         <Card className={classes.card}>
           <CardContent>
             <Typography component="p">
@@ -96,20 +100,20 @@ const OneVendorPublic = props => {
               Company website: {aPublicVendor.company_url}
             </Typography>
             <Link to={`/oneVendorPublic/${aPublicVendor.firebase_id}/product`}>
-                      <Typography component="p">View my products</Typography>
-                    </Link>
+              <Typography component="p">View my products</Typography>
+            </Link>
           </CardContent>
           <CardContent />
         </Card>
       </Container>
       <Switch>
-    <Route
-      path="/oneVendorPublic/:firebase_id/product"
-      render={props => (
-        <ProductByVendorCard {...props} vendor={aPublicVendor} />
-      )}
-    />
-  </Switch>
+        <Route
+          path="/oneVendorPublic/:firebase_id/product"
+          render={props => (
+            <ProductByVendorCard {...props} vendor={aPublicVendor} />
+          )}
+        />
+      </Switch>
     </>
   );
 };
