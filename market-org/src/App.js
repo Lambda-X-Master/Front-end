@@ -50,11 +50,8 @@ function App() {
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
           <Route path="/markets" component={MarketLandingPage} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
-
           <Route path="/landing-page" component={LandingPage}/>
-
           <Route path="/stalls/" component={StallsList}/>  
-
           <Route path="/allVendors" component={VendorLandingPage} />
           <Route path="/oneVendorPublic/:firebase_id" component={OneVendorPublic} />
           <Route path="/oneVendorPrivate/:firebase_id" component={OneVendorPrivate} />        

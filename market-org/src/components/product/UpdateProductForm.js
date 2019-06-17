@@ -18,7 +18,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "axios";
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   newgroup: {
@@ -112,7 +112,7 @@ const UpdateProductForm = props => {
             };
 
             axios
-              .put(`http://localhost:5000/products/${id}`, updatedProduct, {
+              .put(`products/${id}`, updatedProduct, {
                 "Content-Type": "application/json",
                 headers: { Authorization: token }
               })
