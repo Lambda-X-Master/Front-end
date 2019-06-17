@@ -72,10 +72,16 @@ const VendorsPerMarket = props => {
 
   return (
     <>
+      <Typography
+        component="p"
+        style={{ fontWeight: "bold", fontSize: "40px" }}
+      >
+        Our Market Info.
+      </Typography>
       <Container
         maxWidth="lg"
         // key={aPublicVendor.firebase_id}
-        style={{ marginTop: "50px" }}
+        style={{ marginTop: "10px" }}
       >
         <Card className={classes.card}>
           <CardContent>
@@ -100,7 +106,7 @@ const VendorsPerMarket = props => {
         </Card>
         <Typography
           component="p"
-          style={{ fontWeight: "bold", fontSize: "40px" }}
+          style={{ fontWeight: "bold", fontSize: "40px", marginTop: "30px" }}
         >
           Our Vendors
         </Typography>
