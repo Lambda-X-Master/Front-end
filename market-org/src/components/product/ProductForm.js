@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { storage } from "../../firebase";
-
+import './ProductForm.css'
 import { AuthContext } from "../authContext/authState";
 import { VendorContext } from "../context/vendor";
 import { ProductContext } from "../context/product";
@@ -146,6 +146,7 @@ const ProductForm = props => {
 
   return (
     <>
+    <div className='product-form'>
       <Card className={classes.card}>
         <CardContent>
           <Typography
@@ -183,7 +184,7 @@ const ProductForm = props => {
       </Card>
 
       <Typography component="p">Product form:</Typography>
-
+    
       <form>
         <TextField
           id="outlined-name"
@@ -288,6 +289,7 @@ const ProductForm = props => {
           }}
         />
       </form>
+      
       <Button
         type="submit"
         fullWidth
@@ -298,6 +300,7 @@ const ProductForm = props => {
       >
         Submit your product info
       </Button>
+      </div>
     </>
   );
 };
