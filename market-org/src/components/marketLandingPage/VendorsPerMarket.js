@@ -76,15 +76,15 @@ const VendorsPerMarket = props => {
         component="p"
         style={{ fontWeight: "bold", fontSize: "40px" }}
       >
-        Our Market Info.
+        Our Market Information
       </Typography>
       <Container
         maxWidth="lg"
         // key={aPublicVendor.firebase_id}
         style={{ marginTop: "10px" }}
       >
-        <Card className={classes.card}>
-          <CardContent>
+        <Card className={classes.card} >
+          <CardContent >
             <Typography component="p">
               Market Name: {perMarket.market_name}
             </Typography>
@@ -115,7 +115,7 @@ const VendorsPerMarket = props => {
           vendorsPerMarket.map(eachVendor => {
             return (
               <>
-                <Card className={classes.card} key={eachVendor.firebase_id}>
+                <Card className={classes.card} key={eachVendor.firebase_id} style={{ margin: "20px"}}>
                   <CardContent>
                     <Typography component="p">
                       Company: {eachVendor.company_name}
