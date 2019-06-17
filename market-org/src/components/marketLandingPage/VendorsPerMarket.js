@@ -103,6 +103,18 @@ const VendorsPerMarket = props => {
             </Typography>
           </CardContent>
           <CardContent />
+          <Link
+            to={{
+              pathname: "/stalls/",
+              search: `?firebase_id=${firebase_id}`,
+              state: {
+                firebase_id: firebase_id,
+                market_name: perMarket.market_name
+              }
+            }}
+          >
+            Rent a stall from us
+          </Link>
         </Card>
         <Typography
           component="p"
