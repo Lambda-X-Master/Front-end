@@ -186,6 +186,10 @@ function ButtonAppBar(props) {
       props.history.push(`cart/${firebase_id}`)
   }
 
+  const register = () => {
+    props.history.push("/signup");
+  };
+
   const login = () => {
     props.history.push('/signin')
   }
@@ -296,7 +300,7 @@ console.log({currentUser}, 'currentuser')
               <Link 
                 // className={classes.link}
                 color="inherit"
-                onClick={handleRegOpen}
+                onClick={register}
                 className={currentUser ? classes.closed : classes.link }
                 underline='none'
               >
