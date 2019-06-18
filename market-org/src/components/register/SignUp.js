@@ -51,6 +51,7 @@ function Register(props) {
 	const [userType, setUserType] = useState(null);
 	const [background, setBackground] = useState('')
 	const [marketBg, setMarketBg] = useState('')
+	const [user, setUser] = useState('')
 
 	const signUpWithGoogle = () => {
 		auth.signInWithPopup(googleProvider)
@@ -77,7 +78,10 @@ function Register(props) {
 							axios.post('/users/register', { ...userObj })
 								.then(res => {
 									console.log("res:", res);
-									// localStorage.setItem('firebaseId', res.data.firebase_id);
+									setUser(res.data.user_type)
+									let userTypes= res.data.user_type
+									console.log(userTypes, 'user types')
+									localStorage.setItem('userType', userTypes);
 
 								})
 								.catch(err => {
@@ -92,6 +96,7 @@ function Register(props) {
 				console.log(err);
 			})
 			props.history.push('/create-market')
+			console.log('user type:', user)
 	}
 
 
@@ -99,7 +104,7 @@ function Register(props) {
 	// using firebase auth method to register new user via email password
 
 	const signUpWithEmailAndPassword = () => {
-
+		// let userTypes 
 		auth.createUserWithEmailAndPassword(email, password)
 			.then(({ user }) => {
 
@@ -119,11 +124,19 @@ function Register(props) {
 						axios.defaults.headers.common['Authorization'] = user.ra
 						axios.post('/users/register', { ...userObj })
 							.then(res => {
-								console.log("res:", res);
+								// console.log("res user type:", );
 								localStorage.setItem('firebaseId', res.data.firebase_id);
+								let loggedin_userTypes =  res.data.user_type
+								localStorage.setItem('userTypes', loggedin_userTypes);
+								// setUser(res.data.user_type)
+								// console.log(userTypes, 'from top of if')
 								// console.log("Create firebaseId :",  res.data.firebase_id);
-
-
+								if (res.data.user_type=== 'vendor') {
+									console.log(res.data.user_type, 'from res')
+									props.history.push('/vendor')
+								} else {
+									props.history.push('/create-market')
+								}
 							})
 							.catch(err => {
 								console.log(err)
@@ -135,13 +148,19 @@ function Register(props) {
 			.catch(err => {
 				console.log(err);
 			})
-			// props.history.push('/create-market')
+			console.log(user, 'user type')
+			// let user_types = localStorage.getItem('userType')
+			// console.log(user_types)
+			// setUser(user_types)
+			// console.log(user, 'user from axios call')			
+			// // props.history.push('/create-market')
+			// console.log({user}, 'user type')
 
-
+			
 	}
 
 	const { currentUser } = useContext(AuthContext);
-
+	console.log('user type:', user)
 
 	return (
 		<main className={classes.main}>

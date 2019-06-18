@@ -106,8 +106,11 @@ const Cart = () => {
                 let total = res.data.total
                 let stripe = res.data.cartItem[0].stripeAccountId
                 console.log('Total', total)
-                console.log('cart data',  cartData)
+                console.log('cart data',  cartData[2].cart_item_id)
                 console.log('stripe', stripe)
+                const cartItemsIds = Object.keys(cartData).map((item, i) => {
+                  return cartData[item].cart_item_id})
+                console.log(cartItemsIds, 'ids')
                 setCartItems(cartData)
                 setTotal(total)
                 setStripeId(stripe)
@@ -169,24 +172,29 @@ const Cart = () => {
         // const cart_item_id = localStorage.getItem('firebaseId')
         // let stalls_id = {}
         // console.log(stalls_id, 'stalls id')
-        console.log("Response:", res, 'token:', token, 'amount', amt, 'stripe:', stripe_account)
-        // axios.delete(`/cart/delete-stall-from-cart/${cart_item_id}`, {data: {cart_item_id: cart_item_id}})
-        // .then(res => {
-        //   const firebase_id = localStorage.getItem('firebaseId')
-        //   axios.get(`/cart/${firebase_id}`)
-        //   .then(res => {
-        //       console.log(res.data)
-        //       let cartData = res.data.cartItem
-        //       let total = res.data.total
-        //       console.log('Total', total)
-        //       console.log('cart data',  cartData)
-        //       setCartItems(cartData)
-        //       setTotal(total)
-          //})
-          // .catch(err => {
-          //     console.log(err)
-          // })
+        console.log("Response:", res.data.status, )
+        alert('payment completed')
+        let firebase_id = localStorage.getItem('firebaseId')
+        axios.get(`/cart/${firebase_id}`)
+            .then(res => {
+                console.log(res.data)
+                let cartData = res.data.cartItem
+                let total = res.data.total
+                let stripe = res.data.cartItem[0].stripeAccountId
+                console.log('Total', total)
+                console.log('cart data',  cartData.cart_item_id)
+                console.log('stripe', stripe)
+                setCartItems(cartData)
+                setTotal(total)
+                setStripeId(stripe)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         })
+        .catch(err => {
+          console.log(err)
+        }) 
       //})
       // const { status } = response.data;
      

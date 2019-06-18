@@ -41,14 +41,14 @@ function App() {
           {/* <VendorNav/> */}
         {/* <Navbar /> */}
         <Switch>
-          <Route exact path="/" component={Homepage2} />
+          <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
           {/* <Route path="/updateProductForm" component={UpdateProductForm} /> */}
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
-          <Route path="/markets" component={MarketLandingPage} />
+          <Route exact path="/markets" component={MarketLandingPage} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
 
           <Route path="/landing-page" component={LandingPage}/>
