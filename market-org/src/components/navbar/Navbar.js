@@ -34,6 +34,8 @@ const useStyles = makeStyles(theme => ({
 function ButtonAppBar(props) {
   const [open, setOpen] = React.useState(false);
   const [openReg, setOpenReg] = React.useState(false);
+
+  const firebaseId = localStorage.getItem('firebaseId');
   const handleOpen = () => {
     setOpen(true);
   };
@@ -55,6 +57,10 @@ function ButtonAppBar(props) {
 
   const toAllVendors = () => {
     props.history.push("/allVendors");
+  };
+
+  const toPrivateVendorProfile = () => {
+    props.history.push(`/oneVendorPrivate/${firebaseId}`);
   };
 
   const toAllMarkets = () => {
@@ -101,6 +107,13 @@ function ButtonAppBar(props) {
           <Typography variant="h6" className={classes.title} />
           {currentUser ? (
             <>
+                          <Button
+                color="inherit"
+                onClick={toPrivateVendorProfile}
+                style={{ backgroundColor: "#30cc32", margin: "10px" }}
+              >
+                My Vendor Profile
+              </Button>
               <Button
                 color="inherit"
                 onClick={toAllVendors}
