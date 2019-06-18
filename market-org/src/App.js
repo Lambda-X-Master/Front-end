@@ -4,6 +4,8 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
+import SignIn from './components/login/SignIn';
+import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
 
@@ -46,6 +48,8 @@ function App() {
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/signin' component={SignIn}/>
           {/* <Route path="/updateProductForm" component={UpdateProductForm} /> */}
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />

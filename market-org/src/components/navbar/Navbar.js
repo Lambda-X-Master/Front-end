@@ -186,6 +186,9 @@ function ButtonAppBar(props) {
       props.history.push(`cart/${firebase_id}`)
   }
 
+  const login = () => {
+    props.history.push('/signin')
+  }
   const logout = () => {
     auth.signOut();
     localStorage.clear();
@@ -305,7 +308,7 @@ console.log({currentUser}, 'currentuser')
             <Link 
                 className={classes.link}
                 color="inherit"
-                onClick={currentUser ? logout : handleRegOpen}
+                onClick={currentUser ? logout : login}
                 underline='none'
               >
                {currentUser ? 'Logout' : 'Login'}
@@ -456,6 +459,8 @@ console.log({currentUser}, 'currentuser')
           >
             <SignIn />
           </Modal>
+
+
           <Modal
           className={currentUser ? classes.closed : null}
             aria-labelledby="simple-modal-title"
