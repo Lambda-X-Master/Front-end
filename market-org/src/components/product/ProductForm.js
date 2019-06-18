@@ -17,7 +17,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "../../axios-instance.js";
+import axios from "../../axios-instance";
 
 const styles = theme => ({
   newgroup: {
@@ -78,16 +78,16 @@ const ProductForm = props => {
   useEffect(() => {
     const firebaseId = localStorage.getItem("firebaseId");
     axios
-      .get(`/vendor/${firebaseId}`)
+      .get(`vendor/${firebaseId}`)
       .then(res => {
-        console.log(res, "vendor by Id");
+        // console.log(res, "vendor by Id");
         setVendorProfile(res.data);
         // console.log(vendorProfile);
       })
       .catch(err => {
         console.log(err.message);
       });
-  }, []);
+  }, [vendorProfile]);
 
   const submitProductProfile = e => {
     e.preventDefault();
@@ -121,13 +121,16 @@ const ProductForm = props => {
             };
 
             axios
-              .post(`/products/vendor/${vendorId}`, {
-                ...productObj
-              },
-              {
-                "Content-Type": "application/json",
-                headers: { Authorization: token }
-              })
+              .post(
+                `products/vendor/${vendorId}`,
+                {
+                  ...productObj
+                },
+                {
+                  "Content-Type": "application/json",
+                  headers: { Authorization: token }
+                }
+              )
               .then(res => {
                 console.log("product res post", res);
               })
@@ -137,7 +140,7 @@ const ProductForm = props => {
           });
       }
     );
-    props.history.replace("/productsByVendor");
+    props.history.push("/productsByVendor");
   };
 
   const fileHandler = e => {
@@ -173,13 +176,15 @@ const ProductForm = props => {
             Vendor Zip code: {vendorProfile.zip_code}
           </Typography>
           <Typography component="p">
-            Vendor Phone number: {vendorProfile.phone_nunmber}
+            Vendor Phone number: {vendorProfile.phone_number}
           </Typography>
           <Typography component="p">
             Vendor company url: {vendorProfile.company_url}
           </Typography>
-          {vendorProfile.firebase_id}
         </CardContent>
+        <Link to={`/oneVendorPrivate/${vendorProfile.firebase_id}`}>
+          <Typography component="p">My Profile Settings</Typography>
+        </Link>
       </Card>
 
       <Typography component="p">Product form:</Typography>
@@ -302,5 +307,4 @@ const ProductForm = props => {
   );
 };
 
-// export default ProductForm;
 export default withRouter(withStyles(styles)(ProductForm));

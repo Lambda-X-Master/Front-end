@@ -55,6 +55,10 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
   },
 
+  shoppingCart: {
+    // paddingLeft: '1rem',
+    // borderLeft: '1px solid #30cc32'
+  },
   // profile: {
 
   // }
@@ -76,21 +80,21 @@ const useStyles = makeStyles(theme => ({
 
   menuItem: {
     color: 'white'
-  }
+  },
 
-  // menuNav: {
-  //   marginTop: '2rem',
+  menuNav: {
+    marginTop: '2rem',
    
-  //   background: '#b42d5ae8',
-  //   color: 'white'
-  //   // border: '1px solid red',
-  // }
+    // background: '#b42d5ae8',
+    // color: 'white'
+    // border: '1px solid red',
+  }
 }));
 
 const StyledMenu = withStyles({
   paper: {
 
-    marginTop: '1.3rem',
+    marginTop: '3rem',
     backgroundColor: '#b42d5ae8'
   },
 
@@ -100,7 +104,7 @@ const StyledMenu = withStyles({
 })(props => (
   <Menu
     elevation={0}
-    getContentAnchorEl={null}
+    // getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
       horizontal: 'center',
@@ -110,6 +114,7 @@ const StyledMenu = withStyles({
       horizontal: 'center',
     }}
     {...props}
+    
   />
 ));
 
@@ -216,10 +221,13 @@ console.log({currentUser}, 'currentuser')
                     aria-controls="simple-menu" 
                     aria-haspopup="true" 
                     onClick={handleClick}
-                    color="inherit">
-                  Markets
+                    color="inherit"
+                    variant="contained"
+                  >
+                   Markets
                   <IconButton
                       // edge="end"
+                      aria-controls="simple-menu" 
                       className={classes.menuButton}
                       color="inherit"
                       aria-label="simple-menu"
@@ -233,6 +241,7 @@ console.log({currentUser}, 'currentuser')
                     id="simple-menu"
                     anchorEl={anchorEl}
                     keepMounted
+                    // className={classes.menuNav}
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
               >         
@@ -253,8 +262,7 @@ console.log({currentUser}, 'currentuser')
                       <Expand />
                 </IconButton>
               </Link> 
-          </Typography>
-          <StyledMenu
+              <StyledMenu
             id="vendors-menu"
             anchorEl={anchorEl}
             keepMounted
@@ -265,6 +273,8 @@ console.log({currentUser}, 'currentuser')
             <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>View All Vendors</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={handleClose}>More Info</StyledMenuItem>
           </StyledMenu>
+          </Typography>
+         
           <Typography ariant="h6"  className={classes.title}>
               <Link className={classes.link}  underline='none'>About</Link>
           </Typography>
@@ -303,11 +313,11 @@ console.log({currentUser}, 'currentuser')
               color="inherit"
               aria-label="Shopping cart"
             >
-              <ShoppingCart onClick={toCart} />
+              <ShoppingCart onClick={toCart} className={classes.shoppingCart}/>
             </IconButton>
           </Typography>
           <Typography ariant="h6"  className={ currentUser ? classes.title : classes.closed}>
-            {/* <IconButton
+            <IconButton
               edge="end"
               className={classes.icons}
               color="inherit"
@@ -316,7 +326,7 @@ console.log({currentUser}, 'currentuser')
             >
                
               <Profile />
-            </IconButton> */}
+            </IconButton>
             <IconButton
             onClick={handleClick}
                       // edge="end"
@@ -333,8 +343,9 @@ console.log({currentUser}, 'currentuser')
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            className={ currentUser ? null : classes.closed}
            >         
-           <MenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</MenuItem>
+           <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>View Profile</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={handleRegOpen}>{user_type === 'vendor' ? 'My Stalls' : 'My Orders'}</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={toAllVendors}>Account Settings</StyledMenuItem>
             <StyledMenuItem className={classes.menuItem} onClick={logout}>Logout</StyledMenuItem>

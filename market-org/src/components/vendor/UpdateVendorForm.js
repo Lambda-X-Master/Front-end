@@ -17,7 +17,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import axios from "axios";
+import axios from '../../axios-instance';
 
 const styles = theme => ({
   newgroup: {
@@ -95,7 +95,7 @@ const UpdateVendorForm = props => {
       };
 
     axios
-    .put(`http://localhost:5000/vendor/${firebase_id}`, updatedVendor, {
+    .put(`vendor/${firebase_id}`, updatedVendor, {
       "Content-Type": "application/json",
       headers: { Authorization: token }
     })
