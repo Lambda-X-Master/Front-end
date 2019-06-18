@@ -437,5 +437,4 @@ const CreateMarket = props => {
     </React.Fragment>
   );
 };
-
 export default withRouter(withStyles(styles)(CreateMarket));

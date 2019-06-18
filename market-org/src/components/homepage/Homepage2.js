@@ -24,7 +24,7 @@ import salad from '../../images/salad.jpg'
 import logo2 from '../../images/logo2.png'
 import vegetables from '../../images/vegetables.png'
 import team from '../../images/team.png'
-import StallsList from '../stalls/stallsList'
+// import StallsList from './components/stalls/stallsList';
 import queryString from 'query-string';
 
 
