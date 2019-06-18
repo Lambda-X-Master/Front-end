@@ -65,8 +65,7 @@ const VendorForm = props => {
   return (
     <>
       <div className="vendor-form-wrapper">
-        <div className='vendor-form-left'>
-          <h1>Test</h1>
+        <div className='vendor-form-left'>  
         </div>
         <div className='vendor-form-right'>
           <h2>Register A Vendor</h2>

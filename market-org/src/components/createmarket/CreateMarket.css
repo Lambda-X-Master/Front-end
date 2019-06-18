@@ -1,55 +1,69 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-.market-registration-form{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    flex-wrap: wrap; 
-    text-align:center;
-    padding-top: 5%;
-    background-image: url('../../images/homeBG.jpg'); 
+.market-form-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 64px);    
+}
+
+.market-form-left{
+    background-image: url('../../images/market2.jpg');
     background-position: center center;
     box-shadow:inset 0 0 0 2000px rgba(105, 7, 40, 0.3);
-    min-height: calc(100vh - 64px);
-    background-size: cover;
-    /* background-color: black; */
+    background-size: cover; 
+    width:60%;
+    
+
 }
 
-.product-form form{
+.market-form-right{
+    background-color: white;
+    width:40%;
+    display:flex;
+    flex-wrap: wrap;
+    padding:20px;
+}
+
+.market-form-right form{
     width: 100%;
+    padding:15px;
 }
 
-.submit-section-product{
+.submit-section-vendor{
     margin-top:5%;
-    margin-bottom:5%;
-    display: flex;
-    justify-content: center;
+    width:50%;
 }
 
-.button-market-register{
+.submit-button-vendor{
     color: #ffffff !important;
     background-color: rgba(180, 45, 90, 0.911) !important;
     font-size:30px !important;
     border-radius: 25px !important;
-    padding: 15px !important;
+    padding: 5px !important;
     font-family: 'Montserrat' !important;
-    width: 50%;
+    
 }
 
-.button-market-register:hover{
+.submit-button-vendor:hover{
     background-color: white !important;
     color: rgba(180, 45, 90) !important;
 }
 
-.input-field-market-register{
-    background-color: white;
-    width: 40% !important;
-    border-radius: 25px;
+.input-field{
+    /* background-color: grey; */
+    width: 100%; 
 }
 
-.market-registration-form h1{
+.vendor-form h1{
     font-size:50px;
     color:white;
     font-family: 'Montserrat'
+}
+
+.market-form-right h2{
+    font-size:30px;
+    color:rgba(180, 45, 90);
+    font-family: 'Montserrat';
+    
 }
 
