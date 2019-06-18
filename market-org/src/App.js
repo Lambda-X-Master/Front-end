@@ -38,8 +38,8 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        <Navbar className='nav-bar' />
-          {/* <VendorNav/> */}
+        {/* <Navbar className='nav-bar' /> */}
+          <VendorNav/>
         {/* <Navbar /> */}
         <Switch>
           <Route exact path="/" component={Homepage2} />
