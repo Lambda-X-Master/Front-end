@@ -157,7 +157,7 @@ function SignIn(props) {
 						className={classes.submit}>
 						Sign in
           			</Button>
-					  curren page?
+					 
 					<Button
 						type="submit"
 						fullWidth

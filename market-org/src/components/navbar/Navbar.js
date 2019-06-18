@@ -134,9 +134,9 @@ const StyledMenuItem = withStyles(theme => ({
 function ButtonAppBar(props) {
   const [open, setOpen] = React.useState(false);
   const [openReg, setOpenReg] = React.useState(false);
-<<<<<<< HEAD
   const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const firebaseId = localStorage.getItem('firebaseId');
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
@@ -145,10 +145,6 @@ function ButtonAppBar(props) {
     setAnchorEl(null);
   }
 
-=======
-
-  const firebaseId = localStorage.getItem('firebaseId');
->>>>>>> 829df2f17258f3f6cb46ae44313051d159314218
   const handleOpen = () => {
     setOpen(true);
   };
@@ -177,6 +173,7 @@ function ButtonAppBar(props) {
   };
 
   const toPrivateVendorProfile = () => {
+    
     props.history.push(`/oneVendorPrivate/${firebaseId}`);
   };
 
@@ -308,7 +305,7 @@ console.log({currentUser}, 'currentuser')
             <Link 
                 className={classes.link}
                 color="inherit"
-                onClick={logout}
+                onClick={currentUser ? logout : handleRegOpen}
                 underline='none'
               >
                {currentUser ? 'Logout' : 'Login'}

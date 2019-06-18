@@ -6,7 +6,7 @@ import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
-import Homepage from './components/homepage/Homepage';
+
 import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
@@ -38,8 +38,8 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        {/* <Navbar className='nav-bar' /> */}
-          <VendorNav/>
+        <Navbar className='nav-bar' />
+          {/* <VendorNav/> */}
         {/* <Navbar /> */}
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
