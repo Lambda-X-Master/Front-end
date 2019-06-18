@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 function VendorNav (props) {
+    let firebase_id = localStorage.getItem('firebaseId')
 
     const viewMarket = () => {
         props.history.push('/markets')
@@ -60,6 +61,9 @@ function VendorNav (props) {
     //     console.log(err)
     // })
   }
+  const toPrivateVendorProfile = () => {    
+    props.history.push(`/oneVendorPrivate/${firebase_id}`);
+  };
 
     console.log(props, 'props from vendor nav')
     const classes = useStyles();
@@ -106,10 +110,10 @@ function VendorNav (props) {
                     <Button
                         color="inherit"
                         className={classes.navLink}
-                        // onClick={viewMarket}
+                        onClick={toPrivateVendorProfile}
                         // style={{  margin: "10px" }}
                      >
-                        View Profile
+                        View My Vendor Profile
                     </Button>
                     <IconButton
                         edge="end"
