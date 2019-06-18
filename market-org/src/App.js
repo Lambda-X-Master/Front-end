@@ -23,6 +23,7 @@ import OneVendorPrivate from './components/vendor/OneVendorPrivate';
 import MarketProfilePage from './components/markets/marketProfile';
 import VendorCart from './components/cart/cart';
 import MarketLandingPage from "./components/marketLandingPage/marketLandingPage";
+import VendorsPerMarket from "./components/marketLandingPage/VendorsPerMarket";
 
 import { ContextProvider } from './components/context/state';
 import { AuthContext } from "./components/authContext/authState";
@@ -37,8 +38,8 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        <Navbar className='nav-bar' />
-          {/* <VendorNav/> */}
+        {/* <Navbar className='nav-bar' /> */}
+          <VendorNav/>
         {/* <Navbar /> */}
         <Switch>
           <Route exact exact path="/" component={Homepage2} />
@@ -49,6 +50,7 @@ function App() {
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
           <Route exact path="/markets" component={MarketLandingPage} />
+          <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
           <Route path="/landing-page" component={LandingPage}/>
           <Route path="/stalls/" component={StallsList}/>  

@@ -86,8 +86,8 @@ const VendorForm = props => {
       .catch(err => {
         console.log(err);
       });
-
-    props.history.replace("/productForm");
+    // props.history.replace("/productForm");
+    props.history.replace("/markets");
   };
 
   return (

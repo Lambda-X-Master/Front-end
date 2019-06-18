@@ -106,11 +106,11 @@ const Cart = () => {
                 let total = res.data.total
                 let stripe = res.data.cartItem[0].stripeAccountId
                 console.log('Total', total)
-                console.log('cart data',  cartData[2].cart_item_id)
+                // console.log('cart data',  cartData[2].cart_item_id)
                 console.log('stripe', stripe)
-                const cartItemsIds = Object.keys(cartData).map((item, i) => {
-                  return cartData[item].cart_item_id})
-                console.log(cartItemsIds, 'ids')
+                // const cartItemsIds = Object.keys(cartData).map((item, i) => {
+                //   return cartData[item].cart_item_id})
+                // console.log(cartItemsIds, 'ids')
                 setCartItems(cartData)
                 setTotal(total)
                 setStripeId(stripe)
