@@ -4,9 +4,11 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter } from 'react-router'
 import Navbar from './components/navbar/Navbar';
+import SignIn from './components/login/SignIn';
+import SignUp from './components/register/SignUp';
 import LandingPage from './components/landingpage/landingpage';
 import CreateMarket from './components/createmarket/CreateMarket';
-import Homepage from './components/homepage/Homepage';
+
 import Homepage2 from './components/homepage/Homepage2';
 import PrivateRoute from './components/privateroute/PrivateRoute';
 import StallsList from './components/stalls/stallsList';
@@ -38,18 +40,20 @@ function App() {
         <div className='app-wrapper'>
         <CssBaseline />
         <ContextProvider>
-        {/* <Navbar className='nav-bar' /> */}
-          <VendorNav/>
+        <Navbar className='nav-bar' />
+          {/* <VendorNav/> */}
         {/* <Navbar /> */}
         <Switch>
-          <Route exact path="/" component={Homepage2} />
+          <Route exact exact path="/" component={Homepage2} />
           <PrivateRoute exact path="/create-market" component={CreateMarket} />
           <Route path="/vendor" component={VendorForm} />
           <Route path="/productForm" component={ProductForm} />
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/signin' component={SignIn}/>
           {/* <Route path="/updateProductForm" component={UpdateProductForm} /> */}
           <Route path="/productsByVendor" component={ProductByVendor} />
           <Route path="/productsByVendor/:id/updateProductForm" component={UpdateProductForm} />
-          <Route path="/markets" component={MarketLandingPage} />
+          <Route exact path="/markets" component={MarketLandingPage} />
           <Route path="/vendorsByMarket/:firebase_id" component={VendorsPerMarket} />
           <Route path="/markets/marketProfile/" component={MarketProfilePage} />
           <Route path="/landing-page" component={LandingPage}/>

@@ -4,7 +4,7 @@ import { withStyles, Typography, TextField, Button } from '@material-ui/core';
 import MarketProfileCard from "./marketProfileCard";
 import styled from 'styled-components';
 import { Route, NavLink, Switch } from 'react-router-dom';
-import stallsList from "../stallsList/stallsList";
+import StallsList from '../stalls/stallsList';
 import axios from '../../axios-instance';
 import "./marketLandingPage.css";
 
