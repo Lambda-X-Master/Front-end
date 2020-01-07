@@ -10,7 +10,7 @@ const Routes = () => {
     
     return (
         <>
-            <Route path='/'  component={Landing} /> 
+            <Route exact path='/'  component={Landing} /> 
             <Route path='/game'  component={Game} /> 
             <Route path='/login'  component={Login} /> 
             <Route path='/register'  component={Register} /> 
