@@ -5,3 +5,11 @@ export const Main = styled.main`
     justify-content: center;
     align-items: center; 
 `
+
+export const P = styled.p`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    size: 26px;
+
+`
