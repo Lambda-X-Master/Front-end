@@ -3,9 +3,14 @@ import img from '../Images/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
 // adding comment
 export const Main = styled.main`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
-  // align-items: center;
+  align-items: center;
+
+  main {
+    width: 99%
+    height: 99%
+  }
   
   
   background-image: url(${img});

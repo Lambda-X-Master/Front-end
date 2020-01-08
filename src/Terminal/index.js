@@ -19,7 +19,8 @@ const index = () => {
             popup: () => alert('Terminal in React'),
             register: () => commands.register(),
             login: () => commands.login(),
-            initialize: () => commands.initialize()
+            initialize: () => commands.initialize(),
+            move: () => commands.move()
           }}
           descriptions={{
             'open-google': 'opens google.com',

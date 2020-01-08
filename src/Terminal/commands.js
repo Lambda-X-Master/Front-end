@@ -5,17 +5,18 @@ const registerUrl = 'localhost:8000/api/registration/'
 const registeredUser = `{"username":"CapKirk", "password1":"asswerd1", "password2":"asswerd1"}`
 const loginUser = `{"username":"CapKirk", "password":"asswerd1"}`
 const loginUrl = 'localhost:8000/api/login/'
-const url = `https://lambda-mud-test.herokuapp.com/`
-const direction = ''
+const url = `https://lambda-mud-test.herokuapp.com`
+const direction = 'e'
 const Token = ''
-const token = ''
+const token = '284c818834f7c8c56561c73f840fc234a14e819b'
+
 
 
 export const commands = {
     register: () => {
         try {
             const key = axios.post(
-                `${url}/api/registration`, 
+                `${url}/api/register/`, 
                 `${registeredUser}`
             )
             console.log(key)
@@ -26,7 +27,7 @@ export const commands = {
     login: () => {
         try {
             const key = axios.post(
-                `${url}/api/login`, 
+                `${url}/api/login/`, 
                 `${loginUser}`
             )
             console.log(key)
@@ -37,22 +38,24 @@ export const commands = {
     initialize: () => {
         try {
             const init = axios.get(
-                'localhost:8000/api/adv/init/',
+                `https://lambda-beastmode.herokuapp.com/api/adv/init/`,
+                { "Authorization": `Token ${token}`} 
             )
+            console.log(init)
         } catch (err) {
-            console.log(err)
+            console.log(err.stack)
         }
     },
     move: () => {
         try {
             const mv2rm = axios.post(
-                `${url}`, 
+                `${url}/`, 
                 {"direction": `${direction}`}, 
-                { Authorization: Token `${token}` }
+                { "Authorization": `Token ${token}` }
             )
             console.log(mv2rm)
         } catch (error) {
-            console.log(error)
+            console.log(error.stack)
         }
     }
     // say, 
