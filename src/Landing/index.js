@@ -3,8 +3,10 @@ import {
     Main,
     P,
     Container,
+    MyButton,
 } from "./styles";
 import { Link } from "react-router-dom";
+import img from '../Images/ship.png'
 
 
 const Landing = () => {
@@ -13,14 +15,20 @@ const Landing = () => {
           <P>
             Welcome to Space...
           </P>
-          <Container>
-            <Link to="/login">
-              Login
-            </Link>
-            <Link to="/register">
-              Register
-            </Link>
-          </Container>
+          <img src="${img}" alt="Italian Trulli"/>
+          {/* <Container>
+            <MyButton>
+              <Link to="/login">
+                Login
+              </Link>
+            </MyButton>
+            <MyButton>
+              <Link to="/register">
+                Register
+              </Link>
+            </MyButton>
+
+          </Container> */}
         </Main>
     )
 }
