@@ -8,7 +8,7 @@ const Routes = () => {
     
     return (
         <>
-            <Route path='/game'  component={Game} /> 
+            <Route path='/'  component={Game} /> 
             {/* <Route path='/login'  component={Login} />  */}
             {/* <Route path='/'  component={} />  */}
             {/* <Route path='/'  component={} />  */}
