@@ -3,6 +3,7 @@ import axios from "axios";
 import { Loader, Form } from "semantic-ui-react";
 import { 
   Main,
+  MyButton
 } from "./styles";
 
 export const Login = props => {
@@ -10,6 +11,7 @@ export const Login = props => {
   const [isError, setIsError] = useState(false);
   const [credentials, setCredentials] = useState({
     username: "",
+    email: "",
     password: ""
   });
 
@@ -22,7 +24,7 @@ export const Login = props => {
     setIsLoading(true);
     axios
       .post(
-        "https://lambda-mud-test.herokuapp.com/api/login/",
+        "https://lambda-beastmode.herokuapp.com/api/login/",
         credentials
       )
       .then(res => {
@@ -74,11 +76,11 @@ export const Login = props => {
         Login to continue your game
       </p>
       <p>
-        Don't have an account? Click sign up to play!
+        Don't have an account? Click Register to play!
       </p>
       <Form onSubmit={sendCreds} className="formStyle">
         <Form.Field>
-          <label>Username</label>
+          <label>Username:</label>
           <input
             className="inputStyle"
             name="username"
@@ -87,7 +89,16 @@ export const Login = props => {
           />
         </Form.Field>
         <Form.Field>
-          <label>Password</label>
+          <label>Email:</label>
+          <input
+            className="inputStyle"
+            name="email"
+            type="email"
+            onChange={handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label>Password:</label>
           <input
             className="inputStyle"
             name="password"
@@ -95,7 +106,7 @@ export const Login = props => {
             onChange={handleChange}
           />
         </Form.Field>
-        <button type="submit">Submit</button>
+        <MyButton type="submit">Submit</MyButton>
       </Form>
 
       {loading()}
