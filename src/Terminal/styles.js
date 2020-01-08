@@ -1,7 +1,7 @@
-import  styled  from "styled-components ";
+import  styled  from 'styled-components'
 
 
-export const Section = styled.section`
+export const Container = styled.section`
     display: flex; 
-    
+    border: 5px solid white;
 `

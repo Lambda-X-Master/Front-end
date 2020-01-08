@@ -2,9 +2,11 @@ import React from 'react'
 import Terminal from 'terminal-in-react'
 import { commands } from './commands'
 
+import { Container } from "./styles";
+
 const index = () => {
     return (
-      <div>
+      <Container>
         <Terminal
           color='green'
           backgroundColor='black'
@@ -26,7 +28,7 @@ const index = () => {
           }}
           msg='Welcome to the Adventure.. Press help to see the command pallete'
         />
-      </div>
+      </Container>
     )
   }
   

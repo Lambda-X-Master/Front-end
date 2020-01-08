@@ -3,8 +3,11 @@ import img from '../Images/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
 // adding comment
 export const Main = styled.main`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  // align-items: center;
+  
+  
   background-image: url(${img});
   background-color: #D4C7DC; /* Used if the image is unavailable */
   height: 2000px; /* You must set a specified height */
