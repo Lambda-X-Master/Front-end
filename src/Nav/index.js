@@ -1,10 +1,14 @@
 import React from 'react'
 
-export const Nav = () => {
+import { 
+    Main,
+} from "./styles";
+
+const Nav = () => {
     return (
-        <div>
-            <h3>Nav</h3>
-        </div>
+        <Main>
+
+        </Main>
     )
 }
 

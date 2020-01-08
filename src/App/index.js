@@ -3,6 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import Routes from './routes'
 
 import { Main } from './styles'
+import Nav from '../Nav'
+
 
 import Nav from '../Nav'
 
