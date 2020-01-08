@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { RouteContext } from '../Contexts/routeContext'
 import { Menu, Segment } from 'semantic-ui-react'
-
+import { 
+  Main,
+  MyButton,
+} from "./styles";
 export const Nav = props => {
   const routeProps = useContext(RouteContext)
 
@@ -15,48 +18,33 @@ export const Nav = props => {
   const protectedView = () => {
     if (localStorage.getItem("token")) {
       return (
-        <>
-          <Menu.Item 
-            name="Game"
-            header as={NavLink} 
-            exact to="/game" 
-            activeClassName="active"
-          >
-          </Menu.Item>
-          <Menu.Item
-              name="Logout"
+        <Main>
+          <MyButton
               onClick={logout}
-          />
-        </>
+          >
+            Log Out
+          </MyButton>
+        </Main>
       )
     } else {
       return (
-        <>
-          <Menu.Item 
-            name="Command Central"
-            header as={NavLink} 
-            exact to="/" 
-            activeClassName="active"
-          >
-          </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item 
-              name="Login"
-              header as={NavLink} 
-              exact to="/login" 
-              activeClassName="active"
-              
-            >
-            </Menu.Item>
-            <Menu.Item 
-              name="Sign Up"
-              header as={NavLink} 
-              exact to="/register" 
-              activeClassName="active"
-              >
-            </Menu.Item>
-          </Menu.Menu>
-        </>
+        <Main>
+            <MyButton>
+              <NavLink to="/">
+                Home
+              </NavLink>
+            </MyButton>
+            <MyButton>
+              <NavLink to="/login">
+                Login
+              </NavLink>
+            </MyButton>
+            <MyButton>
+              <NavLink to="/register">
+                Register
+              </NavLink>
+            </MyButton>
+        </Main>
       )
     }
   }

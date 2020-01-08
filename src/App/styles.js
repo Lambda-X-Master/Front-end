@@ -13,6 +13,7 @@ export const Main = styled.main`
   }
   
   
+  // flex-flow: column;
   background-image: url(${img});
   background-color: #D4C7DC; /* Used if the image is unavailable */
   height: 2000px; /* You must set a specified height */
