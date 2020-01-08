@@ -1,21 +1,23 @@
 import React from 'react'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, } from "react-router-dom";
 import Routes from './routes'
 
 import { Main } from './styles'
 import Nav from '../Nav'
 
+import { RouteContext } from "../Contexts/routeContext";
 
-const App = () => {
+const App = (props) => {
     
+    const routeProps = props
 
     return (
-        <BrowserRouter>
+        <RouteContext.Provider value={{routeProps}}>
             <Main>
                 <Nav /> 
                 <Routes />
             </Main>
-        </BrowserRouter>
+        </RouteContext.Provider>
     )
     
 }

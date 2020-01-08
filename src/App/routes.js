@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Route } from "react-router-dom";
+import { PrivateRoute } from "../utilities/PrivateRoute";
 
 import Game from '../Game'
 import Login from '../Login'
@@ -11,7 +12,7 @@ const Routes = () => {
     return (
         <>
             <Route exact path='/'  component={Landing} /> 
-            <Route path='/game'  component={Game} /> 
+            <PrivateRoute path='/game'  component={Game} /> 
             <Route path='/login'  component={Login} /> 
             <Route path='/register'  component={Register} /> 
             {/* <Route path='/'  component={} />  */}
