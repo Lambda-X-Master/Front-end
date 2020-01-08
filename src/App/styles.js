@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import img from '../Images/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
-
+// adding comment
 export const Main = styled.main`
   display: flex;
   justify-content: center;
