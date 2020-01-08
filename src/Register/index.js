@@ -4,7 +4,7 @@ import {
     Main,
 } from "./styles";
 import { Form } from "semantic-ui-react";
-
+import { MyButton } from "../Login/styles";
 
 
 export const Register = props => {
@@ -13,6 +13,7 @@ export const Register = props => {
 
   const [userID, setUserID] = useState({
     username: "",
+    email: "",
     password1: "",
     password2: ""
   });
@@ -27,7 +28,7 @@ export const Register = props => {
     setIsLoading(true);
     axios
       .post(
-        "https://lambda-mud-test.herokuapp.com/api/registration/",
+        "https://lambda-beastmode.herokuapp.com/api/register/ ",
         userID
       )
       .then(res => {
@@ -84,15 +85,15 @@ export const Register = props => {
             onChange={handleChange}
           />
         </Form.Field>
-        {/* <div>
-          <div
-            label="User Name"
-            name="username"
-            type="text"
+        <Form.Field>
+          <label>Email</label>
+          <input
+            className="inputStyle"
+            name="email"
+            type="email"
             onChange={handleChange}
-            width={12}
           />
-        </div> */}
+        </Form.Field>
         <Form.Field>
           <label>Password</label>
           <input
@@ -112,7 +113,7 @@ export const Register = props => {
           />
         </Form.Field>
 
-        <button type="submit">Submit</button>
+        <MyButton type="submit">Submit</MyButton>
       </Form>
     </Main>
   );
