@@ -17,16 +17,18 @@ const index = () => {
           commands={{
             'open-google': () => window.open('https://www.google.com/', '_blank'),
             showmsg: () => "What's really hood",
-            popup: () => alert('Terminal in React'),
+            // popup: () => alert('Terminal in React'),
             register: () => commands.register(),
             login: () => commands.login(),
             initialize: () => commands.initialize(),
-            move: () => commands.move()
+            move: () => commands.move(),
           }}
           descriptions={{
             'open-google': 'opens google.com',
             showmsg: 'shows a message',
-            alert: 'alert', popup: 'alert'
+            // alert: 'alert', popup: 'alert',
+            initialize: 'starts the game',
+            move: 'change rooms'
           }}
           msg='Welcome to the Adventure.. Press help to see the command pallete'
         />

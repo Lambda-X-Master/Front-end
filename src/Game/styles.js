@@ -6,26 +6,59 @@ export const Main = styled.main`
     // flex-direction: row;
     // justify-content: center;
     // align-items: space-evenly;
-    height: 95vh:
-    width: 95vw;
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
     
-    #bridge {
-        grid-column: 1 / span
-        grid-column-end: ; 
-        // max-width: 50vw;
-    }
-
-    #term {
-        // max-width: 50vw;
-    }
-
-
 `
 export const Container = styled.section`
     
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    #bridge{
+        width: 95vw;
+    }
+
+    #term{
+        width: 95vw;
+    }
+    
+    #map{
+        width: 95vw;
+        height: 95vh;
+    }
+
+    // margin-top: 20px;
+    // height: 95vh:
+    // width: 95vw;
+    // display: grid;
+    // grid-template-columns: 20% 20% 20% 20% 20% //repeat(20, 5vw);
+    // grid-template-rows: 20% 20% 20% 20% 20% //repeat(20, 5vh);
+    // // max-width: 50vw;
+    // #bridge {
+    //     grid-column-start: 1;
+    //     grid-column-end: 3; 
+    //     grid-row-start: 1;
+    //     grid-row-end: 2;
+    //     // width: 50vh;
+    // }
+
+    // #term {
+    //     grid-column-start: 1;
+    //     grid-column-end: 3; 
+    //     grid-row-start: 3;
+    //     grid-row-end: 5;
+        
+    // }
+
+    // #map {
+    //     grid-column-start: 3;
+    //     grid-column-end: 5 
+    //     grid-row-start: 3;
+    //     grid-row-end: 5;
+        
+    // }
 `
 
 export const Bridge = styled.div`
