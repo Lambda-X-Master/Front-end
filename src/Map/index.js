@@ -1,10 +1,11 @@
 import React from 'react'
+import { Map } from "./styles";
 
 const index = () => {
     return (
-        <div>
+        <Map>
             
-        </div>
+        </Map>
     )
 }
 

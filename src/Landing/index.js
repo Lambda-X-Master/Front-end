@@ -7,7 +7,7 @@ import {
     MyImage,
 } from "./styles";
 import { Link } from "react-router-dom";
-import img from '../Images/ship.png'
+import img from '../Images/Starship.png'
 
 
 const Landing = () => {

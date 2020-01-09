@@ -3,9 +3,17 @@ import img from '../Images/jeremy-thomas-4dpAqfTbvKA-unsplash.jpg'
 // adding comment
 export const Main = styled.main`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  flex-flow: column;
+
+  main {
+    width: 99%
+    height: 99%
+  }
+  
+  
+  // flex-flow: column;
   background-image: url(${img});
   background-color: #D4C7DC; /* Used if the image is unavailable */
   height: -webkit-fill-available; /* You must set a specified height */
