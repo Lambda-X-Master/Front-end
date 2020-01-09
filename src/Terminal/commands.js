@@ -8,8 +8,7 @@ const loginUrl = 'localhost:8000/api/login/'
 const url = `https://lambda-mud-test.herokuapp.com`
 const direction = 'e'
 const Token = ''
-const token = '284c818834f7c8c56561c73f840fc234a14e819b'
-
+// const token = '284c818834f7c8c56561c73f840fc234a14e819b'
 
 
 export const commands = {
@@ -36,10 +35,13 @@ export const commands = {
         }
     },
     initialize: () => {
+        
         try {
+            const token = `7619ce496e8495cb00909ac9c16612a3fdb70f5c`//localStorage.getItem("token")
+            console.log(token)
             const init = axios.get(
                 `https://lambda-beastmode.herokuapp.com/api/adv/init/`,
-                { "Authorization": `Token ${token}`} 
+                {headers: { Authorization: `Token ${token}`} }
             )
             console.log(init)
         } catch (err) {
@@ -48,10 +50,12 @@ export const commands = {
     },
     move: () => {
         try {
+            const token = localStorage.getItem("token")
+            console.log(token)
             const mv2rm = axios.post(
                 `${url}/`, 
                 {"direction": `${direction}`}, 
-                { "Authorization": `Token ${token}` }
+                {Authorization: `Token ${token}` }
             )
             console.log(mv2rm)
         } catch (error) {

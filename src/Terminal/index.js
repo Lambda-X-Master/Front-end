@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Terminal from 'terminal-in-react'
 import { commands } from './commands'
 
 import { Container } from "./styles";
 
 const index = () => {
+
     return (
-      <Container>
+      <Container id="term" >
         <Terminal
           color='green'
           backgroundColor='black'

@@ -2,12 +2,25 @@ import styled from 'styled-components'
 import bridge from '../Images/humanbridge.png'
 
 export const Main = styled.main`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: space-evenly;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+    // align-items: space-evenly;
     height: 95vh:
     width: 95vw;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    
+    #bridge {
+        grid-column: 1 / span
+        grid-column-end: ; 
+        // max-width: 50vw;
+    }
+
+    #term {
+        // max-width: 50vw;
+    }
 
 
 `
@@ -16,12 +29,12 @@ export const Container = styled.section`
 `
 
 export const Bridge = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     border: 4px solid white;
     background-image: url(${bridge});
-    background-color: #D4C7DC; /* Used if the image is unavailable */
+    // background-color: #D4C7DC; /* Used if the image is unavailable */
     height: 500px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
