@@ -4,8 +4,9 @@ export const Main = styled.main`
     display: flex;
     justify-content: space-evenly;
     align-items: center; 
-    height: 10rem;
+    height: 8rem;
     width: 1000px;
+
 `
 
 export const MyButton = styled.div`
