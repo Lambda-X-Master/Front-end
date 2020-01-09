@@ -1,5 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {
+    useState, 
+    useEffect, 
+    useContext
+} from 'react'
 // import { Map } from "./styles"
+
+import RoomContext from '../Contexts/roomContext'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -33,6 +39,8 @@ export default function MediaCard(props) {
     //     }
     // })
 
+    const {setRoom, title} = useContext(RoomContext)
+
     const renderRoom = (rmName) => {
         switch (rmName) {
             case 'Engine Room':
@@ -46,7 +54,7 @@ export default function MediaCard(props) {
             case 'Bridge':
                 return "" 
             case 'Hallway':
-                return "" 
+                return "../Images/david-klingel-defense-room.jpg" 
             case 'Bathroom':
                 return "" 
             case 'Crew Cabin':
@@ -71,13 +79,14 @@ export default function MediaCard(props) {
         <CardActionArea>
             <CardMedia
             className={classes.media}
-            image={ renderRoom(props.title)}
+            image={() => renderRoom(title)}
             // image="/static/images/cards/contemplative-reptile.jpg"
             // title="Contemplative Reptile"
             />
             <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-                {localStorage.getItem('title')}
+                {/* {localStorage.getItem('title')} */}
+                {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
                 {localStorage.getItem('description')}
