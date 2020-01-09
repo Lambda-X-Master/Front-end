@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import img from '../Images/ship.png'
 
 export const Main = styled.main`
     display: flex;
@@ -41,4 +42,19 @@ export const MyButton = styled.div`
    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
    text-align:center;
    transition: all 0.2s;
+`
+
+// export const Picture = styled.div`
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 260px;
+//     height: 260px;
+//     background-image: url(${img});
+//     background-position: center; /* Center the image */
+//     background-repeat: no-repeat; /* Do not repeat the image */
+// `
+
+export const MyImage = styled.img`
+  height: 100px;
 `
