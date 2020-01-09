@@ -21,7 +21,7 @@ const index = () => {
             register: () => commands.register(),
             login: () => commands.login(),
             initialize: () => commands.initialize(),
-            move: () => commands.move()
+            move: (args) => commands.move(args)
           }}
           descriptions={{
             'open-google': 'opens google.com',

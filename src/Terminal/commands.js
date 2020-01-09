@@ -1,15 +1,9 @@
-import React from 'react'
 import axios from 'axios'           
 
-const registerUrl = 'localhost:8000/api/registration/'
 const registeredUser = `{"username":"CapKirk", "password1":"asswerd1", "password2":"asswerd1"}`
 const loginUser = `{"username":"CapKirk", "password":"asswerd1"}`
-const loginUrl = 'localhost:8000/api/login/'
-const url = `https://lambda-mud-test.herokuapp.com`
-const direction = 'e'
-const Token = ''
+const url = `https://lambda-beastmode.herokuapp.com`
 // const token = '284c818834f7c8c56561c73f840fc234a14e819b'
-
 
 export const commands = {
     register: () => {
@@ -35,33 +29,56 @@ export const commands = {
         }
     },
     initialize: () => {
-        
         try {
-            const token = `7619ce496e8495cb00909ac9c16612a3fdb70f5c`//localStorage.getItem("token")
-            console.log(token)
-            const init = axios.get(
-                `https://lambda-beastmode.herokuapp.com/api/adv/init/`,
-                {headers: { Authorization: `Token ${token}`} }
-            )
-            console.log(init)
+            const token = localStorage.getItem("token")
+            axios.get(
+                `${url}/api/adv/init/`,
+                { headers: { Authorization: `Token ${token}`} }
+            ).then((res) => {
+                const room = res.data;
+                console.log(`WELCOME TO SPACE ${room.name}`)
+                console.log(`You are currently located at: ${room.x_coord}, ${room.y_coord} - ${room.title}`)
+                console.log(`You see: ${room.description}`)
+                const numPlayers = room.players.length
+                if (numPlayers > 0) {
+                    if (numPlayers === 1) {
+                        console.log(`You see a person: ${room.players[0]}`)
+                    } else {
+                        console.log(`You see ${numPlayers}: ${room.players.reduce((player, players) => `${player}, ${players}`)}`)
+                    }
+                } else {
+                    console.log("You see no one")
+                }
+                localStorage.setItem("room", room);
+            })
         } catch (err) {
             console.log(err.stack)
         }
     },
-    move: () => {
+    move: (args) => {
+        const direction = args[1]
+        if (!["n", "e", "s", "w"].includes(direction)) {
+            console.log("You must choose one of 4 directions: n s e w")
+            return
+        }
         try {
             const token = localStorage.getItem("token")
-            console.log(token)
-            const mv2rm = axios.post(
-                `${url}/`, 
-                {"direction": `${direction}`}, 
-                {Authorization: `Token ${token}` }
-            )
-            console.log(mv2rm)
-        } catch (error) {
-            console.log(error.stack)
+            axios.post(
+                `${url}/api/adv/move/`, 
+                {"direction": `${direction}`},
+                { headers: {
+                    Authorization: `Token ${token}`,
+                    "Content-Type": "application/json"
+                }}
+            ).then((res) => {
+                const room = res.data
+                console.log(room)
+                localStorage.setItem("room", room);
+            })
+        } catch (err) {
+            console.log(err.stack)
         }
-    }
+    },
     // say, 
 }
 
