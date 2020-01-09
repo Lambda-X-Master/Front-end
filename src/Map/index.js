@@ -79,7 +79,8 @@ export default function MediaCard(props) {
         <CardActionArea>
             <CardMedia
             className={classes.media}
-            image={() => renderRoom(title)}
+            // image={() => renderRoom(title)}
+            image='front-end/src/Images/purple-engine-room.jpg'
             // image="/static/images/cards/contemplative-reptile.jpg"
             // title="Contemplative Reptile"
             />
