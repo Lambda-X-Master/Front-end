@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { 
     Main,
+    Info,
+    InfoTwo,
 } from "./styles";
 import { Form } from "semantic-ui-react";
 import { MyButton } from "../Login/styles";
@@ -51,7 +53,7 @@ export const Register = props => {
     if (isLoading) {
       return (
         <div>
-          <h1>Creating Account</h1>
+          <Info>Creating Account</Info>
         </div>
       );
     }
@@ -61,7 +63,7 @@ export const Register = props => {
     if (isError) {
       return (
         <div>
-          <h1>An error has occurred, please try again!</h1>
+          <Info>An error has occurred, please try again!</Info>
         </div>
       );
     }
@@ -71,10 +73,10 @@ export const Register = props => {
     <Main>
       {loading()}
       {error()}
-      <h2>Register to Play</h2>
-      <p>
+      <Info>Register to Play</Info>
+      <InfoTwo>
         SpaceQuest - an Adventure in Space
-      </p>
+      </InfoTwo>
       <Form onSubmit={handleSubmit} className="formStyle">
         <Form.Field>
           <label>Username</label>
