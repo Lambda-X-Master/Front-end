@@ -16,7 +16,7 @@ export const Main = styled.main`
   // flex-flow: column;
   background-image: url(${img});
   background-color: #D4C7DC; /* Used if the image is unavailable */
-  height: 2000px; /* You must set a specified height */
+  height: -webkit-fill-available; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */

@@ -23,7 +23,7 @@ export const Map = styled.div`
     height: 800px; /* You must set a specified height */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-size: cov; /* Resize the background image to cover the entire container */
 
     @media (min-width: 768px){
         width: 768px;

@@ -3,7 +3,9 @@ import axios from "axios";
 import { Loader, Form } from "semantic-ui-react";
 import { 
   Main,
-  MyButton
+  MyButton,
+  Info,
+  InfoTwo,
 } from "./styles";
 
 export const Login = props => {
@@ -48,7 +50,7 @@ export const Login = props => {
       return (
         <div className="alertMessage">
           <Loader active inline="centered" className="loader" />
-          <p className="loader">Now Loading</p>
+          <Info>Now Loading</Info>
         </div>
       );
     }
@@ -59,9 +61,7 @@ export const Login = props => {
     if (isError) {
       return (
         <div className="messageContainer">
-          <h3>You must register before you can do that!</h3>
-
-          <p>Sign up to be part of our awesome list of wedding planners!</p>
+          <Info>Invalid Entrance Code</Info>
         </div>
       );
     }
@@ -69,15 +69,14 @@ export const Login = props => {
 
   return (
     <Main>
-      <h2 className="formHeader">
-        Welcome Back
-      </h2>
-      <p>
+
+      <Info className="formHeader">
+        Welcome Back, Commander
+      </Info>
+      <InfoTwo>
         Login to continue your game
-      </p>
-      <p>
-        Don't have an account? Click Register to play!
-      </p>
+      </InfoTwo>
+
       <Form onSubmit={sendCreds} className="formStyle">
         <Form.Field>
           <label>Username:</label>
@@ -108,9 +107,11 @@ export const Login = props => {
         </Form.Field>
         <MyButton type="submit">Submit</MyButton>
       </Form>
-
+      <InfoTwo>
+        Don't have an account? Click Register to play!
+      </InfoTwo>
       {loading()}
-      {error()}
+      {error()}    
     </Main>
   );
 };

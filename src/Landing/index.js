@@ -4,6 +4,7 @@ import {
     P,
     Container,
     MyButton,
+    MyImage,
 } from "./styles";
 import { Link } from "react-router-dom";
 import img from '../Images/Starship.png'
@@ -15,7 +16,7 @@ const Landing = () => {
           <P>
             Welcome to Space...
           </P>
-          <img src="${img}" alt="Italian Trulli"/>
+          <MyImage src={img} alt="spaceship"></MyImage>
           {/* <Container>
             <MyButton>
               <Link to="/login">
