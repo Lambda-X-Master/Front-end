@@ -49,7 +49,9 @@ export const commands = {
                 } else {
                     console.log("You see no one")
                 }
-                localStorage.setItem("room", room);
+                localStorage.setItem("room", room)
+                localStorage.setItem('title', room.title)
+                localStorage.setItem('description', room.description)
             })
         } catch (err) {
             console.log(err.stack)
@@ -73,7 +75,9 @@ export const commands = {
             ).then((res) => {
                 const room = res.data
                 console.log(room)
-                localStorage.setItem("room", room);
+                localStorage.setItem("room", room)
+                localStorage.setItem('title', room.title)
+                localStorage.setItem('description', room.description)
             })
         } catch (err) {
             console.log(err.stack)

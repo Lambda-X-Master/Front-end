@@ -4,7 +4,8 @@ import { commands } from './commands'
 
 import { Container } from "./styles";
 
-const index = () => {
+
+const index = props => {
 
     return (
       <Container id="term" >
@@ -12,7 +13,11 @@ const index = () => {
           color='green'
           backgroundColor='black'
           barColor='black'
-          style={{ fontWeight: "bold", fontSize: "1em" }}
+          style={{ 
+            fontWeight: "bold", 
+            fontSize: "1em",
+            width:"49vw" 
+          }}
           watchConsoleLogging
           commands={{
             'open-google': () => window.open('https://www.google.com/', '_blank'),
@@ -20,8 +25,14 @@ const index = () => {
             // popup: () => alert('Terminal in React'),
             register: () => commands.register(),
             login: () => commands.login(),
-            initialize: () => commands.initialize(),
-            move: (args) => commands.move(args)
+            initialize: () => {
+              commands.initialize()
+              props.setTitle(localStorage.getItem('title'))
+            },
+            move: (args) => {
+              commands.move(args)
+              props.setTitle(localStorage.getItem('title'))
+            }
           }}
           descriptions={{
             'open-google': 'opens google.com',
